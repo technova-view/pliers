@@ -4,9 +4,6 @@
   "files": [],
   "references": [
     {
-      "path": "./core-e2e"
-    },
-    {
       "path": "./core"
     },
     {
