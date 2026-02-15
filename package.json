@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "npx nx run-many -p core client -t serve dev"
+    "dev": "npx nx run-many -p core client -t serve dev",
+    "build": "npx nx run-many -p core client -t build",
+    "serve": "npx nx run-many -p core client -t serve start --configuration=production"
   },
   "private": true,
   "devDependencies": {
