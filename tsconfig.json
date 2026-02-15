@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./core-e2e"
+    },
+    {
+      "path": "./core"
+    },
+    {
+      "path": "./client"
+    }
+  ]
+}
