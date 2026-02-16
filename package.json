@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "npx nx run-many -p core client -t serve dev",
-    "build": "npx nx run-many -p core client -t build",
-    "serve": "npx nx run-many -p core client -t serve start --configuration=production"
+    "dev": "npx nx run-many -t serve --projects=core --configuration=development & npx nx run-many -t dev --projects=client",
+    "build": "npx nx build core --skip-nx-cache && npx nx build client --skip-nx-cache",
+    "serve": "npx nx serve core --configuration=production & npx nx start client"
   },
   "private": true,
   "devDependencies": {

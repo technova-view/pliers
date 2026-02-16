@@ -9,6 +9,7 @@
     "emitDecoratorMetadata": true,
     "target": "es2021",
     "strictPropertyInitialization": false,
+    "noUnusedLocals": false
 
   },
   "include": ["src/**/*.ts"],
