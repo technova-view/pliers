@@ -12,7 +12,7 @@ import { NAME_REGEX } from '../../../common/regex/name.regex';
 
 export class SignupDto {
 
-    @ApiProperty({ example: 'owner@acme.com' })
+    @ApiProperty({ example: 'user@pliers.com' })
     @IsEmail()
     @IsNotEmpty()
     email: string;
