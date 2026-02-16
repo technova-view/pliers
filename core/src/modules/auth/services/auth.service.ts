@@ -1,13 +1,12 @@
-import { Injectable, Inject, ForbiddenException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { SignupDto } from '../dto/signup.dto';
+import { RequestInterface } from '../../../common/interfaces/request.interface';
 
 @Injectable()
 export class AuthService {
-
     constructor() {}
-
-    async signup(): Promise<void> { 
+    async signup(signupDto: SignupDto, request: RequestInterface): Promise<void> { 
     }
-    
     async login(): Promise<void> {
     }
 }
