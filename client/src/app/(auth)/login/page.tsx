@@ -37,7 +37,7 @@ export default function LoginPage() {
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			router.push('/');
+			router.push('/dashboard');
 		}
 	}, [isAuthenticated, router]);
 
@@ -49,7 +49,7 @@ export default function LoginPage() {
 		try {
 			const response = await login(data).unwrap();
 			toast.success(response.message || 'Login successful');
-			router.push('/');
+			router.push('/dashboard');
 			router.refresh();
 
 		} catch (error: unknown) {
