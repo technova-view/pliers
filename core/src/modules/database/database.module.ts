@@ -11,9 +11,9 @@ import { EnvironmentConfig } from '../../shared/interfaces/config.interface';
       inject: [ConfigService],
       useFactory: (config: ConfigService<EnvironmentConfig>) => ({
         type: 'postgres',
-        url: config.get<string>('DATABASE_URL'),
+        url: config.get('DATABASE_URL'),
         entities: [User],
-        synchronize: config.get('NODE_ENV') !== 'production',
+        synchronize: config.get('NODE_ENV') === 'development',
         extra: {
           ssl: {
             rejectUnauthorized: false,
