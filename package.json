@@ -11,8 +11,8 @@
     "client:build": "npm run build --prefix client",
     "core:start": "npm run start --prefix core",
     "client:start": "npm run start --prefix client",
-    "install": "concurrently --names core,client --prefix \"[{name}]\" --prefix-colors green,blue \"npm run core:install\" \"npm run client:install\"",
-    "dev": "concurrently --names core,client --prefix \"[{name}]\" --prefix-colors green,blue \"npm run core:dev\" \"npm run client:dev\""
+    "install": "concurrently --names backend,frontend --prefix \"[{name}]\" --prefix-colors green,blue \"npm run core:install\" \"npm run client:install\"",
+    "dev": "concurrently --names backend,frontend --prefix \"[{name}]\" --prefix-colors green,blue \"npm run core:dev\" \"npm run client:dev\""
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
