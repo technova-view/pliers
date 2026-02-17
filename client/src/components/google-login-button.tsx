@@ -5,52 +5,71 @@ import { useGoogleAuthMutation } from '@/lib/api/auth-api-slice';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
-declare global {
-    interface Window {
-        google: any;
-    }
-}
-
 export default function GoogleLoginButton() {
     const router = useRouter();
     const [googleAuth, { isLoading }] = useGoogleAuthMutation();
 
-    const handleGoogleSignIn = async () => {
-        if (typeof window === 'undefined') return;
+    const CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!;
+    const REDIRECT_URI = `${process.env.NEXT_PUBLIC_BASE_URL}/google-oauth-callback`;
 
-        if (!window.google) {
-            const script = document.createElement('script');
-            script.src = 'https://accounts.google.com/gsi/client';
-            script.onload = initGoogle;
-            document.body.appendChild(script);
-        } else {
-            initGoogle();
-        }
+    // Helper: Open popup and return id_token
+    const openGooglePopup = (): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            const width = 500;
+            const height = 600;
+            const left = window.screenX + (window.innerWidth - width) / 2;
+            const top = window.screenY + (window.innerHeight - height) / 2;
+
+            // generate a random nonce
+            const nonce = Math.random().toString(36).substring(2);
+
+            const authUrl = `https://accounts.google.com/o/oauth2/v2/auth` +
+                `?client_id=${CLIENT_ID}` +
+                `&redirect_uri=${REDIRECT_URI}` +
+                `&response_type=id_token` +
+                `&scope=openid email profile` +
+                `&prompt=select_account` +
+                `&nonce=${nonce}`;
+            const popup = window.open(
+                authUrl,
+                'googleSignIn',
+                `width=${width},height=${height},left=${left},top=${top}`
+            );
+
+            if (!popup) return reject(new Error('Popup blocked'));
+
+            const handleMessage = (event: MessageEvent) => {
+                if (event.origin !== window.location.origin) return;
+                const { type, id_token, error } = event.data;
+                if (type === 'google-oauth') {
+                    window.removeEventListener('message', handleMessage);
+                    popup.close();
+                    if (id_token) resolve(id_token);
+                    else reject(new Error(error || 'No id_token returned'));
+                }
+            };
+
+            window.addEventListener('message', handleMessage);
+        });
     };
 
-    const initGoogle = () => {
-        window.google.accounts.id.initialize({
-            client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
-            callback: async (response: any) => {
-                try {
-                    const idToken = response.credential;
+    const handleGoogleSignIn = async () => {
+        try {
+            const idToken = await openGooglePopup();
 
-                    await googleAuth({ accessToken: idToken }).unwrap();
-
-                    toast.success('Google Sign-In successful');
-                    router.push('/dashboard');
-                    router.refresh();
-                } catch {
-                    toast.error('Google Sign-In failed');
-                }
-            },
-        });
-
-        window.google.accounts.id.prompt(); // opens Google popup
+            await googleAuth({ accessToken: idToken }).unwrap();
+            toast.success('Google Sign-In successful');
+            router.push('/dashboard');
+            router.refresh();
+        } catch (err) {
+            console.error(err);
+            toast.error('Google Sign-In failed');
+        }
     };
 
     return (
         <Button
+            type="button"
             variant="outline"
             className="w-full"
             onClick={handleGoogleSignIn}
