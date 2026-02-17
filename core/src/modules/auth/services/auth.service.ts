@@ -13,7 +13,7 @@ import { User } from '../../database/entities/user.entity';
 import { UserSession } from '../../database/entities/user-session.entity';
 import { BaseApiResponse } from '../../../common/interfaces/api-response.interface';
 import { EnvironmentConfig } from '../../../common/interfaces/config.interface';
-import { RefreshAccessTokenResponseDto, LogoutResponseDto } from '../dto/auth-response.dto';
+import { RefreshAccessTokenResponseDto, LogoutResponseDto, AuthTokensResponseDto } from '../dto/auth-response.dto';
 import { UserType } from '../../../common/enums/user-type.enum';
 import { AccessTokenPayload, RefreshTokenPayload } from 'src/common/interfaces/token.interface';
 import { RequestInterface } from 'src/common/interfaces/request.interface';
@@ -68,7 +68,7 @@ export class AuthService {
      * @param loginDto - Login data
      * @param request - Request object
      */
-    async login(loginDto: LoginDto, request: RequestInterface): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
+    async login(loginDto: LoginDto, request: RequestInterface): Promise<BaseApiResponse<AuthTokensResponseDto>> {
         const { email, password } = loginDto;
 
         // Find user
@@ -100,6 +100,7 @@ export class AuthService {
         return BaseApiResponse.success('Login successful', {
             accessToken: tokens.accessToken,
             refreshToken: tokens.refreshToken,
+            userType: user.userType,
         });
     }
 
@@ -138,6 +139,7 @@ export class AuthService {
 
             return BaseApiResponse.success('Access token refreshed successfully', {
                 accessToken: newAccessToken,
+                userType: payload.userType,
             });
         } catch (error) {
             throw new ForbiddenException('Invalid or expired refresh token');
@@ -190,7 +192,7 @@ export class AuthService {
    * @param googleAuthDto - Google access token
    * @param request - Request object
    */
-  async googleAuth(googleAuthDto: GoogleAuthDto, request: RequestInterface): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
+  async googleAuth(googleAuthDto: GoogleAuthDto, request: RequestInterface): Promise<BaseApiResponse<AuthTokensResponseDto>> {
     const { accessToken } = googleAuthDto;
 
     try {
@@ -245,6 +247,7 @@ export class AuthService {
       return BaseApiResponse.success('Google authentication successful', {
         accessToken: tokens.accessToken,
         refreshToken: tokens.refreshToken,
+        userType: user.userType,
       });
     } catch (error) {
       if (error instanceof BadRequestException || error instanceof UnauthorizedException) {

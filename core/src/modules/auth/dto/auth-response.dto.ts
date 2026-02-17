@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseApiResponse } from '../../../common/interfaces/api-response.interface';
+import { UserType } from 'src/common/enums/user-type.enum';
 
 export class AuthTokensResponseDto {
 	@ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' })
@@ -7,11 +7,17 @@ export class AuthTokensResponseDto {
 
 	@ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' })
 	refreshToken: string;
+
+	@ApiProperty({ example: UserType.CONTRACTOR })
+	userType: UserType;
 }
 
 export class RefreshAccessTokenResponseDto {
 	@ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' })
 	accessToken: string;
+
+	@ApiProperty({ example: UserType.CONTRACTOR })
+	userType: UserType;
 }
 
 export class LogoutResponseDto {
@@ -19,5 +25,3 @@ export class LogoutResponseDto {
 	loggedOut: boolean;
 }
 
-export type RefreshAccessTokenResponse = BaseApiResponse<RefreshAccessTokenResponseDto>;
-export type LogoutResponse = BaseApiResponse<LogoutResponseDto>;
