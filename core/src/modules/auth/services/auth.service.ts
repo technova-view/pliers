@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
@@ -105,7 +105,7 @@ export class AuthService {
      * Refresh a user's accessToken token
      * @param refreshTokenDto - Refresh token data
      */
-    async refreshAccessToken(refreshTokenDto: RefreshTokenDto): Promise<BaseApiResponse<RefreshAccessTokenResponseDto>> {
+    async refreshAccessToken(refreshTokenDto: RefreshTokenDto, request: RequestInterface): Promise<BaseApiResponse<RefreshAccessTokenResponseDto>> {
         const { refreshToken } = refreshTokenDto;
 
         try {
@@ -146,7 +146,7 @@ export class AuthService {
      * Logout a user
      * @param refreshTokenDto - Refresh token to revoke
      */
-    async logout(refreshTokenDto: RefreshTokenDto): Promise<BaseApiResponse<LogoutResponseDto>> {
+    async logout(refreshTokenDto: RefreshTokenDto, request: RequestInterface): Promise<BaseApiResponse<LogoutResponseDto>> {
         const { refreshToken } = refreshTokenDto;
 
         try {

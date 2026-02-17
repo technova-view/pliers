@@ -7,6 +7,7 @@ import { LoginDto } from "../dto/login.dto";
 import { RefreshTokenDto } from "../dto/refresh-token.dto";
 import { BaseApiResponse } from "../../../shared/interfaces/api-response.interface";
 import { RefreshAccessTokenResponseDto, LogoutResponseDto } from "../dto/auth-response.dto";
+import { ApiBearerAuth } from "@nestjs/swagger";
 
 @Controller('auth')
 export class AuthController {
@@ -30,16 +31,18 @@ export class AuthController {
     @Post('refresh')
     async refreshAccessToken(
         @Body() refreshTokenDto: RefreshTokenDto,
+        @Req() request: RequestInterface,
     ): Promise<BaseApiResponse<RefreshAccessTokenResponseDto>> {
-        return this.authService.refreshAccessToken(refreshTokenDto);
+        return this.authService.refreshAccessToken(refreshTokenDto, request);
     }
 
-    @Public()
+    @ApiBearerAuth()
     @Post('logout')
     async logout(
         @Body() refreshTokenDto: RefreshTokenDto,
+        @Req() request: RequestInterface,
     ): Promise<BaseApiResponse<LogoutResponseDto>> {
-        return this.authService.logout(refreshTokenDto);
+        return this.authService.logout(refreshTokenDto, request);
     }
 
 }

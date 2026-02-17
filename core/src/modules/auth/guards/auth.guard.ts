@@ -7,6 +7,9 @@ import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { EnvironmentConfig } from "src/shared/interfaces/config.interface";
 import { AccessTokenPayload } from "src/common/interfaces/token.payload.interface";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { User } from "../../database/entities/user.entity";
 @Injectable()
 export class AuthGuard implements CanActivate {
 
@@ -15,6 +18,8 @@ export class AuthGuard implements CanActivate {
         private readonly reflector: Reflector,
         private readonly jwtService: JwtService,
         private readonly configService: ConfigService<EnvironmentConfig>,
+        @InjectRepository(User)
+        private readonly userRepository: Repository<User>,
     ) { }
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -26,7 +31,7 @@ export class AuthGuard implements CanActivate {
         if (isPublicRoute) {
             return true;
         }
-        
+
         try {
             const request = context.switchToHttp().getRequest() as RequestInterface;
             const accessToken = this.extractBearerToken(request);
@@ -36,7 +41,13 @@ export class AuthGuard implements CanActivate {
             const accessTokenPayload: AccessTokenPayload = await this.jwtService.verify(accessToken, {
                 secret: this.configService.get('JWT_SECRET_KEY'),
             });
-            Logger.log(`Authenticated request for user ${accessTokenPayload.email} (ID: ${accessTokenPayload.sub})`, AuthGuard.name);
+            
+            // Fetch user from database and inject into request
+            const user = await this.userRepository.findOne({ where: { id: accessTokenPayload.sub } });
+            if (!user) {
+                throw new UnauthorizedException('User not found');
+            }
+            request.user = user;
             return true;
         }
         catch (error) {
