@@ -4,6 +4,7 @@ import { Public } from "../../../common/decorators/public.decorator";
 import { SignupDto } from "../dto/signup.dto";
 import { LoginDto } from "../dto/login.dto";
 import { RefreshTokenDto } from "../dto/refresh-token.dto";
+import { GoogleAuthDto } from "../dto/google-auth.dto";
 import { BaseApiResponse } from "../../../common/interfaces/api-response.interface";
 import { RefreshAccessTokenResponseDto, LogoutResponseDto } from "../dto/auth-response.dto";
 import { ApiBearerAuth } from "@nestjs/swagger";
@@ -42,7 +43,13 @@ export class AuthController {
         @Body() refreshTokenDto: RefreshTokenDto,
         @Req() request: RequestInterface,
     ): Promise<BaseApiResponse<LogoutResponseDto>> {
-        return this.authService.logout(refreshTokenDto, request);
-    }
+    return this.authService.logout(refreshTokenDto, request);
+  }
+
+  @Public()
+  @Post('google')
+  async googleAuth(@Body() googleAuthDto: GoogleAuthDto, @Req() request: RequestInterface): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
+    return this.authService.googleAuth(googleAuthDto, request);
+  }
 
 }

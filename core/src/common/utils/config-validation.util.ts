@@ -12,6 +12,8 @@ export const configValidationSchema = Joi.object({
     Joi.number().integer().positive(),
     Joi.string().pattern(/^\d+[smhdw]$/, 'time format (e.g., 1d, 2h, 30m, 10s, 1w)')
   ).required(),
+  GOOGLE_CLIENT_ID: Joi.string().required(),
+  GOOGLE_CLIENT_SECRET: Joi.string().required(),
 });
 
 /**

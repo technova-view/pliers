@@ -14,6 +14,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
 import { ErrorFormat } from '@/lib/types';
+import GoogleLoginButton from '@/components/google-login-button';
 
 const signupSchema = z.object({
 	email: z.email('Invalid email address'),
@@ -144,6 +145,17 @@ export default function SignupPage() {
 						<Button type="submit" className="w-full" disabled={isSignupLoading}>
 							{isSignupLoading ? 'Creating account...' : 'Create Account'}
 						</Button>
+						<div className="relative">
+							<div className="absolute inset-0 flex items-center">
+								<span className="w-full border-t" />
+							</div>
+							<div className="relative flex justify-center text-xs uppercase">
+								<span className="bg-background px-2 text-gray-500">
+									Or continue with
+								</span>
+							</div>
+						</div>
+						<GoogleLoginButton />
 						<p className="text-sm text-center text-gray-600">
 							Already have an account?{' '}
 							<Link href="/login" className="text-blue-600 hover:underline">

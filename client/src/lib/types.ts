@@ -34,6 +34,10 @@ export interface RefreshTokenRequest {
 	refreshToken: string;
 }
 
+export interface GoogleAuthRequest {
+	accessToken: string;
+}
+
 export interface User {
 	id: string;
 	email: string;
