@@ -14,6 +14,7 @@ import { BaseApiResponse } from '../../../shared/interfaces/api-response.interfa
 import { EnvironmentConfig } from '../../../shared/interfaces/config.interface';
 import { RefreshAccessTokenResponseDto, LogoutResponseDto } from '../dto/auth-response.dto';
 import { UserType } from '../../../common/enums/user-type.enum';
+import { AccessTokenPayload, RefreshTokenPayload } from 'src/common/interfaces/token.payload.interface';
 
 @Injectable()
 export class AuthService {
@@ -81,8 +82,18 @@ export class AuthService {
         }
 
         // Generate tokens
-        const tokens = await this.generateTokens(user);
-        const savedSession = await this.createSession(user.id, tokens.refreshToken);
+        // const refreshTokenHash = await bcrypt.hash(refreshToken, 10);
+        const expiresAt = new Date();
+        expiresAt.setDate(expiresAt.getDate() + 7);
+
+        const session = this.userSessionRepository.create({
+            user: { id: user.id } as User,
+            expiresAt,
+        });
+        const tokens = await this.generateTokens(user, session);
+
+        session.refreshTokenHash = await bcrypt.hash(tokens.refreshToken, 10);
+        await this.userSessionRepository.save(session);
 
         return BaseApiResponse.success('Login successful', {
             accessToken: tokens.accessToken,
@@ -99,7 +110,7 @@ export class AuthService {
 
         try {
             // Verify refresh token
-            const payload = await this.jwtService.verifyAsync(refreshToken, {
+            const payload: RefreshTokenPayload = await this.jwtService.verifyAsync(refreshToken, {
                 secret: this.configService.getOrThrow('JWT_SECRET_KEY'),
             });
 
@@ -113,9 +124,10 @@ export class AuthService {
                 return BaseApiResponse.error('Invalid or expired refresh token');
             }
 
+            const accessTokenPayload: AccessTokenPayload = { sub: payload.sub, email: payload.email, userType: payload.userType };
             // Generate new access token
             const newAccessToken = await this.jwtService.signAsync(
-                { sub: session.user.id, email: session.user.email },
+                accessTokenPayload,
                 {
                     secret: this.configService.getOrThrow('JWT_SECRET_KEY'),
                     expiresIn: this.configService.getOrThrow('JWT_EXPIRES_IN'),
@@ -139,7 +151,7 @@ export class AuthService {
 
         try {
             // Verify refresh token
-            const payload = await this.jwtService.verifyAsync(refreshToken, {
+            const payload: RefreshTokenPayload = await this.jwtService.verifyAsync(refreshToken, {
                 secret: this.configService.getOrThrow('JWT_SECRET_KEY'),
             });
 
@@ -159,35 +171,15 @@ export class AuthService {
      * Generate access and refresh tokens
      * @param user - User entity
      */
-    private async generateTokens(user: User): Promise<{ accessToken: string; refreshToken: string }> {
-        const payload = { sub: user.id, email: user.email };
-
-        const accessToken = await this.jwtService.signAsync(payload);
-        
-        const refreshToken = await this.jwtService.signAsync(payload, {
+    private async generateTokens(user: User, session: UserSession): Promise<{ accessToken: string; refreshToken: string }> {
+        const accessTokenPayload: AccessTokenPayload = { sub: user.id, email: user.email, userType: user.userType };
+        const refreshTokenPayload: RefreshTokenPayload = { sessionId: session.id, sub: user.id, email: user.email, userType: user.userType };
+        const accessToken = await this.jwtService.signAsync(accessTokenPayload);
+        const refreshToken = await this.jwtService.signAsync(refreshTokenPayload, {
             secret: this.configService.getOrThrow('JWT_SECRET_KEY'),
             expiresIn: '7d',
         });
 
         return { accessToken, refreshToken };
-    }
-
-    /**
-     * Create a new session
-     * @param userId - User ID
-     * @param refreshToken - Refresh token
-     */
-    private async createSession(userId: string, refreshToken: string): Promise<UserSession> {
-        const refreshTokenHash = await bcrypt.hash(refreshToken, 10);
-        const expiresAt = new Date();
-        expiresAt.setDate(expiresAt.getDate() + 7);
-
-        const session = this.userSessionRepository.create({
-            user: { id: userId } as User,
-            refreshTokenHash,
-            expiresAt,
-        });
-
-        return this.userSessionRepository.save(session);
     }
 }

@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
+import { CanActivate, ExecutionContext, Injectable, Logger, UnauthorizedException } from "@nestjs/common";
 import { RequestInterface } from "../../../common/interfaces/request.interface";
 import { Reflector } from "@nestjs/core";
 
@@ -6,6 +6,7 @@ import { IS_PUBLIC_ROUTE } from "../../../common/decorators/public.decorator";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { EnvironmentConfig } from "src/shared/interfaces/config.interface";
+import { AccessTokenPayload } from "src/common/interfaces/token.payload.interface";
 @Injectable()
 export class AuthGuard implements CanActivate {
 
@@ -25,21 +26,22 @@ export class AuthGuard implements CanActivate {
         if (isPublicRoute) {
             return true;
         }
-
-        // Extract token from request
-        const request = context.switchToHttp().getRequest() as RequestInterface;
-        const accessToken = this.extractBearerToken(request);
-        if (!accessToken) {
-            throw new UnauthorizedException('Authentication required');
+        
+        try {
+            const request = context.switchToHttp().getRequest() as RequestInterface;
+            const accessToken = this.extractBearerToken(request);
+            if (!accessToken) {
+                throw new UnauthorizedException('Authentication required');
+            }
+            const accessTokenPayload: AccessTokenPayload = await this.jwtService.verify(accessToken, {
+                secret: this.configService.get('JWT_SECRET_KEY'),
+            });
+            Logger.log(`Authenticated request for user ${accessTokenPayload.email} (ID: ${accessTokenPayload.sub})`, AuthGuard.name);
+            return true;
         }
-
-        const payload = await this.jwtService.verify(accessToken, {
-            secret: this.configService.get('JWT_SECRET_KEY'),
-        })
-
-
-
-        return false;
+        catch (error) {
+            throw new UnauthorizedException('Invalid or expired token');
+        }
     }
 
 

@@ -9,6 +9,7 @@ async function bootstrap() {
     .setTitle('Pliers: Core API')
     .setDescription('API documentation for Core service')
     .setVersion('1.0')
+		.addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
