@@ -47,6 +47,12 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
+@utility font-primary {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -114,6 +120,11 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+.bg-grid-pattern {
+  background-image: radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0);
+  background-size: 40px 40px;
 }
 
 @layer base {

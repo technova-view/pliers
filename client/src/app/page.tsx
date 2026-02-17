@@ -1,592 +1,760 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import {
 	ArrowRight,
 	Zap,
-	Users,
-	Clock,
-	CheckCircle,
-	Star,
-	MessageCircle,
+	Droplets,
+	ZapOff,
+	Flame,
+	Thermometer,
+	Lock,
 	Wrench,
 	Home,
-	Building2,
+	Shield,
+	Users,
+	MessageCircle,
+	AlertTriangle,
+	CheckCircle,
 	Sparkles,
-	TrendingUp,
-	Award
+	Phone,
+	Search,
+	Menu,
 } from "lucide-react";
 
 export default function LandingPage() {
-	const features = [
+	const problems = [
+		{ icon: <Droplets className="w-5 h-5" />, text: "My geyser is leaking." },
+		{ icon: <ZapOff className="w-5 h-5" />, text: "My power keeps tripping." },
 		{
-			icon: <Zap className="w-6 h-6 text-primary" />,
-			title: "AI Diagnosis Engine",
-			description: "Get instant, accurate problem diagnosis with safety warnings and DIY suggestions.",
-			image: "/ai-diagnosis-illustration.avif",
-			gradient: "from-blue-500 to-cyan-500"
+			icon: <Flame className="w-5 h-5" />,
+			text: "There's a strange smell in the kitchen.",
 		},
-		{
-			icon: <MessageCircle className="w-6 h-6 text-primary" />,
-			title: "Smart Job Briefs",
-			description: "Auto-generated structured summaries with trade, urgency, and location details.",
-			image: "/job-brief-illustration.jpg",
-			gradient: "from-purple-500 to-pink-500"
-		},
-		{
-			icon: <TrendingUp className="w-6 h-6 text-primary" />,
-			title: "Pay-Per-Lead Marketplace",
-			description: "Quality leads for contractors with transparent pricing and instant connections.",
-			image: "/lead.avif",
-			gradient: "from-orange-500 to-red-500"
-		}
 	];
 
-	const steps = [
-		{
-			icon: <MessageCircle className="w-8 h-8 text-white" />,
-			title: "Describe the Problem",
-			description: "Simply chat about your home issue in plain English. Our AI understands context and details.",
-			image: "/describe.jpg",
-			color: "bg-blue-500"
-		},
-		{
-			icon: <Sparkles className="w-8 h-8 text-white" />,
-			title: "AI Generates Diagnosis",
-			description: "Receive structured insights with possible causes, urgency level, and safety precautions.",
-			image: "/ai-thinking.avif",
-			color: "bg-purple-500"
-		},
-		{
-			icon: <Wrench className="w-8 h-8 text-white" />,
-			title: "Connect with Pros",
-			description: "Qualified contractors purchase relevant leads and reach out with competitive quotes.",
-			image: "/professionals.jpg",
-			color: "bg-orange-500"
-		}
+	const categories = [
+		{ icon: <Droplets className="w-6 h-6" />, name: "Plumbing leaks" },
+		{ icon: <Zap className="w-6 h-6" />, name: "Electrical faults" },
+		{ icon: <Thermometer className="w-6 h-6" />, name: "Geyser problems" },
+		{ icon: <Wrench className="w-6 h-6" />, name: "Appliance breakdowns" },
+		{ icon: <Lock className="w-6 h-6" />, name: "Security issues" },
 	];
 
-	const stats = [
-		{ value: "10K+", label: "Happy Homeowners", icon: <Home className="w-5 h-5" /> },
-		{ value: "500+", label: "Verified Contractors", icon: <Building2 className="w-5 h-5" /> },
-		{ value: "98%", label: "Satisfaction Rate", icon: <Star className="w-5 h-5" /> },
-		{ value: "< 2min", label: "Average Response", icon: <Clock className="w-5 h-5" /> }
+	const homeownerFaqs = [
+		{
+			q: "1. What is Pliers?",
+			a: "Pliers is a home problem-solving platform. You describe what's going wrong in your home — in plain language — and Pliers helps you understand what might be happening, whether it's urgent, and what to do next. If you need professional help, we can connect you to contractors in your area.",
+		},
+		{
+			q: "2. Is Pliers just another directory?",
+			a: "No. Pliers doesn't just list contractors. It first helps you understand the problem. We guide you through what could be causing it and whether it's safe to try fixing it yourself before connecting you to a professional. It's about clarity first — then action.",
+		},
+		{
+			q: "3. Is this the same as using ChatGPT?",
+			a: "Not quite. ChatGPT gives general information. Pliers is built specifically for home issues. We ask follow-up questions relevant to your situation, highlight safety risks, help decide between DIY and professional help, and connect you to local contractors if needed. It's designed to help you move from 'What's wrong?' to 'It's fixed.'",
+		},
+		{
+			q: "4. Does Pliers replace a professional?",
+			a: "No. Pliers provides guidance to help you understand what might be happening. For complex or potentially unsafe issues, we recommend consulting a qualified professional. If needed, we can help you connect with one.",
+		},
+		{
+			q: "5. Is it safe to follow the advice?",
+			a: "Pliers is designed to avoid risky or dangerous DIY recommendations. If something appears unsafe, we will advise you to stop and consult a professional. When in doubt, safety comes first.",
+		},
+		{
+			q: "6. Do I have to hire a contractor through Pliers?",
+			a: "No. You can use Pliers simply to understand your issue. If you decide you need help, you can choose whether or not to connect with a contractor.",
+		},
+		{
+			q: "7. How much does it cost to use Pliers?",
+			a: "For homeowners, using Pliers to understand your problem is free. If you choose to hire a contractor, pricing will depend on the service provider and the work required.",
+		},
+		{
+			q: "8. How do I know the contractors are legitimate?",
+			a: "Contractors on Pliers go through a basic approval process before being listed. We aim to connect you with professionals who operate in your area and category. We encourage homeowners to review credentials, ask questions, and confirm details before hiring.",
+		},
+		{
+			q: "9. Can I upload photos of the problem?",
+			a: "Yes. Uploading photos can help provide better guidance and clearer job briefs for contractors.",
+		},
+		{
+			q: "10. What types of home problems does Pliers cover?",
+			a: "Pliers supports common household issues such as plumbing, electrical, geysers and hot water systems, appliance breakdowns, security and access issues, and general repairs. More categories will be added over time.",
+		},
+		{
+			q: "11. Is my information private?",
+			a: "Yes. Your information is only used to help diagnose your issue and, if requested, to connect you with contractors. We do not sell your personal information.",
+		},
+		{
+			q: "12. What areas does Pliers operate in?",
+			a: "Pliers is currently focused on South Africa and will expand to additional areas over time.",
+		},
 	];
 
-	const testimonials = [
+	const contractorFaqs = [
 		{
-			name: "Sarah Johnson",
-			role: "Homeowner",
-			content: "Pliers saved me thousands! The AI diagnosed my AC issue accurately, and I found a great contractor within hours.",
-			rating: 5,
-			image: "/avatar.jpeg"
+			q: "13. How does Pliers work for contractors?",
+			a: "Homeowners describe their problems. Pliers helps generate a structured job brief. Contractors can view available leads in their category and area and choose whether to unlock the job details.",
 		},
 		{
-			name: "Mike Peterson",
-			role: "Contractor",
-			content: "As a contractor, the leads are high-quality and relevant. Best investment for my business growth.",
-			rating: 5,
-			image: "/avatar.jpeg"
+			q: "14. Do contractors pay to join?",
+			a: "No subscription is required to join at this stage. Contractors pay per lead when they choose to access job details.",
 		},
 		{
-			name: "Emily Chen",
-			role: "Property Manager",
-			content: "Managing 20+ properties is now effortless. Pliers helps me prioritize issues and find reliable contractors instantly.",
-			rating: 5,
-			image: "/avatar.jpeg"
-		}
+			q: "15. Are leads exclusive?",
+			a: "Some leads may be shared with multiple contractors, while others may be offered as exclusive. Details will be visible before purchasing.",
+		},
+		{
+			q: "16. How are leads priced?",
+			a: "Lead pricing varies depending on category, urgency, and job type. Contractors only pay if they choose to access a lead.",
+		},
+		{
+			q: "17. Is there a contract or minimum spend?",
+			a: "No long-term contracts. Contractors decide when and how often to purchase leads.",
+		},
 	];
 
 	return (
-		<div className="flex flex-col min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
-			{/* NAVBAR */}
-			<header className="border-b bg-background/80 backdrop-blur-md sticky top-0 z-50 supports-[backdrop-filter]:bg-background/60">
-				<div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-					<Link href="/" className="flex items-center gap-2 group">
-						<div className="relative w-40 h-16">
-							<Image
-								fill
-								src="/logo.svg"
-								alt="Pliers Logo"
-								className="object-contain group-hover:scale-110 transition-transform duration-300 shrink-0"
-							/>
-						</div>
-					</Link>
+		<div className="flex flex-col min-h-screen font-primary">
+			<Header />
 
-					<nav className="hidden md:flex items-center gap-8">
-						{['Features', 'How it works', 'Pricing', 'Testimonials'].map((item) => (
-							<Link
-								key={item}
-								href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
-								className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
-							>
-								{item}
-								<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
-							</Link>
-						))}
-						<Link
-							href="/contractors"
-							className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+			{/* Hero Section */}
+			<section className="relative min-h-[20vh] flex items-center justify-center overflow-hidden">
+				{/* Background Image with Overlay */}
+				<div className="absolute inset-0 z-0">
+					<Image
+						src="/homePageImage.jpg" // Add your background image to public folder
+						alt="Home interior background"
+						fill
+						className="object-cover"
+						priority
+					/>
+					<div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background/90 bg-grid-pattern" />
+				</div>
+
+				{/* Content */}
+				<div className="relative z-10 container max-w-6xl mx-auto px-4 py-20 md:py-32">
+					<div className="max-w-3xl mx-auto text-center space-y-8">
+						{/* Badge */}
+						<Badge
+							variant="outline"
+							className="px-4 py-2 border-primary/20 bg-background/50 backdrop-blur-sm text-foreground/90"
 						>
-							Become a Contractor
-							<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
-						</Link>
-					</nav>
+							<Home className="w-4 h-4 mr-2 text-primary" />
+							PLIERS
+						</Badge>
 
-					<div className="flex items-center gap-3">
-						<ThemeToggle />
-						<Link href="/login">
-							<Button variant="ghost" className="hidden sm:inline-flex hover:bg-primary/10">
-								Login
+						{/* Main Heading */}
+						<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-b from-foreground to-foreground/80 bg-clip-text text-transparent">
+							Something wrong at home?<br />
+							<span className="text-primary">Let's fix it.</span>
+						</h1>
+
+						{/* Description */}
+						<p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+							Describe the problem in plain language. Pliers helps you understand
+							what's happening, what to do next, and connects you to trusted local
+							professionals if you need them.
+						</p>
+
+						{/* CTA Buttons */}
+						<div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+							<Button
+								size="lg"
+								className="group px-8 py-6 text-base shadow-lg hover:shadow-xl transition-all duration-300"
+							>
+								Explain My Problem
+								<ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
 							</Button>
-						</Link>
+							<Button
+								size="lg"
+								variant="outline"
+								className="px-8 py-6 text-base bg-background/50 backdrop-blur-sm border-2 hover:bg-background/80 transition-all duration-300"
+							>
+								Find a Contractor
+							</Button>
+						</div>
 					</div>
 				</div>
-			</header>
+			</section>
 
-			{/* HERO SECTION */}
-			<section className="relative overflow-hidden pt-16 md:pt-24">
-				{/* Background decoration */}
-				<div className="absolute inset-0 -z-10">
-					<div className="absolute top-20 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />
-					<div className="absolute bottom-20 right-1/4 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl" />
+			{/* How It Works */}
+			<section className="py-16 bg-muted/30">
+				<div className="container max-w-6xl mx-auto px-4">
+					<div className="text-center mb-12">
+						<Badge variant="outline" className="mb-4">
+							Simple Process
+						</Badge>
+						<h2 className="text-3xl md:text-4xl font-bold">How It Works</h2>
+					</div>
+
+					<div className="grid md:grid-cols-3 gap-6">
+						{/* Step 1 */}
+						<Card className="border-0 shadow-sm">
+							<CardContent className="p-6">
+								<div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+									<span className="text-2xl">1️⃣</span>
+								</div>
+								<h3 className="text-xl font-semibold mb-4">
+									Tell us what's happening
+								</h3>
+								<div className="space-y-2 mb-4">
+									{problems.map((problem, index) => (
+										<div
+											key={index}
+											className="flex items-center gap-2 text-muted-foreground"
+										>
+											{problem.icon}
+											<span className="text-sm">"{problem.text}"</span>
+										</div>
+									))}
+								</div>
+								<p className="text-sm text-muted-foreground italic">
+									No technical knowledge needed.
+								</p>
+							</CardContent>
+						</Card>
+
+						{/* Step 2 */}
+						<Card className="border-0 shadow-sm">
+							<CardContent className="p-6">
+								<div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+									<span className="text-2xl">2️⃣</span>
+								</div>
+								<h3 className="text-xl font-semibold mb-4">Get clear guidance</h3>
+								<p className="text-sm text-muted-foreground mb-4">
+									Pliers asks a few smart questions and explains:
+								</p>
+								<ul className="space-y-2">
+									{[
+										"What might be causing it",
+										"Whether it's urgent",
+										"What you should (and shouldn't) do",
+										"If it's safe to try fixing it yourself",
+									].map((item, index) => (
+										<li key={index} className="flex items-start gap-2 text-sm">
+											<CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+											<span>{item}</span>
+										</li>
+									))}
+								</ul>
+							</CardContent>
+						</Card>
+
+						{/* Step 3 */}
+						<Card className="border-0 shadow-sm">
+							<CardContent className="p-6">
+								<div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+									<span className="text-2xl">3️⃣</span>
+								</div>
+								<h3 className="text-xl font-semibold mb-4">Get it sorted</h3>
+								<p className="text-sm text-muted-foreground mb-4">
+									If you need help, Pliers generates a clear job brief and connects
+									you to local professionals near you.
+								</p>
+								<p className="text-sm font-medium text-primary">
+									No confusion. No guessing. No endless searching.
+								</p>
+							</CardContent>
+						</Card>
+					</div>
 				</div>
+			</section>
 
-				<div className="container mx-auto px-4 md:px-6">
+			{/* Why Pliers */}
+			<section className="py-16">
+				<div className="container max-w-6xl mx-auto px-4">
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
-						<div className="space-y-8 animate-in slide-in-from-left-50 duration-700">
-							<Badge
-								variant="secondary"
-								className="px-4 py-2 text-sm bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
-							>
-								<Sparkles className="w-4 h-4 mr-2" />
-								AI-Powered Home Diagnostics
-							</Badge>
-
-							<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-								Something wrong at home? Let's fix it.
-								<span className="block text-transparent bg-gradient-to-r from-primary to-blue-600 bg-clip-text">
-									Every home problem, solved.
-								</span>
-							</h1>
-
-							<p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-								Describe the problem in plain language. Pliers helps you understand what's happening, what to do next, and connects you to trusted local professionals if you need them.
+						<div className="space-y-6">
+							<Badge variant="outline">Why Pliers?</Badge>
+							<h2 className="text-3xl md:text-4xl font-bold">
+								Why Not Just Google or ChatGPT?
+							</h2>
+							<p className="text-xl text-muted-foreground">
+								Because advice alone doesn't fix the problem.
 							</p>
 
-							<div className="flex flex-col sm:flex-row gap-4">
-								<Link href="/#">
-									<Button size="lg" className="group px-8 py-6 text-base bg-gradient-to-r from-primary to-primary/80 hover:shadow-xl transition-all duration-300">
-										Explain My Problem
-										<ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-									</Button>
-								</Link>
-								<Link href="/#">
-									<Button size="lg" variant="outline" className="px-8 py-6 text-base border-2 hover:bg-primary/5 hover:border-primary transition-all duration-300">
-										<Users className="mr-2 w-4 h-4" />
-										Find a Contractor
-									</Button>
-								</Link>
+							<div className="space-y-3">
+								{[
+									"Asks follow-up questions specific to home issues",
+									"Flags safety risks automatically",
+									"Helps you decide between DIY or professional help",
+									"Connects you directly to local contractors",
+								].map((item, index) => (
+									<div key={index} className="flex items-start gap-3">
+										<CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+										<span>{item}</span>
+									</div>
+								))}
 							</div>
 
-							{/* Stats */}
-							<div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8">
-								{stats.map((stat, index) => (
-									<div key={index} className="text-center group cursor-default">
-										<div className="text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
-											{stat.value}
+							<div className="p-6 bg-muted/30 rounded-lg border">
+								<p className="text-muted-foreground mb-2">
+									ChatGPT gives information.
+								</p>
+								<p className="text-lg font-semibold text-primary">
+									Pliers helps you take action.
+								</p>
+							</div>
+						</div>
+
+						<Card className="border shadow-lg">
+							<CardContent className="p-6">
+								<div className="flex items-center gap-3 mb-4">
+									<div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+										<MessageCircle className="w-5 h-5 text-primary" />
+									</div>
+									<div>
+										<h3 className="font-semibold">Pliers AI Assistant</h3>
+										<p className="text-xs text-muted-foreground">
+											Understanding your problem...
+										</p>
+									</div>
+								</div>
+								<div className="space-y-4">
+									<div className="bg-muted/50 rounded-lg p-4">
+										<p className="text-xs font-medium mb-1 text-muted-foreground">
+											You:
+										</p>
+										<p className="text-sm">"My geyser is leaking from the bottom"</p>
+									</div>
+									<div className="bg-primary/5 rounded-lg p-4 border border-primary/10">
+										<p className="text-xs font-medium mb-1 text-primary">
+											Pliers:
+										</p>
+										<p className="text-sm mb-2">
+											⚠️ This could be a pressure valve issue or a tank leak. If
+											it's the tank, it needs immediate professional attention.
+										</p>
+										<p className="text-sm text-muted-foreground">
+											Turn off the power supply and water inlet. Don't attempt to
+											repair a tank leak yourself.
+										</p>
+									</div>
+								</div>
+							</CardContent>
+						</Card>
+					</div>
+				</div>
+			</section>
+
+			{/* Built for Real Homes */}
+			<section className="py-16 bg-muted/30">
+				<div className="container max-w-6xl mx-auto px-4">
+					<div className="text-center mb-12">
+						<Badge variant="outline" className="mb-4">
+							Built for You
+						</Badge>
+						<h2 className="text-3xl md:text-4xl font-bold mb-2">
+							Built for Real Homes
+						</h2>
+						<p className="text-lg text-muted-foreground">Whether it's:</p>
+					</div>
+
+					<div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-3xl mx-auto">
+						{categories.map((category, index) => (
+							<div
+								key={index}
+								className="flex flex-col items-center text-center p-4 bg-background rounded-lg border hover:border-primary transition-colors"
+							>
+								<div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+									{category.icon}
+								</div>
+								<span className="text-sm font-medium">{category.name}</span>
+							</div>
+						))}
+					</div>
+
+					<p className="text-center text-muted-foreground mt-8">
+						Pliers is designed for everyday home problems.
+					</p>
+				</div>
+			</section>
+
+			{/* Safety Section */}
+			<section className="py-16">
+				<div className="container max-w-6xl mx-auto px-4">
+					<div className="grid lg:grid-cols-2 gap-12 items-center">
+						<div className="space-y-6">
+							<Badge variant="outline">🛡️ Designed for Safety</Badge>
+							<h2 className="text-3xl md:text-4xl font-bold">
+								We prioritise your safety
+							</h2>
+							<p className="text-lg text-muted-foreground">
+								Clear warnings, no risky DIY advice, and professional escalation
+								when necessary. Because some problems shouldn't be guessed.
+							</p>
+						</div>
+
+						<Card className="border-2 border-yellow-500/20 bg-yellow-500/5">
+							<CardContent className="p-8">
+								<div className="flex items-center gap-3 mb-6">
+									<div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center">
+										<Shield className="w-6 h-6 text-yellow-600" />
+									</div>
+									<h3 className="text-xl font-semibold">Safety First Approach</h3>
+								</div>
+								<div className="space-y-3">
+									{[
+										"Clear warnings where needed",
+										"No risky DIY advice",
+										"Professional escalation when necessary",
+									].map((item, index) => (
+										<div key={index} className="flex items-start gap-3">
+											<AlertTriangle className="w-5 h-5 text-yellow-600 shrink-0 mt-0.5" />
+											<p className="text-sm">{item}</p>
 										</div>
-										<div className="text-xs text-muted-foreground flex items-center justify-center gap-1">
-											{stat.icon}
-											{stat.label}
-										</div>
+									))}
+								</div>
+								<p className="mt-6 text-sm text-muted-foreground italic">
+									Because some problems shouldn't be guessed.
+								</p>
+							</CardContent>
+						</Card>
+					</div>
+				</div>
+			</section>
+
+			{/* For When You Need a Pro */}
+			<section className="py-16 bg-muted/30">
+				<div className="container max-w-6xl mx-auto px-4">
+					<div className="grid lg:grid-cols-2 gap-12 items-center">
+						<div className="space-y-6">
+							<Badge variant="outline">👷 For Professionals</Badge>
+							<h2 className="text-3xl md:text-4xl font-bold">
+								For When You Need a Pro
+							</h2>
+							<p className="text-lg text-muted-foreground">
+								Not the DIY type? No problem.
+							</p>
+
+							<div className="space-y-3">
+								{[
+									'Generate a structured job brief',
+									'Match you with contractors in your area',
+									'Help you move from "What\'s wrong?" to "It\'s fixed."',
+								].map((item, index) => (
+									<div key={index} className="flex items-start gap-3">
+										<CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+										<span>{item}</span>
 									</div>
 								))}
 							</div>
 						</div>
 
-						<div className="relative lg:block animate-in slide-in-from-right-50 duration-700">
-							<div className="relative w-full h-[500px] md:h-[600px]">
-								<Image
-									src="/hero-dashboard.jpg"
-									alt="Pliers Dashboard"
-									fill
-									className="object-cover rounded-2xl"
-									priority
-								/>
-							</div>
+						<Card className="border shadow-lg">
+							<CardContent className="p-6">
+								<div className="flex items-center gap-3 mb-4">
+									<div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+										<Wrench className="w-5 h-5 text-primary" />
+									</div>
+									<div>
+										<h3 className="font-semibold">Job Brief Example</h3>
+										<p className="text-xs text-muted-foreground">
+											Generated by Pliers
+										</p>
+									</div>
+								</div>
+								<div className="space-y-3 text-sm">
+									<div className="grid grid-cols-2 gap-2">
+										<span className="text-muted-foreground">Issue:</span>
+										<span className="font-medium">Geyser leaking</span>
+										<span className="text-muted-foreground">Urgency:</span>
+										<span className="font-medium text-orange-600">High</span>
+										<span className="text-muted-foreground">Location:</span>
+										<span className="font-medium">Cape Town</span>
+										<span className="text-muted-foreground">Access:</span>
+										<span className="font-medium">Roof space</span>
+									</div>
+									<Separator />
+									<p className="text-muted-foreground text-xs">
+										Photos attached: 3 • Safety: Power off required
+									</p>
+								</div>
+							</CardContent>
+						</Card>
+					</div>
+				</div>
+			</section>
 
-							{/* Floating elements */}
-							<div className="absolute -top-4 -right-4 animate-bounce">
-								<div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-3">
-									<CheckCircle className="w-6 h-6 text-green-500" />
-								</div>
+			{/* Built for South African Homes */}
+			<section className="py-16">
+				<div className="container max-w-3xl mx-auto px-4 text-center space-y-6">
+					<Badge variant="outline">🌍 Local Focus</Badge>
+					<h2 className="text-3xl md:text-4xl font-bold">
+						Built for South African Homes
+					</h2>
+					<p className="text-lg text-muted-foreground">
+						We understand local housing realities, common infrastructure issues,
+						and the way South Africans describe home problems.
+					</p>
+					<div className="p-6 bg-muted/30 rounded-lg border">
+						<p className="text-xl font-medium text-primary">
+							This isn't generic advice.
+						</p>
+						<p className="text-lg">It's built for where you live.</p>
+					</div>
+				</div>
+			</section>
+
+			{/* Final CTA */}
+			<section className="py-16 bg-primary text-primary-foreground">
+				<div className="container max-w-2xl mx-auto px-4 text-center space-y-6">
+					<h2 className="text-3xl md:text-4xl font-bold">Let's fix what's wrong.</h2>
+					<p className="text-xl opacity-90">Start by telling us what's happening.</p>
+					<Button size="lg" variant="secondary" className="px-8 py-6 text-base">
+						Explain My Problem Now
+						<ArrowRight className="ml-2 w-4 h-4" />
+					</Button>
+				</div>
+			</section>
+
+			{/* About Pliers */}
+			<section className="py-16">
+				<div className="container max-w-3xl mx-auto px-4">
+					<div className="space-y-12">
+						<div className="text-center">
+							<h2 className="text-3xl font-bold mb-2">🏠 About Pliers</h2>
+							<p className="text-xl text-primary">Every home problem, solved.</p>
+						</div>
+
+						<div className="space-y-4 text-muted-foreground">
+							<p>
+								Homes are meant to feel safe. But when something goes wrong — a
+								leaking pipe, a power failure, a broken appliance — that feeling
+								disappears quickly. Suddenly you're searching online, calling people
+								who don't answer, trying to figure out what's urgent and what's not.
+							</p>
+							<p className="font-medium text-foreground">
+								It's stressful. It's confusing. And it shouldn't be.
+							</p>
+							<p>Pliers was created to change that.</p>
+						</div>
+
+						<Separator />
+
+						<div className="space-y-4">
+							<h3 className="text-2xl font-semibold">Why We Built Pliers</h3>
+							<p className="text-muted-foreground">
+								Most homeowners don't need technical knowledge. They just need
+								clarity:
+							</p>
+							<div className="grid sm:grid-cols-2 gap-3">
+								{[
+									"What's happening?",
+									"Is it dangerous?",
+									"Can I fix this myself?",
+									"If not, who can I trust?",
+								].map((question, index) => (
+									<div
+										key={index}
+										className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg"
+									>
+										<span className="text-primary">•</span>
+										<span>{question}</span>
+									</div>
+								))}
 							</div>
-							<div className="absolute -bottom-4 -left-4 animate-pulse">
-								<div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-3">
-									<Zap className="w-6 h-6 text-yellow-500" />
-								</div>
+							<p className="text-muted-foreground">
+								Right now, the options are scattered. Search engines give generic
+								answers. Directories list hundreds of contractors with no context.
+								And advice doesn't always translate into action.
+							</p>
+							<p className="font-medium">
+								Pliers brings everything into one place. We combine intelligent
+								guidance with real-world solutions — helping you move from confusion
+								to confidence in minutes.
+							</p>
+						</div>
+
+						<Separator />
+
+						<div className="space-y-4">
+							<h3 className="text-2xl font-semibold">What Makes Pliers Different</h3>
+							<p className="text-muted-foreground">
+								Pliers isn't just a directory. It's built around a simple idea:
+							</p>
+							<p className="text-xl text-primary font-medium text-center py-4">
+								Understanding comes first. Action follows.
+							</p>
+							<p className="text-muted-foreground">
+								When you describe a problem, Pliers:
+							</p>
+							<ul className="space-y-2">
+								{[
+									"Asks smart follow-up questions",
+									"Helps you understand possible causes",
+									"Flags safety concerns",
+									"Suggests whether DIY is appropriate",
+									"Connects you with local professionals if needed",
+								].map((item, index) => (
+									<li key={index} className="flex items-start gap-2">
+										<CheckCircle className="w-4 h-4 text-primary mt-1 shrink-0" />
+										<span>{item}</span>
+									</li>
+								))}
+							</ul>
+							<p className="text-muted-foreground italic">
+								It's not about overwhelming you with information. It's about helping
+								you make the right next move.
+							</p>
+						</div>
+
+						<Separator />
+
+						<div className="space-y-4">
+							<h3 className="text-2xl font-semibold">
+								For Homeowners. For Professionals.
+							</h3>
+							<p className="text-muted-foreground">
+								Pliers also supports skilled contractors by connecting them with
+								well-structured, clearly described jobs.
+							</p>
+							<p className="text-muted-foreground">
+								When everyone has better information:
+							</p>
+							<div className="grid sm:grid-cols-3 gap-4 text-center">
+								{[
+									{
+										icon: Home,
+										text: "Homeowners feel more confident",
+									},
+									{
+										icon: Users,
+										text: "Professionals waste less time",
+									},
+									{
+										icon: Zap,
+										text: "Problems get solved faster",
+									},
+								].map((item, index) => {
+									const Icon = item.icon;
+									return (
+										<div key={index} className="p-4 bg-muted/30 rounded-lg">
+											<Icon className="w-8 h-8 mx-auto mb-2 text-primary" />
+											<p className="font-medium text-sm">{item.text}</p>
+										</div>
+									);
+								})}
 							</div>
+							<p className="text-center font-medium">That's better for everyone.</p>
+						</div>
+
+						<Separator />
+
+						<div className="space-y-4 text-center">
+							<h3 className="text-2xl font-semibold">Our Vision</h3>
+							<p className="text-muted-foreground">
+								We believe every home deserves:
+							</p>
+							<div className="flex flex-wrap justify-center gap-3">
+								{["Clear guidance", "Safe solutions", "Trusted professionals"].map(
+									(item, index) => (
+										<Badge key={index} variant="secondary" className="px-4 py-2">
+											{item}
+										</Badge>
+									)
+								)}
+							</div>
+							<p className="text-muted-foreground">
+								Pliers is building a future where home care is simpler, smarter, and
+								less stressful.
+							</p>
+							<p className="text-xl font-medium text-primary">
+								Because when your home works, life works better.
+							</p>
+						</div>
+
+						<div className="text-center pt-8">
+							<h3 className="text-2xl font-semibold mb-4">Let's Fix What's Wrong</h3>
+							<p className="text-muted-foreground mb-6">
+								Whether it's something small or something urgent, start by telling us
+								what's happening. We'll take it from there.
+							</p>
+							<Button size="lg" className="px-8">
+								Explain My Problem →
+								<ArrowRight className="ml-2 w-4 h-4" />
+							</Button>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			{/* FEATURES SECTION */}
-			<section id="features" className="py-24 relative">
-				<div className="container mx-auto px-4 md:px-6">
-					<div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
-						<Badge variant="outline" className="px-4 py-2">
-							<Sparkles className="w-4 h-4 mr-2" />
-							Powerful Features
-						</Badge>
-						<h2 className="text-3xl md:text-4xl font-bold">
-							Built for Homeowners & Contractors
+			{/* FAQ Section */}
+			<section className="py-16 bg-muted/30">
+				<div className="container max-w-3xl mx-auto px-4">
+					<div className="text-center mb-10">
+						<h2 className="text-3xl font-bold mb-2">
+							❓ Frequently Asked Questions
 						</h2>
-						<p className="text-muted-foreground text-lg">
-							AI-driven insights for homeowners and a transparent lead marketplace
-							for contractors.
-						</p>
+						<p className="text-muted-foreground">For Homeowners</p>
 					</div>
 
-					<div className="grid md:grid-cols-3 gap-8">
-						{features.map((feature, index) => (
-							<Card
+					<Accordion type="single" collapsible className="space-y-3">
+						{homeownerFaqs.map((faq, index) => (
+							<AccordionItem
 								key={index}
-								className="group relative overflow-hidden border-0 bg-gradient-to-b from-background to-muted/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+								value={`item-${index}`}
+								className="bg-background rounded-lg border"
 							>
-								<div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-r ${feature.gradient}`} />
-
-								<CardHeader>
-									<div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-										{feature.icon}
-									</div>
-									<CardTitle className="text-xl">{feature.title}</CardTitle>
-								</CardHeader>
-
-								<CardContent className="space-y-4">
-									<p className="text-muted-foreground">
-										{feature.description}
-									</p>
-
-									<div className="relative w-full h-48 rounded-xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-										<Image
-											src={feature.image}
-											alt={feature.title}
-											fill
-											className="object-cover group-hover:scale-110 transition-transform duration-500"
-										/>
-									</div>
-								</CardContent>
-							</Card>
+								<AccordionTrigger className="px-4 font-medium hover:no-underline">
+									{faq.q}
+								</AccordionTrigger>
+								<AccordionContent className="px-4 pb-4 text-muted-foreground">
+									{faq.a}
+								</AccordionContent>
+							</AccordionItem>
 						))}
-					</div>
-				</div>
-			</section>
+					</Accordion>
 
-			{/* HOW IT WORKS */}
-			<section id="how-it-works" className="py-24 bg-gradient-to-b from-muted/30 to-background">
-				<div className="container mx-auto px-4 md:px-6">
-					<div className="text-center space-y-4 mb-16">
-						<Badge variant="outline" className="px-4 py-2">
-							<Clock className="w-4 h-4 mr-2" />
-							Simple Process
-						</Badge>
-						<h2 className="text-3xl md:text-4xl font-bold">
-							How It Works in 3 Simple Steps
-						</h2>
-						<p className="text-muted-foreground text-lg">
-							Simple, fast, and transparent for everyone.
+					<div className="mt-12">
+						<h3 className="text-2xl font-bold mb-6 text-center">
+							👷 For Contractors
+						</h3>
+						<Accordion type="single" collapsible className="space-y-3">
+							{contractorFaqs.map((faq, index) => (
+								<AccordionItem
+									key={index}
+									value={`contractor-${index}`}
+									className="bg-background rounded-lg border"
+								>
+									<AccordionTrigger className="px-4 font-medium hover:no-underline">
+										{faq.q}
+									</AccordionTrigger>
+									<AccordionContent className="px-4 pb-4 text-muted-foreground">
+										{faq.a}
+									</AccordionContent>
+								</AccordionItem>
+							))}
+						</Accordion>
+					</div>
+
+					<div className="mt-12 text-center p-8 bg-background rounded-lg border">
+						<h3 className="text-2xl font-semibold mb-4">🛠 Still Have Questions?</h3>
+						<p className="text-muted-foreground mb-6">
+							If you're unsure about anything, feel free to reach out. We're building
+							Pliers to make home care simpler — and we're always improving.
 						</p>
-					</div>
-
-					<div className="grid md:grid-cols-3 gap-8 relative">
-						{steps.map((step, index) => (
-							<div key={index} className="relative group">
-								<div className="text-center space-y-4">
-									<div className="relative">
-										<div className={`w-20 h-20 ${step.color} rounded-2xl mx-auto flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-											{step.icon}
-										</div>
-										<div className="absolute -top-2 -right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg shadow-xl">
-											{index + 1}
-										</div>
-									</div>
-
-									<h3 className="text-xl font-semibold">{step.title}</h3>
-									<p className="text-muted-foreground text-sm leading-relaxed">
-										{step.description}
-									</p>
-
-									<div className="relative w-full h-60 mt-4 rounded-xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-										<Image
-											src={step.image}
-											alt={step.title}
-											fill
-											className="object-cover group-hover:scale-110 transition-transform duration-500"
-										/>
-									</div>
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
-
-			{/* TESTIMONIALS */}
-			<section id="testimonials" className="py-24">
-				<div className="container mx-auto px-4 md:px-6">
-					<div className="text-center space-y-4 mb-16">
-						<Badge variant="outline" className="px-4 py-2">
-							<Star className="w-4 h-4 mr-2 fill-current" />
-							Trusted by Thousands
-						</Badge>
-						<h2 className="text-3xl md:text-4xl font-bold">
-							What Our Users Say
-						</h2>
-						<p className="text-muted-foreground text-lg">
-							Join thousands of satisfied homeowners and contractors.
-						</p>
-					</div>
-
-					<div className="grid md:grid-cols-3 gap-8">
-						{testimonials.map((testimonial, index) => (
-							<Card key={index} className="relative group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-								<CardContent className="p-6 space-y-4">
-									<div className="flex gap-1">
-										{[...Array(testimonial.rating)].map((_, i) => (
-											<Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-										))}
-									</div>
-
-									<p className="text-muted-foreground italic">
-										"{testimonial.content}"
-									</p>
-
-									<div className="flex items-center gap-3 pt-4">
-										<div className="relative w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-primary to-blue-600">
-											<Image
-												src={testimonial.image}
-												alt={testimonial.name}
-												fill
-												className="object-cover"
-											/>
-										</div>
-										<div>
-											<p className="font-semibold">{testimonial.name}</p>
-											<p className="text-sm text-muted-foreground">{testimonial.role}</p>
-										</div>
-									</div>
-								</CardContent>
-							</Card>
-						))}
-					</div>
-				</div>
-			</section>
-
-			{/* CTA SECTION */}
-			<section className="py-24 relative overflow-hidden">
-				<div className="absolute inset-0 bg-gradient-to-r from-primary via-blue-600 to-primary opacity-5" />
-				<div className="absolute inset-0" style={{
-					backgroundImage: "radial-gradient(circle at 2px 2px, rgba(0,0,0,0.05) 1px, transparent 0)",
-					backgroundSize: "40px 40px"
-				}} />
-
-				<div className="container mx-auto px-4 md:px-6 text-center relative">
-					<div className="max-w-3xl mx-auto space-y-8">
-						<Badge className="px-4 py-2 bg-primary/20 text-primary border-primary/30">
-							<Zap className="w-4 h-4 mr-2" />
-							Start Your Journey Today
-						</Badge>
-
-						<h2 className="text-4xl md:text-5xl font-bold">
-							Ready to Simplify Home Repairs?
-						</h2>
-
-						<p className="text-xl text-muted-foreground">
-							Experience AI-powered home diagnostics and a smarter contractor
-							marketplace today. Join thousands of satisfied users.
-						</p>
-
-						<div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-							<Link href="/signup">
-								<Button size="lg" className="group px-10 py-6 text-lg bg-gradient-to-r from-primary to-primary/80 hover:shadow-2xl transition-all duration-300">
-									Get Started Free
-									<ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-								</Button>
-							</Link>
-							<Link href="/signup">
-								<Button size="lg" variant="outline" className="px-10 py-6 text-lg border-2 hover:bg-primary/5 transition-all duration-300">
-									<Award className="mr-2 w-5 h-5" />
-									Become a Contractor
-								</Button>
-							</Link>
-						</div>
-
-						<p className="text-sm text-muted-foreground">
-							No credit card required • Free 14-day trial • Cancel anytime
-						</p>
-					</div>
-				</div>
-			</section>
-
-			{/* FAQ SECTION */}
-			<section id="faq" className="py-24 bg-background">
-				<div className="container mx-auto px-4 md:px-6">
-					<div className="text-center max-w-3xl mx-auto mb-16">
-						<h2 className="text-3xl md:text-4xl font-bold mb-6">Frequently Asked Questions</h2>
-						<p className="text-lg text-muted-foreground">
-							Everything you need to know about using Pliers for your home problems.
-						</p>
-					</div>
-
-					<div className="max-w-3xl mx-auto space-y-6">
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">1. What is Pliers?</h3>
-							<p className="text-muted-foreground">
-								Pliers is a home problem-solving platform. You describe what's going wrong in your home — in plain language — and Pliers helps you understand what might be happening, whether it's urgent, and what to do next. If you need professional help, we can connect you to contractors in your area.
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">2. Is Pliers just another directory?</h3>
-							<p className="text-muted-foreground">
-								No. Pliers doesn't just list contractors. It first helps you understand the problem. We guide you through what could be causing it and whether it's safe to try fixing it yourself before connecting you to a professional. It's about clarity first — then action.
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">3. Is this the same as using ChatGPT?</h3>
-							<p className="text-muted-foreground">
-								Not quite. ChatGPT gives general information. Pliers is built specifically for home issues. We ask follow-up questions relevant to your situation, highlight safety risks, help decide between DIY and professional help, and connect you to local contractors if needed. It's designed to help you move from "What's wrong?" to "It's fixed."
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">4. Does Pliers replace a professional?</h3>
-							<p className="text-muted-foreground">
-								No. Pliers provides guidance to help you understand what might be happening. For complex or potentially unsafe issues, we recommend consulting a qualified professional. If needed, we can help you connect with one.
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">5. Is it safe to follow the advice?</h3>
-							<p className="text-muted-foreground">
-								Pliers is designed to avoid risky or dangerous DIY recommendations. If something appears unsafe, we will advise you to stop and consult a professional. When in doubt, safety comes first.
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">6. Do I have to hire a contractor through Pliers?</h3>
-							<p className="text-muted-foreground">
-								No. You can use Pliers simply to understand your issue. If you decide you need help, you can choose whether or not to connect with a contractor.
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">7. How much does it cost to use Pliers?</h3>
-							<p className="text-muted-foreground">
-								For homeowners, using Pliers to understand your problem is free. If you choose to hire a contractor, pricing will depend on the service provider and the work required.
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">8. How do I know the contractors are legitimate?</h3>
-							<p className="text-muted-foreground">
-								Contractors on Pliers go through a basic approval process before being listed. We aim to connect you with professionals who operate in your area and category. We encourage homeowners to review credentials, ask questions, and confirm details before hiring.
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">9. Can I upload photos of the problem?</h3>
-							<p className="text-muted-foreground">
-								Yes. Uploading photos can help provide better guidance and clearer job briefs for contractors.
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">10. What types of home problems does Pliers cover?</h3>
-							<p className="text-muted-foreground">
-								Pliers supports common household issues such as plumbing, electrical, geysers and hot water systems, appliance breakdowns, security and access issues, and general repairs. More categories will be added over time.
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">11. Is my information private?</h3>
-							<p className="text-muted-foreground">
-								Yes. Your information is only used to help diagnose your issue and, if requested, to connect you with contractors. We do not sell your personal information.
-							</p>
-						</div>
-
-						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
-							<h3 className="text-xl font-semibold mb-2">12. What areas does Pliers operate in?</h3>
-							<p className="text-muted-foreground">
-								Pliers is currently focused on South Africa and will expand to additional areas over time.
-							</p>
-						</div>
+						<Button variant="outline" size="lg">
+							Contact Us
+						</Button>
 					</div>
 				</div>
 			</section>
 
 			<Separator />
-
-			{/* FOOTER */}
-			<footer className="py-12 bg-gradient-to-b from-background to-muted/20">
-				<div className="container mx-auto px-4 md:px-6">
-					<div className="grid md:grid-cols-4 gap-8 mb-8">
-						<div className="space-y-4">
-							<div className="relative w-30 h-12">
-								<Image
-									fill
-									src="/logo.svg"
-									alt="Pliers Logo"
-									className="object-contain group-hover:scale-110 transition-transform duration-300 shrink-0"
-								/>
-							</div>
-							<p className="text-sm text-muted-foreground">
-								AI-powered home diagnostics connecting homeowners with trusted contractors.
-							</p>
-						</div>
-
-						<div>
-							<h4 className="font-semibold mb-4">Product</h4>
-							<ul className="space-y-2 text-sm text-muted-foreground">
-								<li><Link href="#features" className="hover:text-primary transition-colors">Features</Link></li>
-								<li><Link href="#pricing" className="hover:text-primary transition-colors">Pricing</Link></li>
-								<li><Link href="#testimonials" className="hover:text-primary transition-colors">Testimonials</Link></li>
-							</ul>
-						</div>
-
-						<div>
-							<h4 className="font-semibold mb-4">Company</h4>
-							<ul className="space-y-2 text-sm text-muted-foreground">
-								<li><Link href="/about" className="hover:text-primary transition-colors">About</Link></li>
-								<li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
-								<li><Link href="/careers" className="hover:text-primary transition-colors">Careers</Link></li>
-							</ul>
-						</div>
-
-						<div>
-							<h4 className="font-semibold mb-4">Legal</h4>
-							<ul className="space-y-2 text-sm text-muted-foreground">
-								<li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy</Link></li>
-								<li><Link href="/terms" className="hover:text-primary transition-colors">Terms</Link></li>
-								<li><Link href="/security" className="hover:text-primary transition-colors">Security</Link></li>
-							</ul>
-						</div>
-					</div>
-
-					<Separator className="my-8" />
-
-					<div className="text-center text-sm text-muted-foreground">
-						© {new Date().getFullYear()} Pliers. All rights reserved. Made with ❤️ for homeowners and contractors.
-					</div>
-				</div>
-			</footer>
+			<Footer />
 		</div>
 	);
 }
