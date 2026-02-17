@@ -11,6 +11,8 @@
     "client:build": "npm run build --prefix client",
     "core:start": "npm run start --prefix core",
     "client:start": "npm run start --prefix client",
+    "seed": "npm run seed --prefix core",
+    "fresh:seed": "npm run fresh:seed --prefix core",
     "install": "concurrently --names backend,frontend --prefix \"[{name}]\" --prefix-colors green,blue \"npm run core:install\" \"npm run client:install\"",
     "dev": "concurrently --names backend,frontend --prefix \"[{name}]\" --prefix-colors green,blue \"npm run core:dev\" \"npm run client:dev\""
   },
