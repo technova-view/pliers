@@ -32,7 +32,6 @@ export default function SignupPage() {
 	const router = useRouter();
 	const { isAuthenticated } = useAuth();
 	const [signup, { isLoading: isSignupLoading }] = useSignupMutation();
-	const [login] = useLoginMutation();
 
 	const {
 		register,
@@ -42,7 +41,6 @@ export default function SignupPage() {
 		resolver: zodResolver(signupSchema),
 	});
 
-	// Redirect if already authenticated
 	if (isAuthenticated) {
 		router.push('/');
 		return null;
@@ -57,28 +55,12 @@ export default function SignupPage() {
 				lastName: data.lastName,
 			}).unwrap();
 
-			if (!signupResponse.success) {
-				const errorMsg = signupResponse.message || signupResponse.error || 'Signup failed';
-				toast.error(errorMsg);
-				return;
-			}
-
 			toast.success(signupResponse.message || 'Account created successfully! Please sign in.');
-
-			// Auto-login after signup
-			const loginResponse = await login({
-				email: data.email,
-				password: data.password,
-			}).unwrap();
-
-
-			toast.success(loginResponse.message || 'Login successful');
-			router.push('/');
-			router.refresh();
+			router.push('/login');
 
 		} catch (error: unknown) {
 			const errorformat = error as ErrorFormat;
-			const errorMessage = errorformat.data?.message || errorformat.data?.error || 'Login failed';
+			const errorMessage = errorformat.data?.message || errorformat.data?.error || 'Signup failed';
 			toast.error(errorMessage);
 		}
 	};

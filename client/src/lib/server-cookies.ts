@@ -9,7 +9,7 @@ export const COOKIE_NAMES = {
  * Server-side cookie utility for Next.js App Router.
  * Use these functions in Server Components and Server Actions.
  */
-export const getServerCookies = async () => {
+export const getServerAuthState = async () => {
 	const cookieStore = await cookies();
 
 	const accessToken = cookieStore.get(COOKIE_NAMES.ACCESS_TOKEN)?.value;

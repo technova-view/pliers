@@ -7,12 +7,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface HomeClientProps {
-	ssrAuth?: AuthStateProps['ssrAuth'];
+	serverAuthState?: AuthStateProps['serverAuthState'];
 }
 
-export function HomeClient({ ssrAuth }: HomeClientProps) {
+export function HomeClient({ serverAuthState }: HomeClientProps) {
 	// Pass SSR auth state to useAuth hook for consistent SSR/client rendering
-	const { isAuthenticated } = useAuth(ssrAuth);
+	const { isAuthenticated } = useAuth(serverAuthState);
 
 	return (
 		<div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">

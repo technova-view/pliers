@@ -10,7 +10,7 @@ export interface AuthState {
 }
 
 export interface AuthStateProps {
-	ssrAuth?: {
+	serverAuthState?: {
 		accessToken: string | null;
 		refreshToken: string | null;
 		isAuthenticated: boolean;
@@ -26,7 +26,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
  * during initial render to ensure SSR and client render the same UI.
  * After hydration, falls back to client-side cookie checking.
  */
-export const useAuth = (ssrAuth?: AuthStateProps['ssrAuth']) => {
+export const useAuth = (serverAuthState?: AuthStateProps['serverAuthState']) => {
 	// Use client-side cookies - this works after hydration
 	const clientAccessToken = getAccessToken();
 	const clientRefreshToken = getRefreshToken();
@@ -35,12 +35,12 @@ export const useAuth = (ssrAuth?: AuthStateProps['ssrAuth']) => {
 	// After client hydration, use client-side values for consistency
 	const isClientSide = typeof window !== 'undefined';
 
-	if (!isClientSide && ssrAuth) {
+	if (!isClientSide && serverAuthState) {
 		// Server-side rendering: use SSR auth state
 		return {
-			accessToken: ssrAuth.accessToken || undefined,
-			refreshToken: ssrAuth.refreshToken || undefined,
-			isAuthenticated: ssrAuth.isAuthenticated,
+			accessToken: serverAuthState.accessToken || undefined,
+			refreshToken: serverAuthState.refreshToken || undefined,
+			isAuthenticated: serverAuthState.isAuthenticated,
 		};
 	}
 
