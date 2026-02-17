@@ -3,6 +3,7 @@ import { AuthService } from "../services/auth.service";
 import { Public } from "../../../common/decorators/public.decorator";
 import type { RequestInterface } from "../../../common/interfaces/request.interface";
 import { SignupDto } from "../dto/signup.dto";
+import { LoginDto } from "../dto/login.dto";
 
 @Controller('auth')
 export class AuthController {
@@ -18,8 +19,8 @@ export class AuthController {
 
     @Public()
     @Post('login')
-    async login(): Promise<void> {
-        return this.authService.login();
+    async login(@Body() loginDto: LoginDto, @Req() request: RequestInterface): Promise<void> {
+        return this.authService.login(loginDto, request);
     }
 
 }
