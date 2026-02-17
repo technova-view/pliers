@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -41,8 +41,13 @@ export default function SignupPage() {
 		resolver: zodResolver(signupSchema),
 	});
 
+	useEffect(() => {
+		if (isAuthenticated) {
+			router.push('/');
+		}
+	}, [isAuthenticated, router]);
+
 	if (isAuthenticated) {
-		router.push('/');
 		return null;
 	}
 
