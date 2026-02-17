@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from './entities/user.entity';
-import { EnvironmentConfig } from '../../shared/interfaces/config.interface';
+import { EnvironmentConfig } from '../../common/interfaces/config.interface';
 import { UserSession } from './entities/user-session.entity';
 
 @Module({

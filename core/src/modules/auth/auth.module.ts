@@ -5,7 +5,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './guards/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { EnvironmentConfig } from 'src/shared/interfaces/config.interface';
+import { EnvironmentConfig } from 'src/common/interfaces/config.interface';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../database/entities/user.entity';
 import { UserSession } from '../database/entities/user-session.entity';

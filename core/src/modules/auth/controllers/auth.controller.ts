@@ -1,13 +1,13 @@
 import { Body, Controller, Post, Req } from "@nestjs/common";
 import { AuthService } from "../services/auth.service";
 import { Public } from "../../../common/decorators/public.decorator";
-import type { RequestInterface } from "../../../common/interfaces/request.interface";
 import { SignupDto } from "../dto/signup.dto";
 import { LoginDto } from "../dto/login.dto";
 import { RefreshTokenDto } from "../dto/refresh-token.dto";
-import { BaseApiResponse } from "../../../shared/interfaces/api-response.interface";
+import { BaseApiResponse } from "../../../common/interfaces/api-response.interface";
 import { RefreshAccessTokenResponseDto, LogoutResponseDto } from "../dto/auth-response.dto";
 import { ApiBearerAuth } from "@nestjs/swagger";
+import { RequestInterface } from "src/common/interfaces/request.interface";
 
 @Controller('auth')
 export class AuthController {

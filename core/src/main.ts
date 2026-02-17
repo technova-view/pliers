@@ -2,9 +2,19 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { TransformInterceptor } from './common/intercepters/transform.intercepter';
+import { HttpExceptionFilter } from './common/filters/http.exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+
+  	// Global interceptors (for response transformation)
+	app.useGlobalInterceptors(new TransformInterceptor());
+
+	// Global filters (for error handling)
+	app.useGlobalFilters(new HttpExceptionFilter());
+
   const config = new DocumentBuilder()
     .setTitle('Pliers: Core API')
     .setDescription('API documentation for Core service')

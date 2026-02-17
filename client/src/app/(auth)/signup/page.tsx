@@ -13,9 +13,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
+import { ErrorFormat } from '@/lib/types';
 
 const signupSchema = z.object({
-	email: z.string().email('Invalid email address'),
+	email: z.email('Invalid email address'),
 	password: z.string().min(8, 'Password must be at least 8 characters'),
 	confirmPassword: z.string(),
 	firstName: z.string().optional(),
@@ -32,7 +33,6 @@ export default function SignupPage() {
 	const { isAuthenticated } = useAuth();
 	const [signup, { isLoading: isSignupLoading }] = useSignupMutation();
 	const [login] = useLoginMutation();
-	const [error, setError] = useState<string | null>(null);
 
 	const {
 		register,
@@ -50,9 +50,6 @@ export default function SignupPage() {
 
 	const onSubmit = async (data: SignupFormData) => {
 		try {
-			setError(null);
-			
-			// Signup
 			const signupResponse = await signup({
 				email: data.email,
 				password: data.password,
@@ -61,12 +58,12 @@ export default function SignupPage() {
 			}).unwrap();
 
 			if (!signupResponse.success) {
-				setError(signupResponse.error || 'Signup failed');
-				toast.error(signupResponse.error || 'Signup failed');
+				const errorMsg = signupResponse.message || signupResponse.error || 'Signup failed';
+				toast.error(errorMsg);
 				return;
 			}
 
-			toast.success('Account created successfully! Please sign in.');
+			toast.success(signupResponse.message || 'Account created successfully! Please sign in.');
 
 			// Auto-login after signup
 			const loginResponse = await login({
@@ -74,17 +71,14 @@ export default function SignupPage() {
 				password: data.password,
 			}).unwrap();
 
-			if (loginResponse.success) {
-				router.push('/');
-				router.refresh();
-			} else {
-				router.push('/login');
-			}
-		} catch (err: unknown) {
-			const errorMessage = err && typeof err === 'object' && 'data' in err
-				? (err.data as { error?: string })?.error || 'Signup failed'
-				: 'Signup failed';
-			setError(errorMessage);
+
+			toast.success(loginResponse.message || 'Login successful');
+			router.push('/');
+			router.refresh();
+
+		} catch (error: unknown) {
+			const errorformat = error as ErrorFormat;
+			const errorMessage = errorformat.data?.message || errorformat.data?.error || 'Login failed';
 			toast.error(errorMessage);
 		}
 	};
@@ -96,13 +90,8 @@ export default function SignupPage() {
 					<CardTitle>Create an Account</CardTitle>
 					<CardDescription>Enter your details to create a new account</CardDescription>
 				</CardHeader>
-				<form onSubmit={handleSubmit(onSubmit)}>
+				<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
 					<CardContent className="space-y-4">
-						{error && (
-							<div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">
-								{error}
-							</div>
-						)}
 						<div className="grid grid-cols-2 gap-4">
 							<div className="space-y-2">
 								<Label htmlFor="firstName">First Name</Label>

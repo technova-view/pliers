@@ -1,20 +1,20 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, BadRequestException, UnauthorizedException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { SignupDto } from '../dto/signup.dto';
-import { RequestInterface } from '../../../common/interfaces/request.interface';
 import { LoginDto } from '../dto/login.dto';
 import { RefreshTokenDto } from '../dto/refresh-token.dto';
 import { User } from '../../database/entities/user.entity';
 import { UserSession } from '../../database/entities/user-session.entity';
-import { BaseApiResponse } from '../../../shared/interfaces/api-response.interface';
-import { EnvironmentConfig } from '../../../shared/interfaces/config.interface';
+import { BaseApiResponse } from '../../../common/interfaces/api-response.interface';
+import { EnvironmentConfig } from '../../../common/interfaces/config.interface';
 import { RefreshAccessTokenResponseDto, LogoutResponseDto } from '../dto/auth-response.dto';
 import { UserType } from '../../../common/enums/user-type.enum';
-import { AccessTokenPayload, RefreshTokenPayload } from 'src/common/interfaces/token.payload.interface';
+import { AccessTokenPayload, RefreshTokenPayload } from 'src/common/interfaces/token.interface';
+import { RequestInterface } from 'src/common/interfaces/request.interface';
 
 @Injectable()
 export class AuthService {
@@ -39,7 +39,7 @@ export class AuthService {
         // Check if user already exists
         const existingUser = await this.userRepository.findOne({ where: { email } });
         if (existingUser) {
-            return BaseApiResponse.error('User with this email already exists');
+            throw new BadRequestException('User with this email already exists');
         }
 
         // Hash password
@@ -72,13 +72,13 @@ export class AuthService {
         // Find user
         const user = await this.userRepository.findOne({ where: { email } });
         if (!user) {
-            return BaseApiResponse.error('Invalid credentials');
+            throw new UnauthorizedException('Invalid credentials');
         }
 
         // Verify password
         const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
         if (!isPasswordValid) {
-            return BaseApiResponse.error('Invalid credentials');
+            throw new UnauthorizedException('Invalid credentials');
         }
 
         // Generate tokens
@@ -121,7 +121,7 @@ export class AuthService {
             });
 
             if (!session || session.revokedAt || session.expiresAt < new Date()) {
-                return BaseApiResponse.error('Invalid or expired refresh token');
+                throw new ForbiddenException('Invalid or expired refresh token');
             }
 
             const accessTokenPayload: AccessTokenPayload = { sub: payload.sub, email: payload.email, userType: payload.userType };
@@ -138,7 +138,7 @@ export class AuthService {
                 accessToken: newAccessToken,
             });
         } catch (error) {
-            return BaseApiResponse.error('Invalid or expired refresh token');
+            throw new ForbiddenException('Invalid or expired refresh token');
         }
     }
 
@@ -163,7 +163,7 @@ export class AuthService {
 
             return BaseApiResponse.success('Logout successful', { loggedOut: true });
         } catch (error) {
-            return BaseApiResponse.error('Invalid refresh token');
+            throw new ForbiddenException('Invalid refresh token');
         }
     }
 

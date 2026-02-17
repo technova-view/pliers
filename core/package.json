@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only src/main.ts",
     "build": "nest build",
     "start": "npx nest start --watch",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -40,6 +40,7 @@
     "@types/node": "^20.0.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "~5.9.2"
   }
 }

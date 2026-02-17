@@ -42,3 +42,12 @@ export interface User {
 	createdAt: string;
 	updatedAt: string;
 }
+
+export interface ErrorFormat {
+	data?: {
+        success: false;
+		message: string;
+		error: string;
+	};
+	status?: number;
+}

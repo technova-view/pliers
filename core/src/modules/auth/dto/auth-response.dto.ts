@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseApiResponse } from '../../../shared/interfaces/api-response.interface';
+import { BaseApiResponse } from '../../../common/interfaces/api-response.interface';
 
 export class AuthTokensResponseDto {
 	@ApiProperty({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' })

@@ -1,15 +1,16 @@
 import { CanActivate, ExecutionContext, Injectable, Logger, UnauthorizedException } from "@nestjs/common";
-import { RequestInterface } from "../../../common/interfaces/request.interface";
 import { Reflector } from "@nestjs/core";
 
 import { IS_PUBLIC_ROUTE } from "../../../common/decorators/public.decorator";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
-import { EnvironmentConfig } from "src/shared/interfaces/config.interface";
-import { AccessTokenPayload } from "src/common/interfaces/token.payload.interface";
+import { EnvironmentConfig } from "src/common/interfaces/config.interface";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "../../database/entities/user.entity";
+import { RequestInterface } from "src/common/interfaces/request.interface";
+import { AccessTokenPayload } from "src/common/interfaces/token.interface";
+import { Request } from "express";
 @Injectable()
 export class AuthGuard implements CanActivate {
 
@@ -57,7 +58,7 @@ export class AuthGuard implements CanActivate {
 
 
 
-    private extractBearerToken(request: RequestInterface): string | null {
+    private extractBearerToken(request: Request): string | null {
         const authHeader = request.headers.authorization;
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return null;
