@@ -5,7 +5,7 @@ import Joi from 'joi';
  * All environment variables must be validated against this schema at application startup.
  */
 export const configValidationSchema = Joi.object({
-  NODE_ENV: Joi.string().valid('development', 'production').default('development'),
+  NODE_ENV: Joi.string().valid('development', 'production'),
   DATABASE_URL: Joi.string().required(),
   JWT_SECRET_KEY: Joi.string().min(32).required(),
   JWT_EXPIRES_IN: Joi.alternatives().try(
