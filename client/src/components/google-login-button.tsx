@@ -44,7 +44,6 @@ export default function GoogleLoginButton() {
                 const { type, id_token, error } = event.data;
                 if (type === 'google-oauth') {
                     window.removeEventListener('message', handleMessage);
-                    popup.close();
                     if (id_token) resolve(id_token);
                     else reject(new Error(error || 'No id_token returned'));
                 }
