@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import bcrypt from 'bcrypt';
 import dataSource from '../data-source';
 import { User } from './modules/database/entities/user.entity';
-import { UserSession } from './modules/database/entities/user-session.entity';
 
 interface SeedOptions {
   clearExisting?: boolean;
@@ -13,7 +12,7 @@ interface SeedOptions {
  * Main seed function - creates tables, clears data, and seeds data
  */
 async function seed({ clearExisting = true, createTables = true }: SeedOptions = {}): Promise<void> {
-  console.log('🚀 Starting database seed...\n');
+  console.log('Starting database seed...\n');
 
   // Initialize the data source
   if (!dataSource.isInitialized) {
@@ -30,7 +29,7 @@ async function seed({ clearExisting = true, createTables = true }: SeedOptions =
 
     // Clear existing data if requested
     if (clearExisting) {
-      console.log('🗑️  Clearing existing data...');
+      console.log('! Clearing existing data...');
       // Get all tables from the database and truncate them
       const tables = await dataSource.query(
         "SELECT tablename FROM pg_tables WHERE schemaname = 'public'"
@@ -46,15 +45,15 @@ async function seed({ clearExisting = true, createTables = true }: SeedOptions =
     // Run seeders
     await seedUsers();
 
-    console.log('🎉 Seed completed successfully!\n');
+    console.log('✅ Seed completed successfully!\n');
   } catch (error) {
-    console.error('❌ Seed failed:', error);
+    console.error('X Seed failed:', error);
     throw error;
   } finally {
     // Close the connection
     if (dataSource.isInitialized) {
       await dataSource.destroy();
-      console.log('🔌 Database connection closed');
+      console.log('✅ Database connection closed');
     }
   }
 }
@@ -77,13 +76,13 @@ async function regularSeed(): Promise<void> {
  * Seed users - extensible for adding more users
  */
 async function seedUsers(): Promise<void> {
-  console.log('👤 Seeding users...');
+  console.log('Seeding users...');
 
   const userRepository = dataSource.getRepository(User);
 
   // Check if user already exists
   const existingUser = await userRepository.findOne({
-    where: { email: 'test@example.com' },
+    where: { email: 'mdmarufbinsalim@gmail.com' }
   });
 
   if (existingUser) {
@@ -92,13 +91,12 @@ async function seedUsers(): Promise<void> {
   }
 
   // Hash password
-  const passwordHash = await bcrypt.hash('Test@123', 10);
-
+  const passwordHash = await bcrypt.hash('Pliers789!', 10);
   // Create user
   const user = userRepository.create({
-    firstName: 'Test',
-    lastName: 'User',
-    email: 'test@example.com',
+    firstName: 'pliers',
+    lastName: '@admin',
+    email: 'mdmarufbinsalim@gmail.com',
     passwordHash,
     accountVerified: true,
     provider: 'email',
