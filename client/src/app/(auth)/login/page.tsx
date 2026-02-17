@@ -15,6 +15,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { toast } from 'sonner';
 import { BaseApiError } from '@/lib/types';
 import GoogleLoginButton from '@/components/google-login-button';
+import { UserType } from '@/lib/enums';
 
 const loginSchema = z.object({
 	email: z.email('Invalid email address'),
@@ -50,7 +51,7 @@ export default function LoginPage() {
 		try {
 			const response = await login(data).unwrap();
 			toast.success(response.message || 'Login successful');
-			router.push('/dashboard');
+			response.data?.userType === UserType.PLATFORM_ADMIN ? router.push('/admin') : router.push('/dashboard');
 			router.refresh();
 
 		} catch (error: unknown) {

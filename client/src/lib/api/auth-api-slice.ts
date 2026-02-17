@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 import type {
 	BaseApiResponse,
 	AuthTokensResponse,
@@ -16,22 +16,11 @@ import {
 	setRefreshToken,
 	clearAuthTokens,
 } from '../cookies';
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+import { baseQueryWithReauth } from './base-query';
 
 export const authApi = createApi({
 	reducerPath: 'authApi',
-	baseQuery: fetchBaseQuery({
-		baseUrl: API_BASE_URL,
-		prepareHeaders: (headers) => {
-			const token = getAccessToken();
-			if (token) {
-				headers.set('Authorization', `Bearer ${token}`);
-			}
-			return headers;
-		},
-		credentials: 'include',
-	}),
+	baseQuery: baseQueryWithReauth,
 	endpoints: (builder) => ({
 		login: builder.mutation<BaseApiResponse<AuthTokensResponse>, LoginRequest>({
 			query: (credentials) => ({
