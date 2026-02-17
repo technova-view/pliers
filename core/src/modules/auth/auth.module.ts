@@ -6,12 +6,13 @@ import { AuthGuard } from './guards/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EnvironmentConfig } from 'src/shared/interfaces/config.interface';
-import { StringValue } from 'ms';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from '../database/entities/user.entity';
+import { UserSession } from '../database/entities/user-session.entity';
 
 @Module({
    imports: [
-    ConfigModule, // 👈 REQUIRED so ConfigService is available
-
+    ConfigModule, 
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -22,6 +23,7 @@ import { StringValue } from 'ms';
         },
       }),
     }),
+    TypeOrmModule.forFeature([User, UserSession])
   ],
 
   controllers: [AuthController],

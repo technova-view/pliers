@@ -2,8 +2,8 @@ import { Entity, Column, ManyToOne, JoinColumn, Index, CreateDateColumn } from '
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { User } from './user.entity';
 
-@Entity('sessions')
-export class Session {
+@Entity('user_sessions')
+export class UserSession {
     @ApiProperty({ type: String })
     @Column({ type: 'uuid', primary: true, default: () => 'gen_random_uuid()' })
     id: string;

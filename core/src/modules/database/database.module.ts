@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from './entities/user.entity';
 import { EnvironmentConfig } from '../../shared/interfaces/config.interface';
+import { UserSession } from './entities/user-session.entity';
 
 @Module({
   imports: [
@@ -12,7 +13,10 @@ import { EnvironmentConfig } from '../../shared/interfaces/config.interface';
       useFactory: (config: ConfigService<EnvironmentConfig>) => ({
         type: 'postgres',
         url: config.get('DATABASE_URL'),
-        entities: [User],
+        entities: [
+          User,
+          UserSession,
+        ],
         synchronize: config.get('NODE_ENV') === 'development',
         extra: {
           ssl: {
@@ -21,8 +25,6 @@ import { EnvironmentConfig } from '../../shared/interfaces/config.interface';
         },
       }),
     }),
-
-    TypeOrmModule.forFeature([User]),
   ],
   exports: [TypeOrmModule],
 })
