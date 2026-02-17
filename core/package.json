@@ -6,7 +6,9 @@
     "dev": "nest start --watch",
     "build": "nest build",
     "start": "npx nest start --watch",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "seed": "ts-node src/seed.ts",
+    "fresh:seed": "ts-node src/seed.ts --fresh"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
