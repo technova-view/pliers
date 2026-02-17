@@ -10,6 +10,13 @@
     "core:build": "npm run build --prefix core",
     "client:build": "npm run build --prefix client",
     "core:start": "npm run start --prefix core",
-    "client:start": "npm run start --prefix client"
+    "client:start": "npm run start --prefix client",
+    "install": "concurrently \"npm run core:install\" \"npm run client:install\"",
+    "dev": "concurrently \"npm run core:dev\" \"npm run client:dev\"",
+    "build": "npm run core:build && npm run client:build",
+    "start": "concurrently \"npm run core:start\" \"npm run client:start\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }
