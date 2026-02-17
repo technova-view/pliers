@@ -128,6 +128,13 @@ export default function LandingPage() {
 								<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
 							</Link>
 						))}
+						<Link
+							href="/contractors"
+							className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+						>
+							Become a Contractor
+							<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+						</Link>
 					</nav>
 
 					<div className="flex items-center gap-3">
@@ -135,12 +142,6 @@ export default function LandingPage() {
 						<Link href="/login">
 							<Button variant="ghost" className="hidden sm:inline-flex hover:bg-primary/10">
 								Login
-							</Button>
-						</Link>
-						<Link href="/signup">
-							<Button className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl transition-all duration-300">
-								Get Started
-								<ArrowRight className="ml-2 w-4 h-4" />
 							</Button>
 						</Link>
 					</div>
@@ -167,29 +168,27 @@ export default function LandingPage() {
 							</Badge>
 
 							<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-								Diagnose Home Issues.
+								Something wrong at home? Let's fix it.
 								<span className="block text-transparent bg-gradient-to-r from-primary to-blue-600 bg-clip-text">
-									Connect with Trusted Pros.
+									Every home problem, solved.
 								</span>
 							</h1>
 
 							<p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-								Pliers helps homeowners instantly understand home problems using AI
-								and seamlessly connects them to qualified local contractors through
-								a pay-per-lead marketplace.
+								Describe the problem in plain language. Pliers helps you understand what's happening, what to do next, and connects you to trusted local professionals if you need them.
 							</p>
 
 							<div className="flex flex-col sm:flex-row gap-4">
-								<Link href="/signup">
+								<Link href="/#">
 									<Button size="lg" className="group px-8 py-6 text-base bg-gradient-to-r from-primary to-primary/80 hover:shadow-xl transition-all duration-300">
-										Try AI Assistant Free
+										Explain My Problem
 										<ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
 									</Button>
 								</Link>
-								<Link href="/signup">
+								<Link href="/#">
 									<Button size="lg" variant="outline" className="px-8 py-6 text-base border-2 hover:bg-primary/5 hover:border-primary transition-all duration-300">
 										<Users className="mr-2 w-4 h-4" />
-										Join as Contractor
+										Find a Contractor
 									</Button>
 								</Link>
 							</div>
@@ -431,6 +430,104 @@ export default function LandingPage() {
 						<p className="text-sm text-muted-foreground">
 							No credit card required • Free 14-day trial • Cancel anytime
 						</p>
+					</div>
+				</div>
+			</section>
+
+			{/* FAQ SECTION */}
+			<section id="faq" className="py-24 bg-background">
+				<div className="container mx-auto px-4 md:px-6">
+					<div className="text-center max-w-3xl mx-auto mb-16">
+						<h2 className="text-3xl md:text-4xl font-bold mb-6">Frequently Asked Questions</h2>
+						<p className="text-lg text-muted-foreground">
+							Everything you need to know about using Pliers for your home problems.
+						</p>
+					</div>
+
+					<div className="max-w-3xl mx-auto space-y-6">
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">1. What is Pliers?</h3>
+							<p className="text-muted-foreground">
+								Pliers is a home problem-solving platform. You describe what's going wrong in your home — in plain language — and Pliers helps you understand what might be happening, whether it's urgent, and what to do next. If you need professional help, we can connect you to contractors in your area.
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">2. Is Pliers just another directory?</h3>
+							<p className="text-muted-foreground">
+								No. Pliers doesn't just list contractors. It first helps you understand the problem. We guide you through what could be causing it and whether it's safe to try fixing it yourself before connecting you to a professional. It's about clarity first — then action.
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">3. Is this the same as using ChatGPT?</h3>
+							<p className="text-muted-foreground">
+								Not quite. ChatGPT gives general information. Pliers is built specifically for home issues. We ask follow-up questions relevant to your situation, highlight safety risks, help decide between DIY and professional help, and connect you to local contractors if needed. It's designed to help you move from "What's wrong?" to "It's fixed."
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">4. Does Pliers replace a professional?</h3>
+							<p className="text-muted-foreground">
+								No. Pliers provides guidance to help you understand what might be happening. For complex or potentially unsafe issues, we recommend consulting a qualified professional. If needed, we can help you connect with one.
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">5. Is it safe to follow the advice?</h3>
+							<p className="text-muted-foreground">
+								Pliers is designed to avoid risky or dangerous DIY recommendations. If something appears unsafe, we will advise you to stop and consult a professional. When in doubt, safety comes first.
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">6. Do I have to hire a contractor through Pliers?</h3>
+							<p className="text-muted-foreground">
+								No. You can use Pliers simply to understand your issue. If you decide you need help, you can choose whether or not to connect with a contractor.
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">7. How much does it cost to use Pliers?</h3>
+							<p className="text-muted-foreground">
+								For homeowners, using Pliers to understand your problem is free. If you choose to hire a contractor, pricing will depend on the service provider and the work required.
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">8. How do I know the contractors are legitimate?</h3>
+							<p className="text-muted-foreground">
+								Contractors on Pliers go through a basic approval process before being listed. We aim to connect you with professionals who operate in your area and category. We encourage homeowners to review credentials, ask questions, and confirm details before hiring.
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">9. Can I upload photos of the problem?</h3>
+							<p className="text-muted-foreground">
+								Yes. Uploading photos can help provide better guidance and clearer job briefs for contractors.
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">10. What types of home problems does Pliers cover?</h3>
+							<p className="text-muted-foreground">
+								Pliers supports common household issues such as plumbing, electrical, geysers and hot water systems, appliance breakdowns, security and access issues, and general repairs. More categories will be added over time.
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">11. Is my information private?</h3>
+							<p className="text-muted-foreground">
+								Yes. Your information is only used to help diagnose your issue and, if requested, to connect you with contractors. We do not sell your personal information.
+							</p>
+						</div>
+
+						<div className="border rounded-lg p-6 bg-background/50 hover:bg-background hover:shadow-lg transition-all duration-300">
+							<h3 className="text-xl font-semibold mb-2">12. What areas does Pliers operate in?</h3>
+							<p className="text-muted-foreground">
+								Pliers is currently focused on South Africa and will expand to additional areas over time.
+							</p>
+						</div>
 					</div>
 				</div>
 			</section>
