@@ -7,6 +7,7 @@ import type {
 	LoginRequest,
 	SignupRequest,
 	RefreshTokenRequest,
+	GoogleAuthRequest,
 } from '../types';
 import {
 	getAccessToken,
@@ -55,6 +56,22 @@ export const authApi = createApi({
 				body: userData,
 				credentials: 'include',
 			}),
+		}),
+
+		googleAuth: builder.mutation<BaseApiResponse<AuthTokensResponse>, GoogleAuthRequest>({
+			query: (data) => ({
+				url: '/auth/google',
+				method: 'POST',
+				body: data,
+				credentials: 'include',
+			}),
+			transformResponse: (response: BaseApiResponse<AuthTokensResponse>) => {
+				if (response.success && response.data) {
+					setAccessToken(response.data.accessToken);
+					setRefreshToken(response.data.refreshToken);
+				}
+				return response;
+			},
 		}),
 
 		refreshAccessToken: builder.mutation<
@@ -108,4 +125,5 @@ export const {
 	useRefreshAccessTokenMutation,
 	useLogoutMutation,
 	useGetTokensQuery,
+	useGoogleAuthMutation,
 } = authApi;

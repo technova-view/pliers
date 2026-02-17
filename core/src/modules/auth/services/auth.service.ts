@@ -4,9 +4,11 @@ import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { OAuth2Client } from 'google-auth-library';
 import { SignupDto } from '../dto/signup.dto';
 import { LoginDto } from '../dto/login.dto';
 import { RefreshTokenDto } from '../dto/refresh-token.dto';
+import { GoogleAuthDto } from '../dto/google-auth.dto';
 import { User } from '../../database/entities/user.entity';
 import { UserSession } from '../../database/entities/user-session.entity';
 import { BaseApiResponse } from '../../../common/interfaces/api-response.interface';
@@ -180,6 +182,76 @@ export class AuthService {
             expiresIn: '7d',
         });
 
-        return { accessToken, refreshToken };
+    return { accessToken, refreshToken };
+  }
+
+  /**
+   * Authenticate user with Google OAuth
+   * @param googleAuthDto - Google access token
+   * @param request - Request object
+   */
+  async googleAuth(googleAuthDto: GoogleAuthDto, request: RequestInterface): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
+    const { accessToken } = googleAuthDto;
+
+    try {
+      const client = new OAuth2Client(this.configService.get('GOOGLE_CLIENT_ID'));
+      
+      // Verify Google access token
+      const ticket = await client.verifyIdToken({
+        idToken: accessToken,
+        audience: this.configService.get('GOOGLE_CLIENT_ID'),
+      });
+
+      const payload = ticket.getPayload();
+      
+      if (!payload || !payload.email) {
+        throw new UnauthorizedException('Invalid Google credentials');
+      }
+
+      // Check if user already exists with this email
+      let user = await this.userRepository.findOne({ where: { email: payload.email } });
+
+      if (!user) {
+        // Create new user if not exists
+        user = this.userRepository.create({
+          email: payload.email,
+          passwordHash: '', // Empty password hash since using Google OAuth
+          firstName: payload.given_name,
+          lastName: payload.family_name,
+          provider: 'google',
+          accountVerified: true, // Google accounts are verified by default
+          userType: UserType.CONTRACTOR,
+        });
+
+        user = await this.userRepository.save(user);
+      } else if (user.provider !== 'google' && user.provider !== 'email') {
+        // User exists with different provider
+        throw new BadRequestException('Email already registered with different provider');
+      }
+
+      // Create session and generate tokens
+      const expiresAt = new Date();
+      expiresAt.setDate(expiresAt.getDate() + 7);
+
+      const session = this.userSessionRepository.create({
+        user: { id: user.id } as User,
+        expiresAt,
+      });
+
+      const tokens = await this.generateTokens(user, session);
+      session.refreshTokenHash = await bcrypt.hash(tokens.refreshToken, 10);
+      await this.userSessionRepository.save(session);
+
+      return BaseApiResponse.success('Google authentication successful', {
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+      });
+    } catch (error) {
+      if (error instanceof BadRequestException || error instanceof UnauthorizedException) {
+        throw error;
+      }
+      
+      throw new UnauthorizedException('Google authentication failed');
     }
+  }
 }
