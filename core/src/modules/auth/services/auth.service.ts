@@ -13,6 +13,7 @@ import { UserSession } from '../../database/entities/user-session.entity';
 import { BaseApiResponse } from '../../../shared/interfaces/api-response.interface';
 import { EnvironmentConfig } from '../../../shared/interfaces/config.interface';
 import { RefreshAccessTokenResponseDto, LogoutResponseDto } from '../dto/auth-response.dto';
+import { UserType } from '../../../common/enums/user-type.enum';
 
 @Injectable()
 export class AuthService {
@@ -51,6 +52,7 @@ export class AuthService {
             lastName,
             provider: 'email',
             accountVerified: false,
+            userType: UserType.CONTRACTOR,
         });
 
         const savedUser = await this.userRepository.save(user);

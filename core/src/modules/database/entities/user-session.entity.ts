@@ -2,7 +2,7 @@ import { Entity, Column, ManyToOne, JoinColumn, Index, CreateDateColumn } from '
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { User } from './user.entity';
 
-@Entity('user_sessions')
+@Entity('sessions')
 export class UserSession {
     @ApiProperty({ type: String })
     @Column({ type: 'uuid', primary: true, default: () => 'gen_random_uuid()' })
@@ -22,7 +22,6 @@ export class UserSession {
     @Column({ type: 'timestamptz', nullable: true })
     @Index()
     revokedAt?: Date;
-
     
     @ApiProperty({ type: 'string', format: 'date-time' })
     @CreateDateColumn()

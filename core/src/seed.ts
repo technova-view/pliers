@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import bcrypt from 'bcrypt';
 import dataSource from '../data-source';
 import { User } from './modules/database/entities/user.entity';
+import { UserType } from './common/enums/user-type.enum';
 
 interface SeedOptions {
   clearExisting?: boolean;
@@ -100,11 +101,12 @@ async function seedUsers(): Promise<void> {
     passwordHash,
     accountVerified: true,
     provider: 'email',
+    userType: UserType.PLATFORM_ADMIN,
   });
 
   await userRepository.save(user);
 
-  console.log('✅ User seeded: test@example.com / Test@123\n');
+  console.log('✅ User seeded: mdmarufbinsalim@gmail.com / Pliers789!\n');
 }
 
 // Export for extensibility

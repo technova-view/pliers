@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, Index } from 'typeorm';
+import { UserType } from '../../../common/enums/user-type.enum';
 
 @Entity('users')
 export class User {
@@ -42,4 +43,14 @@ export class User {
   })
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt?: Date;
+
+  @ApiProperty({ enum: UserType, default: UserType.CONTRACTOR })
+  @Column({
+    type: 'enum',
+    enum: UserType,
+    nullable: false,
+    default: UserType.CONTRACTOR,
+  })
+  @Index()
+  userType: UserType;
 }
