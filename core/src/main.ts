@@ -9,8 +9,15 @@ async function bootstrap() {
     .setTitle('Pliers: Core API')
     .setDescription('API documentation for Core service')
     .setVersion('1.0')
-		.addBearerAuth()
+    .addBearerAuth()
     .build();
+
+  app.enableCors({
+    origin: (origin, callback) => {
+      callback(null, true); // allow all origins
+    },
+    credentials: true, // cookies work
+  });
 
   app.setGlobalPrefix('api/v1');
 
