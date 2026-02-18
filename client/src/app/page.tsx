@@ -216,7 +216,7 @@ export default function LandingPage() {
 						<div className="hidden md:block absolute top-24 left-[18%] right-[18%] h-0.5 bg-gradient-to-r from-primary/10 via-primary/40 to-primary/10 rounded-full" />
 
 						{/* Step 1 */}
-						<Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 relative bg-white overflow-hidden group">
+						<Card className="border  shadow-md hover:shadow-lg transition-all duration-300 relative bg-white overflow-hidden group">
 							<CardContent className="p-6 md:p-8 relative">
 								{/* Step Number with Icon */}
 								<div className="flex items-start justify-between mb-6">
@@ -255,7 +255,7 @@ export default function LandingPage() {
 						</Card>
 
 						{/* Step 2 */}
-						<Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 relative bg-white overflow-hidden group md:translate-y-8">
+						<Card className="border shadow-md hover:shadow-lg transition-all duration-300 relative bg-white overflow-hidden group md:translate-y-8">
 							<CardContent className="p-6 md:p-8 relative">
 								<div className="flex items-start justify-between mb-6">
 									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-md">
@@ -294,7 +294,7 @@ export default function LandingPage() {
 						</Card>
 
 						{/* Step 3 */}
-						<Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 relative bg-white overflow-hidden group">
+						<Card className="border shadow-md hover:shadow-lg transition-all duration-300 relative bg-white overflow-hidden group">
 							<CardContent className="p-6 md:p-8 relative">
 								<div className="flex items-start justify-between mb-6">
 									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-md">
@@ -369,9 +369,9 @@ export default function LandingPage() {
 									"Helps you decide between DIY or professional help",
 									"Connects you directly to local contractors",
 								].map((item, index) => (
-									<div key={index} className="flex items-start gap-3 group">
+									<div key={index} className="flex items-center gap-3 group"> {/* Changed from items-start to items-center */}
 										<div className="relative">
-											<CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+											<CheckCircle className="w-5 h-5 text-primary shrink-0 group-hover:scale-110 transition-transform" />
 											<div className="absolute inset-0 bg-primary/20 blur-md rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
 										</div>
 										<span className="text-base md:text-lg text-secondary">{item}</span>
@@ -1274,15 +1274,6 @@ export default function LandingPage() {
 								</p>
 							</CardContent>
 						</Card>
-					</div>
-
-					{/* Bottom Decoration */}
-					<div className="flex justify-center gap-2 mt-8">
-						<div className="w-1.5 h-1.5 rounded-full bg-primary/20" />
-						<div className="w-1.5 h-1.5 rounded-full bg-primary/30" />
-						<div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
-						<div className="w-1.5 h-1.5 rounded-full bg-primary/30" />
-						<div className="w-1.5 h-1.5 rounded-full bg-primary/20" />
 					</div>
 				</div>
 			</section>
