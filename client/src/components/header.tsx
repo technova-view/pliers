@@ -5,7 +5,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header() {
   return (
-    <header className="border-b bg-background/80 backdrop-blur-md sticky top-0 z-50 supports-[backdrop-filter]:bg-background/60 font-primary">
+    <header className="border-b sticky top-0 z-50 bg-white font-primary">
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 group ">
           <div className="relative w-40 h-16">
