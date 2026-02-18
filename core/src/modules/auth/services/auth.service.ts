@@ -257,7 +257,9 @@ export class AuthService {
   }
 
   /**
-   * Find user by email with password
+   * Find user by email with password.
+   * Password hash is selected explicitly since it's excluded by default in the User entity.
+   * This is used for login to verify password
    * @param email - User email
    * @return User entity or null
    * @private

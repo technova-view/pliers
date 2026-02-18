@@ -13,7 +13,11 @@ export class UsersService {
         private readonly userRepository: Repository<User>,
     ) { }
 
-
+    /**
+     * Retrieve logged in user
+     * @param user - User entity
+     * @return User entity
+     */
     async retrieveLoggedInUser(user: User): Promise<BaseApiResponse<User>> {
         if (!user) {
             throw new NotFoundException('User not found');
@@ -21,7 +25,12 @@ export class UsersService {
         return BaseApiResponse.success('User retrieved successfully', user);
     }
 
-
+    /**
+     * Update logged in user
+     * @param updateUserDto - Update user data
+     * @param user - User entity
+     * @return User entity
+     */
     async updateLoggedInUser(updateUserDto: UpdateUserDto, user: User): Promise<BaseApiResponse<User>> {
         const updatedUser = await this.userRepository.preload({
             id: user.id,
