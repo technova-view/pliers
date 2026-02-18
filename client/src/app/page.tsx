@@ -194,7 +194,7 @@ export default function LandingPage() {
 			</section>
 
 			{/* How It Works */}
-			<section className="py-16 md:py-20 bg-white from-secondary/5 to-secondary/10">
+			<section className="py-16 md:py-20 bg-white">
 				<div className="container max-w-6xl mx-auto px-4">
 					{/* Section Header */}
 					<div className="text-center mb-12 md:mb-16">
@@ -216,14 +216,11 @@ export default function LandingPage() {
 						<div className="hidden md:block absolute top-24 left-[18%] right-[18%] h-0.5 bg-gradient-to-r from-primary/10 via-primary/40 to-primary/10 rounded-full" />
 
 						{/* Step 1 */}
-						<Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative bg-white/90 backdrop-blur-sm overflow-hidden group">
-							{/* Decorative gradient */}
-							<div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
+						<Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 relative bg-white overflow-hidden group">
 							<CardContent className="p-6 md:p-8 relative">
 								{/* Step Number with Icon */}
 								<div className="flex items-start justify-between mb-6">
-									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-md">
 										<span className="text-2xl">1️⃣</span>
 									</div>
 									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
@@ -258,12 +255,10 @@ export default function LandingPage() {
 						</Card>
 
 						{/* Step 2 */}
-						<Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative bg-white/90 backdrop-blur-sm overflow-hidden group md:translate-y-8">
-							<div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
+						<Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 relative bg-white overflow-hidden group md:translate-y-8">
 							<CardContent className="p-6 md:p-8 relative">
 								<div className="flex items-start justify-between mb-6">
-									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-md">
 										<span className="text-2xl">2️⃣</span>
 									</div>
 									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
@@ -299,12 +294,10 @@ export default function LandingPage() {
 						</Card>
 
 						{/* Step 3 */}
-						<Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative bg-white/90 backdrop-blur-sm overflow-hidden group">
-							<div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
+						<Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 relative bg-white overflow-hidden group">
 							<CardContent className="p-6 md:p-8 relative">
 								<div className="flex items-start justify-between mb-6">
-									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-md">
 										<span className="text-2xl">3️⃣</span>
 									</div>
 									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
@@ -405,12 +398,8 @@ export default function LandingPage() {
 
 						{/* Right Column - Chat Card */}
 						<div className="relative">
-							{/* Decorative Elements */}
-							<div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl" />
-							<div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
-
 							{/* Main Card */}
-							<Card className="border-0 shadow-xl hover:shadow-2xl transition-shadow duration-300 relative bg-white/90 backdrop-blur-sm">
+							<Card className="border-0 shadow-md hover:shadow-lg transition-shadow duration-300 relative bg-white">
 								<CardContent className="p-6 md:p-8">
 									{/* Header */}
 									<div className="flex items-center gap-4 mb-6">
@@ -486,7 +475,7 @@ export default function LandingPage() {
 			</section>
 
 			{/* Built for Real Homes */}
-			<section className="py-16 md:py-20 bg-white from-muted/20 via-muted/10 to-muted/30 relative overflow-hidden">
+			<section className="py-16 md:py-20 bg-gradient-to-b from-white via-secondary/5 to-secondary/10">
 				<div className="container max-w-6xl mx-auto px-4 relative z-10">
 					{/* Section Header */}
 					<div className="text-center mb-12 md:mb-16">
@@ -497,13 +486,13 @@ export default function LandingPage() {
 							Built for You
 						</Badge>
 
-						<h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-3 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+						<h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-3 text-secondary animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
 							Built for Real Homes
 						</h2>
 
 						<div className="flex items-center justify-center gap-3 animate-in fade-in duration-700 delay-200">
 							<div className="h-px w-8 bg-primary/30" />
-							<p className="text-base text-muted-foreground">
+							<p className="text-base text-secondary/70">
 								Whether it's:
 							</p>
 							<div className="h-px w-8 bg-primary/30" />
@@ -515,22 +504,20 @@ export default function LandingPage() {
 						{categories.map((category, index) => (
 							<div
 								key={index}
-								className="group flex flex-col items-center text-center p-4 md:p-5 bg-background/80 backdrop-blur-sm rounded-xl border shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-4"
+								className="group flex flex-col items-center text-center p-4 md:p-5 bg-white rounded-xl border border-secondary/10 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-4"
 								style={{ animationDelay: `${300 + index * 100}ms` }}
 							>
 								{/* Icon Container with Gradient */}
-								<div className="relative mb-3">
+								<div className="mb-3">
 									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center group-hover:from-primary/20 group-hover:to-primary/10 transition-all duration-300 group-hover:scale-110">
 										<div className="text-primary group-hover:scale-110 transition-transform duration-300">
 											{category.icon}
 										</div>
 									</div>
-									{/* Glow Effect on Hover */}
-									<div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 								</div>
 
 								{/* Category Name */}
-								<span className="text-sm font-medium group-hover:text-primary transition-colors duration-300">
+								<span className="text-sm font-medium text-secondary group-hover:text-primary transition-colors duration-300">
 									{category.name}
 								</span>
 
@@ -547,7 +534,7 @@ export default function LandingPage() {
 							<div className="w-full h-full border-t-2 border-l-2 border-primary/20 rounded-tl-2xl" />
 						</div>
 
-						<p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-6 py-4 bg-background/50 backdrop-blur-sm rounded-full border shadow-sm inline-flex items-center gap-3">
+						<p className="text-base md:text-lg text-secondary/70 max-w-2xl mx-auto px-6 py-4 bg-white/50 backdrop-blur-sm rounded-full border border-secondary/10 shadow-sm inline-flex items-center gap-3">
 							<span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
 							Pliers is designed for everyday home problems.
 							<span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
@@ -614,11 +601,7 @@ export default function LandingPage() {
 
 						{/* Right Column - Safety Card */}
 						<div className="relative animate-in fade-in slide-in-from-right-4 duration-700 delay-200">
-							{/* Decorative Elements */}
-							<div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl" />
-							<div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
-
-							<Card className="border-0 bg-gradient-to-br from-primary/[0.02] to-primary/5 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden relative">
+							<Card className="border-0 bg-gradient-to-br from-primary/[0.02] to-primary/5 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden relative">
 								{/* Accent Stripe */}
 								<div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-primary" />
 
@@ -682,7 +665,7 @@ export default function LandingPage() {
 			</section>
 
 			{/* For When You Need a Pro */}
-			<section className="py-16 md:py-20 bg-gradient-to-b from-muted/20 via-muted/10 to-muted/30 relative overflow-hidden">
+			<section className="py-16 md:py-20 bg-white relative overflow-hidden">
 				<div className="container max-w-6xl mx-auto px-4 relative z-10">
 					<div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 						{/* Left Column - Content */}
@@ -695,11 +678,11 @@ export default function LandingPage() {
 								For Professionals
 							</Badge>
 
-							<h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+							<h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
 								For When You Need a Pro
 							</h2>
 
-							<p className="text-base text-muted-foreground border-l-4 border-primary pl-4 py-1">
+							<p className="text-base text-secondary/70 border-l-4 border-primary pl-4 py-1">
 								Not the DIY type? No problem.
 							</p>
 
@@ -715,7 +698,7 @@ export default function LandingPage() {
 											<CheckCircle className="w-6 h-6 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
 											<div className="absolute inset-0 bg-primary/20 blur-md rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
 										</div>
-										<span className="text-base md:text-lg">{item}</span>
+										<span className="text-base md:text-lg text-secondary">{item}</span>
 									</div>
 								))}
 							</div>
@@ -723,24 +706,20 @@ export default function LandingPage() {
 							{/* Stats */}
 							<div className="flex items-center gap-6 pt-4">
 								<div className="text-center">
-									<div className="text-2xl text-primary">500+</div>
-									<div className="text-xs text-muted-foreground">Contractors</div>
+									<div className="text-2xl font-semibold text-primary">500+</div>
+									<div className="text-xs text-secondary/60">Contractors</div>
 								</div>
-								<div className="w-px h-8 bg-border" />
+								<div className="w-px h-8 bg-secondary/10" />
 								<div className="text-center">
-									<div className="text-2xl text-primary">24h</div>
-									<div className="text-xs text-muted-foreground">Avg response</div>
+									<div className="text-2xl font-semibold text-primary">24h</div>
+									<div className="text-xs text-secondary/60">Avg response</div>
 								</div>
 							</div>
 						</div>
 
 						{/* Right Column - Job Brief Card */}
 						<div className="relative animate-in fade-in slide-in-from-right-4 duration-700 delay-200 order-1 lg:order-2">
-							{/* Decorative Elements */}
-							<div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
-							<div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
-
-							<Card className="border shadow-xl hover:shadow-2xl transition-all duration-300 bg-white/80 backdrop-blur-sm overflow-hidden">
+							<Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm overflow-hidden">
 								{/* Card Header with Accent */}
 								<div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-primary/60" />
 
@@ -751,64 +730,64 @@ export default function LandingPage() {
 											<Wrench className="w-7 h-7 text-white" />
 										</div>
 										<div>
-											<h3 className="text-xl font-semibold">Job Brief Example</h3>
+											<h3 className="text-xl font-semibold text-secondary">Job Brief Example</h3>
 											<div className="flex items-center gap-2">
-												<div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-												<p className="text-xs text-muted-foreground">Generated by Pliers</p>
+												<div className="w-1.5 h-1.5 bg-primary rounded-full" />
+												<p className="text-xs text-secondary/60">Generated by Pliers</p>
 											</div>
 										</div>
 									</div>
 
 									{/* Job Details Grid */}
 									<div className="space-y-4">
-										<div className="grid grid-cols-2 gap-4 bg-muted/30 p-4 rounded-lg">
+										<div className="grid grid-cols-2 gap-4 bg-secondary/5 p-4 rounded-lg">
 											<div className="space-y-3">
 												<div>
-													<span className="text-xs text-muted-foreground block">Issue:</span>
-													<span className="text-base font-medium">Geyser leaking</span>
+													<span className="text-xs text-secondary/60 block">Issue:</span>
+													<span className="text-base font-medium text-secondary">Geyser leaking</span>
 												</div>
 												<div>
-													<span className="text-xs text-muted-foreground block">Location:</span>
-													<span className="text-base font-medium">Cape Town</span>
+													<span className="text-xs text-secondary/60 block">Location:</span>
+													<span className="text-base font-medium text-secondary">Cape Town</span>
 												</div>
 											</div>
 											<div className="space-y-3">
 												<div>
-													<span className="text-xs text-muted-foreground block">Urgency:</span>
-													<span className="inline-flex items-center gap-1.5 text-base font-medium text-orange-600 bg-orange-100 px-2 py-0.5 rounded-full">
-														<div className="w-1.5 h-1.5 bg-orange-600 rounded-full animate-pulse" />
+													<span className="text-xs text-secondary/60 block">Urgency:</span>
+													<span className="inline-flex items-center gap-1.5 text-base font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+														<div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
 														High
 													</span>
 												</div>
 												<div>
-													<span className="text-xs text-muted-foreground block">Access:</span>
-													<span className="text-base font-medium">Roof space</span>
+													<span className="text-xs text-secondary/60 block">Access:</span>
+													<span className="text-base font-medium text-secondary">Roof space</span>
 												</div>
 											</div>
 										</div>
 
-										<Separator className="my-4" />
+										<Separator className="my-4 bg-secondary/10" />
 
 										{/* Additional Info */}
 										<div className="flex items-center justify-between bg-primary/5 p-3 rounded-lg">
 											<div className="flex items-center gap-2">
 												<div className="flex -space-x-2">
 													{[1, 2, 3].map((i) => (
-														<div key={i} className="w-6 h-6 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[10px] font-medium">
+														<div key={i} className="w-6 h-6 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[10px] font-medium text-secondary">
 															📸
 														</div>
 													))}
 												</div>
-												<span className="text-xs text-muted-foreground">Photos attached: 3</span>
+												<span className="text-xs text-secondary/60">Photos attached: 3</span>
 											</div>
-											<div className="flex items-center gap-1 text-xs font-medium text-yellow-600 bg-yellow-50 px-2 py-1 rounded-full">
-												<AlertTriangle className="w-3 h-3" />
+											<div className="flex items-center gap-1 text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
+												<AlertTriangle className="w-3 h-3 text-primary" />
 												<span>Power off required</span>
 											</div>
 										</div>
 
 										{/* Footer Note */}
-										<p className="text-xs text-muted-foreground italic flex items-center gap-2 mt-2">
+										<p className="text-xs text-secondary/60 italic flex items-center gap-2 mt-2">
 											<span className="w-1 h-1 bg-primary rounded-full" />
 											Ready to send to contractors
 										</p>
@@ -817,9 +796,9 @@ export default function LandingPage() {
 							</Card>
 
 							{/* Floating Badge */}
-							<div className="absolute -bottom-3 -right-3 bg-white rounded-full px-4 py-2 shadow-lg border flex items-center gap-2">
-								<div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-								<span className="text-xs font-medium">Matching available</span>
+							<div className="absolute -bottom-3 -right-3 bg-white rounded-full px-4 py-2 shadow-lg border border-secondary/10 flex items-center gap-2">
+								<div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+								<span className="text-xs font-medium text-secondary">Matching available</span>
 							</div>
 						</div>
 					</div>
@@ -827,13 +806,7 @@ export default function LandingPage() {
 			</section>
 
 			{/* Built for South African Homes */}
-			<section className="py-16 md:py-20 bg-gradient-to-b from-white to-muted/20 relative overflow-hidden">
-				{/* Decorative Background Elements */}
-				<div className="absolute inset-0 pointer-events-none">
-					<div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
-					<div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-80 h-80 bg-secondary/10 rounded-full blur-3xl" />
-				</div>
-
+			<section className="py-16 md:py-20 bg-gradient-to-b from-white to-secondary/5 relative overflow-hidden">
 				{/* Map Pattern Overlay (subtle) */}
 				<div className="absolute inset-0 opacity-5 pointer-events-none">
 					<div className="absolute inset-0" style={{
@@ -846,13 +819,9 @@ export default function LandingPage() {
 				<div className="container max-w-4xl mx-auto px-4 relative z-10">
 					{/* Main Content Card */}
 					<div className="relative animate-in fade-in duration-700">
-						{/* Decorative Elements */}
-						<div className="absolute -top-6 -left-6 w-32 h-32 bg-secondary/5 rounded-full blur-2xl" />
-						<div className="absolute -bottom-6 -right-6 w-40 h-40 bg-secondary/10 rounded-full blur-3xl" />
-
-						{/* Card with Flag Accent */}
-						<Card className="border shadow-xl hover:shadow-2xl transition-all duration-300 bg-white/80 backdrop-blur-sm overflow-hidden">
-							{/* South African Flag Stripe (matches card style) */}
+						{/* Card with Flag Accent - Keeping SA flag colors as they're specific to South Africa */}
+						<Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm overflow-hidden">
+							{/* South African Flag Stripe - Preserved as it's culturally significant */}
 							<div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-black via-yellow-500 to-green-600" />
 
 							<CardContent className="p-10 md:p-12 text-center space-y-8">
@@ -860,7 +829,7 @@ export default function LandingPage() {
 								<div className="flex justify-center">
 									<Badge
 										variant="outline"
-										className="px-5 py-2 border-secondary/20 text-secondary bg-secondary/5 font-medium inline-flex items-center gap-2"
+										className="px-5 py-2 border-primary/20 text-primary bg-primary/5 font-medium inline-flex items-center gap-2"
 									>
 										<svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 											<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
@@ -871,36 +840,36 @@ export default function LandingPage() {
 								</div>
 
 								{/* Heading */}
-								<h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-									Built for <span className="text-secondary relative">
+								<h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
+									Built for <span className="text-primary relative">
 										South African Homes
-										<svg className="absolute -bottom-2 left-0 right-0 w-full h-2 text-secondary/30" viewBox="0 0 100 10" preserveAspectRatio="none">
+										<svg className="absolute -bottom-2 left-0 right-0 w-full h-2 text-primary/30" viewBox="0 0 100 10" preserveAspectRatio="none">
 											<path d="M0,5 Q25,0 50,5 T100,5" stroke="currentColor" strokeWidth="2" fill="none" />
 										</svg>
 									</span>
 								</h2>
 
 								{/* Description */}
-								<p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+								<p className="text-base text-secondary/70 max-w-2xl mx-auto leading-relaxed">
 									We understand local housing realities, common infrastructure issues,
 									and the way South Africans describe home problems.
 								</p>
 
 								{/* Highlight Box */}
-								<div className="relative p-8 bg-gradient-to-br from-secondary/5 to-secondary/10 rounded-2xl border border-secondary/20 shadow-inner">
+								<div className="relative p-8 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl border border-primary/20 shadow-inner">
 									{/* Decorative Quote Marks */}
-									<div className="absolute -top-3 left-6 text-6xl text-secondary/20 font-serif">"</div>
+									<div className="absolute -top-3 left-6 text-6xl text-primary/20 font-serif">"</div>
 
 									<div className="relative space-y-3">
 										<p className="text-2xl md:text-3xl font-semibold text-secondary">
 											This isn't generic advice.
 										</p>
-										<p className="text-xl md:text-2xl text-muted-foreground font-medium">
+										<p className="text-xl md:text-2xl text-secondary/70 font-medium">
 											It's built for where you live.
 										</p>
 									</div>
 
-									{/* Decorative South African Elements */}
+									{/* Decorative South African Elements - Preserved as culturally significant */}
 									<div className="flex justify-center gap-3 mt-6">
 										<div className="w-2 h-2 rounded-full bg-black/30" />
 										<div className="w-2 h-2 rounded-full bg-yellow-500/30" />
@@ -913,8 +882,8 @@ export default function LandingPage() {
 						</Card>
 
 						{/* Floating Map Pin */}
-						<div className="absolute -top-4 -left-4 bg-white rounded-full p-3 shadow-lg border">
-							<svg className="w-5 h-5 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+						<div className="absolute -top-4 -left-4 bg-white rounded-full p-3 shadow-lg border border-primary/20">
+							<svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 								<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
 								<circle cx="12" cy="9" r="2.5" fill="currentColor" />
 							</svg>
@@ -967,8 +936,9 @@ export default function LandingPage() {
 				</div>
 			</section>
 
+
 			{/* About Pliers */}
-			<section className="py-16 md:py-20 bg-gradient-to-b from-background to-muted/20">
+			<section className="py-16 md:py-20 bg-gradient-to-b from-white to-secondary/5">
 				<div className="container max-w-4xl mx-auto px-4">
 					<div className="space-y-12 md:space-y-16">
 
@@ -977,7 +947,7 @@ export default function LandingPage() {
 							<div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mx-auto mb-2">
 								<Home className="w-8 h-8 text-primary" />
 							</div>
-							<h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+							<h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
 								About Pliers
 							</h2>
 							<p className="text-base text-primary">
@@ -988,28 +958,28 @@ export default function LandingPage() {
 
 						{/* Story Section */}
 						<div className="space-y-4 max-w-3xl mx-auto">
-							<p className="text-muted-foreground leading-relaxed">
+							<p className="text-secondary/70 leading-relaxed">
 								Homes are meant to feel safe. But when something goes wrong — a
 								leaking pipe, a power failure, a broken appliance — that feeling
 								disappears quickly. Suddenly you're searching online, calling people
 								who don't answer, trying to figure out what's urgent and what's not.
 							</p>
-							<p className="font-medium text-foreground text-lg border-l-4 border-primary pl-4 py-1 bg-primary/5 rounded-r-lg">
+							<p className="font-medium text-secondary text-lg border-l-4 border-primary pl-4 py-1 bg-primary/5 rounded-r-lg">
 								It's stressful. It's confusing. And it shouldn't be.
 							</p>
-							<p className="text-muted-foreground">Pliers was created to change that.</p>
+							<p className="text-secondary/70">Pliers was created to change that.</p>
 						</div>
 
-						<Separator className="max-w-md mx-auto" />
+						<Separator className="max-w-md mx-auto bg-secondary/10" />
 
 						{/* Why We Built Pliers */}
 						<div className="space-y-6 max-w-3xl mx-auto">
-							<h3 className="text-xl md:text-2xl font-semibold tracking-tight flex items-center gap-2">
+							<h3 className="text-xl md:text-2xl font-semibold tracking-tight flex items-center gap-2 text-secondary">
 								<span className="w-1.5 h-6 bg-primary rounded-full" />
 								Why We Built Pliers
 							</h3>
 
-							<p className="text-muted-foreground">
+							<p className="text-secondary/70">
 								Most homeowners don't need technical knowledge. They just need clarity:
 							</p>
 
@@ -1022,17 +992,17 @@ export default function LandingPage() {
 								].map((question, index) => (
 									<div
 										key={index}
-										className="flex items-center gap-3 p-4 bg-card border rounded-lg hover:border-primary/30 transition-colors group"
+										className="flex items-center gap-3 p-4 bg-white border border-secondary/10 rounded-lg hover:border-primary/30 transition-colors group"
 									>
 										<div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
 											<span className="text-primary text-sm">?</span>
 										</div>
-										<span className="font-medium">{question}</span>
+										<span className="font-medium text-secondary">{question}</span>
 									</div>
 								))}
 							</div>
 
-							<p className="text-muted-foreground leading-relaxed">
+							<p className="text-secondary/70 leading-relaxed">
 								Right now, the options are scattered. Search engines give generic
 								answers. Directories list hundreds of contractors with no context.
 								And advice doesn't always translate into action.
@@ -1047,16 +1017,16 @@ export default function LandingPage() {
 							</div>
 						</div>
 
-						<Separator className="max-w-md mx-auto" />
+						<Separator className="max-w-md mx-auto bg-secondary/10" />
 
 						{/* What Makes Pliers Different */}
 						<div className="space-y-6 max-w-3xl mx-auto">
-							<h3 className="text-xl md:text-2xl font-semibold tracking-tight flex items-center gap-2">
+							<h3 className="text-xl md:text-2xl font-semibold tracking-tight flex items-center gap-2 text-secondary">
 								<span className="w-1.5 h-6 bg-primary rounded-full" />
 								What Makes Pliers Different
 							</h3>
 
-							<p className="text-muted-foreground">
+							<p className="text-secondary/70">
 								Pliers isn't just a directory. It's built around a simple idea:
 							</p>
 
@@ -1066,7 +1036,7 @@ export default function LandingPage() {
 								</p>
 							</div>
 
-							<p className="text-muted-foreground">
+							<p className="text-secondary/70">
 								When you describe a problem, Pliers:
 							</p>
 
@@ -1080,34 +1050,34 @@ export default function LandingPage() {
 								].map((item, index) => (
 									<li key={index} className="flex items-start gap-3 group">
 										<CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-										<span className="text-muted-foreground group-hover:text-foreground transition-colors">
+										<span className="text-secondary/70 group-hover:text-secondary transition-colors">
 											{item}
 										</span>
 									</li>
 								))}
 							</ul>
 
-							<p className="text-muted-foreground italic bg-muted/30 p-4 rounded-lg border">
+							<p className="text-secondary/70 italic bg-secondary/5 p-4 rounded-lg border border-secondary/10">
 								It's not about overwhelming you with information. It's about helping
 								you make the right next move.
 							</p>
 						</div>
 
-						<Separator className="max-w-md mx-auto" />
+						<Separator className="max-w-md mx-auto bg-secondary/10" />
 
 						{/* For Homeowners. For Professionals. */}
 						<div className="space-y-6 max-w-3xl mx-auto">
-							<h3 className="text-xl md:text-2xl font-semibold tracking-tight flex items-center gap-2">
+							<h3 className="text-xl md:text-2xl font-semibold tracking-tight flex items-center gap-2 text-secondary">
 								<span className="w-1.5 h-6 bg-primary rounded-full" />
 								For Homeowners. For Professionals.
 							</h3>
 
-							<p className="text-muted-foreground">
+							<p className="text-secondary/70">
 								Pliers also supports skilled contractors by connecting them with
 								well-structured, clearly described jobs.
 							</p>
 
-							<p className="text-muted-foreground">
+							<p className="text-secondary/70">
 								When everyone has better information:
 							</p>
 
@@ -1131,13 +1101,13 @@ export default function LandingPage() {
 								].map((item, index) => {
 									const Icon = item.icon;
 									return (
-										<Card key={index} className="border-0 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+										<Card key={index} className="border-0 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 bg-white">
 											<CardContent className="p-6 text-center">
 												<div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
 													<Icon className="w-6 h-6 text-primary" />
 												</div>
-												<p className="font-semibold text-sm mb-1">{item.title}</p>
-												<p className="text-sm text-muted-foreground">{item.text}</p>
+												<p className="font-semibold text-sm mb-1 text-secondary">{item.title}</p>
+												<p className="text-sm text-secondary/60">{item.text}</p>
 											</CardContent>
 										</Card>
 									);
@@ -1149,15 +1119,15 @@ export default function LandingPage() {
 							</p>
 						</div>
 
-						<Separator className="max-w-md mx-auto" />
+						<Separator className="max-w-md mx-auto bg-secondary/10" />
 
 						{/* Our Vision */}
 						<div className="space-y-6 max-w-3xl mx-auto text-center">
-							<h3 className="text-xl md:text-2xl font-semibold tracking-tight">
+							<h3 className="text-xl md:text-2xl font-semibold tracking-tight text-secondary">
 								Our Vision
 							</h3>
 
-							<p className="text-muted-foreground">
+							<p className="text-secondary/70">
 								We believe every home deserves:
 							</p>
 
@@ -1167,7 +1137,7 @@ export default function LandingPage() {
 										<Badge
 											key={index}
 											variant="secondary"
-											className="px-5 py-2 text-sm font-medium"
+											className="px-5 py-2 text-sm font-medium bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/15"
 										>
 											{item}
 										</Badge>
@@ -1175,7 +1145,7 @@ export default function LandingPage() {
 								)}
 							</div>
 
-							<p className="text-muted-foreground max-w-2xl mx-auto">
+							<p className="text-secondary/70 max-w-2xl mx-auto">
 								Pliers is building a future where home care is simpler, smarter, and
 								less stressful.
 							</p>
@@ -1190,10 +1160,10 @@ export default function LandingPage() {
 						{/* Final CTA */}
 						<div className="text-center pt-8 space-y-6 max-w-2xl mx-auto">
 							<div className="space-y-3">
-								<h3 className="text-xl md:text-2xl font-semibold tracking-tight">
+								<h3 className="text-xl md:text-2xl font-semibold tracking-tight text-secondary">
 									Let's Fix What's Wrong
 								</h3>
-								<p className="text-muted-foreground">
+								<p className="text-secondary/70">
 									Whether it's something small or something urgent, start by telling us
 									what's happening. We'll take it from there.
 								</p>
@@ -1201,7 +1171,7 @@ export default function LandingPage() {
 
 							<Button
 								size="lg"
-								className="group px-8 py-6 text-base shadow-lg hover:shadow-xl transition-all"
+								className="group px-8 py-6 text-base shadow-lg hover:shadow-xl transition-all bg-primary hover:bg-primary/90 text-white"
 							>
 								<span className="flex items-center gap-2">
 									Explain My Problem
@@ -1222,8 +1192,9 @@ export default function LandingPage() {
 				</div>
 			</section>
 
+
 			{/* FAQ Section */}
-			<section className="py-16 md:py-20 bg-gradient-to-b from-muted/20 to-muted/30">
+			<section className="py-16 md:py-20 bg-white">
 				<div className="container max-w-3xl mx-auto px-4">
 
 					{/* Header */}
@@ -1231,10 +1202,10 @@ export default function LandingPage() {
 						<div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mx-auto mb-2">
 							<span className="text-2xl">❓</span>
 						</div>
-						<h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+						<h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
 							Frequently Asked Questions
 						</h2>
-						<p className="text-muted-foreground text-base">For Homeowners</p>
+						<p className="text-secondary/70 text-base">For Homeowners</p>
 						<div className="w-20 h-1 bg-primary/20 mx-auto rounded-full" />
 					</div>
 
@@ -1244,17 +1215,17 @@ export default function LandingPage() {
 							<AccordionItem
 								key={index}
 								value={`item-${index}`}
-								className="bg-background rounded-xl border shadow-sm hover:shadow-md transition-shadow data-[state=open]:border-primary/30"
+								className="bg-white rounded-xl border border-secondary/10 hover:border-primary/30 transition-colors data-[state=open]:border-primary/30 data-[state=open]:shadow-sm"
 							>
-								<AccordionTrigger className="px-6 py-4 font-medium hover:no-underline hover:bg-muted/10 rounded-t-xl transition-colors group">
+								<AccordionTrigger className="px-6 py-4 font-medium hover:no-underline hover:bg-secondary/5 rounded-t-xl transition-colors group">
 									<span className="flex items-start gap-3 text-left">
-										<span className="text-primary text-sm ">Q{index + 1}.</span>
-										<span className="flex-1 group-hover:text-primary transition-colors">
+										<span className="text-primary text-sm font-medium">Q{index + 1}.</span>
+										<span className="flex-1 text-secondary group-hover:text-primary transition-colors">
 											{faq.q}
 										</span>
 									</span>
 								</AccordionTrigger>
-								<AccordionContent className="px-6 pb-5 pt-2 text-muted-foreground leading-relaxed">
+								<AccordionContent className="px-6 pb-5 pt-2 text-secondary/70 leading-relaxed">
 									<div className="flex">
 										<span className="text-primary/50 text-sm font-medium w-6 shrink-0">A.</span>
 										<span className="flex-1">{faq.a}</span>
@@ -1266,7 +1237,7 @@ export default function LandingPage() {
 
 					{/* Still Have Questions - Enhanced Card */}
 					<div className="mt-16 text-center">
-						<Card className="border-0 shadow-lg bg-gradient-to-br from-background to-muted/20 overflow-hidden">
+						<Card className="border-0 shadow-md bg-white/90 backdrop-blur-sm overflow-hidden">
 							{/* Decorative accent */}
 							<div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50" />
 
@@ -1275,11 +1246,11 @@ export default function LandingPage() {
 									<span className="text-2xl">🛠</span>
 								</div>
 
-								<h3 className="text-xl md:text-2xl font-semibold tracking-tight">
+								<h3 className="text-xl md:text-2xl font-semibold tracking-tight text-secondary">
 									Still Have Questions?
 								</h3>
 
-								<p className="text-muted-foreground max-w-md mx-auto">
+								<p className="text-secondary/70 max-w-md mx-auto">
 									If you're unsure about anything, feel free to reach out. We're building
 									Pliers to make home care simpler — and we're always improving.
 								</p>
@@ -1288,7 +1259,7 @@ export default function LandingPage() {
 									<Button
 										variant="outline"
 										size="lg"
-										className="group px-8 py-6 text-base border-2 hover:bg-secondary hover:text-white hover:border-secondary transition-all duration-300"
+										className="group px-8 py-6 text-base border-2 border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
 									>
 										<span className="flex items-center gap-2">
 											Contact Us
@@ -1298,7 +1269,7 @@ export default function LandingPage() {
 								</div>
 
 								{/* Trust indicator */}
-								<p className="text-xs text-muted-foreground/60 pt-4">
+								<p className="text-xs text-secondary/40 pt-4">
 									Usually responds within 24 hours
 								</p>
 							</CardContent>
