@@ -22,7 +22,7 @@ export class User {
   email: string;
 
   @ApiProperty({ type: String, example: '$2b$10$...' })
-  @Column({ type: 'varchar', length: 255, nullable: false })
+  @Column({ type: 'varchar', length: 255, nullable: false, select: false })
   passwordHash: string;
 
   @ApiProperty({ type: Boolean, default: false })

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useGoogleAuthMutation } from '@/lib/api/auth-api-slice';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { UserType } from '@/lib/enums';
 
 export default function GoogleLoginButton() {
     const router = useRouter();
@@ -43,7 +44,6 @@ export default function GoogleLoginButton() {
                 const { type, id_token, error } = event.data;
                 if (type === 'google-oauth') {
                     window.removeEventListener('message', handleMessage);
-                    popup.close();
                     if (id_token) resolve(id_token);
                     else reject(new Error(error || 'No id_token returned'));
                 }
@@ -57,9 +57,9 @@ export default function GoogleLoginButton() {
         try {
             const idToken = await openGooglePopup();
 
-            await googleAuth({ accessToken: idToken }).unwrap();
+            const response = await googleAuth({ accessToken: idToken }).unwrap();
             toast.success('Google Sign-In successful');
-            router.push('/dashboard');
+            response.data?.userType === UserType.PLATFORM_ADMIN ? router.push('/admin') : router.push('/dashboard');
             router.refresh();
         } catch (err) {
             console.error(err);

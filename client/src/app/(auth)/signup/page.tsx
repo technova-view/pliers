@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
-import { ErrorFormat } from '@/lib/types';
+import { BaseApiError } from '@/lib/types';
 import GoogleLoginButton from '@/components/google-login-button';
 
 const signupSchema = z.object({
@@ -65,7 +65,7 @@ export default function SignupPage() {
 			router.push('/login');
 
 		} catch (error: unknown) {
-			const errorformat = error as ErrorFormat;
+			const errorformat = error as BaseApiError;
 			const errorMessage = errorformat.data?.message || errorformat.data?.error || 'Signup failed';
 			toast.error(errorMessage);
 		}

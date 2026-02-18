@@ -13,11 +13,9 @@ import { User } from '../../database/entities/user.entity';
 import { UserSession } from '../../database/entities/user-session.entity';
 import { BaseApiResponse } from '../../../common/interfaces/api-response.interface';
 import { EnvironmentConfig } from '../../../common/interfaces/config.interface';
-import { RefreshAccessTokenResponseDto, LogoutResponseDto } from '../dto/auth-response.dto';
+import { RefreshAccessTokenResponseDto, LogoutResponseDto, AuthTokensResponseDto } from '../dto/auth-response.dto';
 import { UserType } from '../../../common/enums/user-type.enum';
 import { AccessTokenPayload, RefreshTokenPayload } from 'src/common/interfaces/token.interface';
-import { RequestInterface } from 'src/common/interfaces/request.interface';
-
 @Injectable()
 export class AuthService {
 
@@ -35,7 +33,7 @@ export class AuthService {
      * @param signupDto - Signup data
      * @param request - Request object
      */
-    async signup(signupDto: SignupDto, request: RequestInterface): Promise<BaseApiResponse<{ userId: string }>> {
+    async signup(signupDto: SignupDto): Promise<BaseApiResponse<{ userId: string }>> {
         const { email, password, firstName, lastName } = signupDto;
 
         // Check if user already exists
@@ -68,11 +66,11 @@ export class AuthService {
      * @param loginDto - Login data
      * @param request - Request object
      */
-    async login(loginDto: LoginDto, request: RequestInterface): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
+    async login(loginDto: LoginDto): Promise<BaseApiResponse<AuthTokensResponseDto>> {
         const { email, password } = loginDto;
 
         // Find user
-        const user = await this.userRepository.findOne({ where: { email } });
+        const user = await this.findByEmailWithPassword(email);
         if (!user) {
             throw new UnauthorizedException('Invalid credentials');
         }
@@ -100,6 +98,7 @@ export class AuthService {
         return BaseApiResponse.success('Login successful', {
             accessToken: tokens.accessToken,
             refreshToken: tokens.refreshToken,
+            userType: user.userType,
         });
     }
 
@@ -107,7 +106,7 @@ export class AuthService {
      * Refresh a user's accessToken token
      * @param refreshTokenDto - Refresh token data
      */
-    async refreshAccessToken(refreshTokenDto: RefreshTokenDto, request: RequestInterface): Promise<BaseApiResponse<RefreshAccessTokenResponseDto>> {
+    async refreshAccessToken(refreshTokenDto: RefreshTokenDto): Promise<BaseApiResponse<RefreshAccessTokenResponseDto>> {
         const { refreshToken } = refreshTokenDto;
 
         try {
@@ -138,6 +137,7 @@ export class AuthService {
 
             return BaseApiResponse.success('Access token refreshed successfully', {
                 accessToken: newAccessToken,
+                userType: payload.userType,
             });
         } catch (error) {
             throw new ForbiddenException('Invalid or expired refresh token');
@@ -148,7 +148,7 @@ export class AuthService {
      * Logout a user
      * @param refreshTokenDto - Refresh token to revoke
      */
-    async logout(refreshTokenDto: RefreshTokenDto, request: RequestInterface): Promise<BaseApiResponse<LogoutResponseDto>> {
+    async logout(refreshTokenDto: RefreshTokenDto): Promise<BaseApiResponse<LogoutResponseDto>> {
         const { refreshToken } = refreshTokenDto;
 
         try {
@@ -190,7 +190,7 @@ export class AuthService {
    * @param googleAuthDto - Google access token
    * @param request - Request object
    */
-  async googleAuth(googleAuthDto: GoogleAuthDto, request: RequestInterface): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
+  async googleAuth(googleAuthDto: GoogleAuthDto): Promise<BaseApiResponse<AuthTokensResponseDto>> {
     const { accessToken } = googleAuthDto;
 
     try {
@@ -245,6 +245,7 @@ export class AuthService {
       return BaseApiResponse.success('Google authentication successful', {
         accessToken: tokens.accessToken,
         refreshToken: tokens.refreshToken,
+        userType: user.userType,
       });
     } catch (error) {
       if (error instanceof BadRequestException || error instanceof UnauthorizedException) {
@@ -254,4 +255,22 @@ export class AuthService {
       throw new UnauthorizedException('Google authentication failed');
     }
   }
+
+  /**
+   * Find user by email with password.
+   * Password hash is selected explicitly since it's excluded by default in the User entity.
+   * This is used for login to verify password
+   * @param email - User email
+   * @return User entity or null
+   * @private
+   * 
+   * 
+   */
+  private  async findByEmailWithPassword(email: string): Promise<User | null> {
+  return this.userRepository
+    .createQueryBuilder('user')
+    .addSelect('user.passwordHash')
+    .where('user.email = :email', { email })
+    .getOne();
+}
 }

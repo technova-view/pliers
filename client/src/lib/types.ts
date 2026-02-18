@@ -1,22 +1,4 @@
-export interface BaseApiResponse<T> {
-	success: boolean;
-	message: string;
-	data?: T;
-	error?: string | null;
-}
-
-export interface AuthTokensResponse {
-	accessToken: string;
-	refreshToken: string;
-}
-
-export interface RefreshAccessTokenResponse {
-	accessToken: string;
-}
-
-export interface LogoutResponse {
-	loggedOut: boolean;
-}
+import { UserType } from "./enums";
 
 export interface LoginRequest {
 	email: string;
@@ -38,20 +20,46 @@ export interface GoogleAuthRequest {
 	accessToken: string;
 }
 
-export interface User {
-	id: string;
-	email: string;
-	firstName?: string;
-	lastName?: string;
-	createdAt: string;
-	updatedAt: string;
+
+
+export interface BaseApiResponse<T> {
+	success: boolean;
+	message: string;
+	data?: T;
+	error?: string | null;
 }
 
-export interface ErrorFormat {
+export interface BaseApiError {
 	data?: {
         success: false;
 		message: string;
 		error: string;
 	};
 	status?: number;
+}
+
+export interface AuthTokensResponse {
+	accessToken: string;
+	refreshToken: string;
+	userType: UserType;
+}
+
+export interface RefreshAccessTokenResponse {
+	accessToken: string;
+	userType: UserType;
+}
+
+export interface LogoutResponse {
+	loggedOut: boolean;
+}
+
+
+export interface UserResponse {
+	id: string;
+	email: string;
+	firstName?: string;
+	lastName?: string;
+	userType: UserType;
+	createdAt: string;
+	updatedAt: string;
 }

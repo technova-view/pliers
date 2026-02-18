@@ -14,7 +14,15 @@ export default function GoogleOAuthCallback() {
     } else {
       window.opener.postMessage({ type: 'google-oauth', error: 'No id_token returned' }, window.location.origin);
     }
+
+    // Close the popup from within itself after a short delay
+    // This avoids COOP policy issues with window.close() from the opener
+    setTimeout(() => {
+      window.close();
+    }, 300);
   }, []);
 
-  return <div>Processing Google Sign-In...</div>;
+  return (
+   null
+  );
 }
