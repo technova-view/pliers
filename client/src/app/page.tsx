@@ -204,7 +204,7 @@ export default function LandingPage() {
 						>
 							Simple Process
 						</Badge>
-						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-secondary">
+						<h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
 							How It Works
 						</h2>
 						<div className="w-20 h-1 bg-primary/20 mx-auto mt-4 rounded-full" />
@@ -226,7 +226,7 @@ export default function LandingPage() {
 									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
 										<span className="text-2xl">1️⃣</span>
 									</div>
-									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
 										1
 									</div>
 								</div>
@@ -266,7 +266,7 @@ export default function LandingPage() {
 									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
 										<span className="text-2xl">2️⃣</span>
 									</div>
-									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
 										2
 									</div>
 								</div>
@@ -307,7 +307,7 @@ export default function LandingPage() {
 									<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
 										<span className="text-2xl">3️⃣</span>
 									</div>
-									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
 										3
 									</div>
 								</div>
@@ -360,10 +360,10 @@ export default function LandingPage() {
 
 							{/* Headings */}
 							<div className="space-y-3">
-								<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-secondary">
+								<h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
 									Why Not Just Google or ChatGPT?
 								</h2>
-								<p className="text-xl text-secondary/70 border-l-4 border-primary pl-4 py-1">
+								<p className="text-base text-muted-foreground border-l-4 border-primary pl-4 py-1">
 									Because advice alone doesn't fix the problem.
 								</p>
 							</div>
@@ -390,7 +390,7 @@ export default function LandingPage() {
 							<div className="p-6 bg-gradient-to-br from-primary/5 to-primary/[0.02] rounded-xl border border-primary/10 shadow-sm hover:shadow-md transition-shadow">
 								<div className="flex items-center gap-3 mb-3">
 									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-										<span className="text-primary font-bold text-sm">vs</span>
+										<span className="text-primary text-sm">vs</span>
 									</div>
 									<div className="h-8 w-px bg-secondary/10" />
 									<p className="text-secondary/70">
@@ -497,13 +497,13 @@ export default function LandingPage() {
 							Built for You
 						</Badge>
 
-						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-3 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+						<h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-3 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
 							Built for Real Homes
 						</h2>
 
 						<div className="flex items-center justify-center gap-3 animate-in fade-in duration-700 delay-200">
 							<div className="h-px w-8 bg-primary/30" />
-							<p className="text-lg md:text-xl text-muted-foreground font-medium">
+							<p className="text-base text-muted-foreground">
 								Whether it's:
 							</p>
 							<div className="h-px w-8 bg-primary/30" />
@@ -586,11 +586,11 @@ export default function LandingPage() {
 								Designed for Safety
 							</Badge>
 
-							<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-secondary">
+							<h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
 								We prioritise your safety
 							</h2>
 
-							<p className="text-lg md:text-xl text-secondary/70 max-w-xl leading-relaxed">
+							<p className="text-base text-muted-foreground max-w-xl leading-relaxed">
 								Clear warnings, no risky DIY advice, and professional escalation
 								when necessary. Because some problems shouldn't be guessed.
 							</p>
@@ -599,13 +599,13 @@ export default function LandingPage() {
 							<div className="flex items-center gap-6 pt-4">
 								<div className="flex items-center gap-2">
 									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-										<span className="text-primary text-xs font-bold">✓</span>
+										<span className="text-primary text-xs">✓</span>
 									</div>
 									<span className="text-sm text-secondary/60">Safety verified</span>
 								</div>
 								<div className="flex items-center gap-2">
 									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-										<span className="text-primary text-xs font-bold">24/7</span>
+										<span className="text-primary text-xs">24/7</span>
 									</div>
 									<span className="text-sm text-secondary/60">Always monitored</span>
 								</div>
@@ -634,7 +634,7 @@ export default function LandingPage() {
 											</div>
 										</div>
 										<div>
-											<h3 className="text-2xl font-semibold text-secondary">Safety First Approach</h3>
+											<h3 className="text-xl md:text-2xl font-semibold text-secondary">Safety First Approach</h3>
 											<p className="text-sm text-primary/70">Your protection is our priority</p>
 										</div>
 									</div>
@@ -695,11 +695,11 @@ export default function LandingPage() {
 								For Professionals
 							</Badge>
 
-							<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+							<h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
 								For When You Need a Pro
 							</h2>
 
-							<p className="text-xl text-muted-foreground border-l-4 border-primary pl-4 py-1">
+							<p className="text-base text-muted-foreground border-l-4 border-primary pl-4 py-1">
 								Not the DIY type? No problem.
 							</p>
 
@@ -723,12 +723,12 @@ export default function LandingPage() {
 							{/* Stats */}
 							<div className="flex items-center gap-6 pt-4">
 								<div className="text-center">
-									<div className="text-2xl font-bold text-primary">500+</div>
+									<div className="text-2xl text-primary">500+</div>
 									<div className="text-xs text-muted-foreground">Contractors</div>
 								</div>
 								<div className="w-px h-8 bg-border" />
 								<div className="text-center">
-									<div className="text-2xl font-bold text-primary">24h</div>
+									<div className="text-2xl text-primary">24h</div>
 									<div className="text-xs text-muted-foreground">Avg response</div>
 								</div>
 							</div>
@@ -871,7 +871,7 @@ export default function LandingPage() {
 								</div>
 
 								{/* Heading */}
-								<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+								<h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
 									Built for <span className="text-secondary relative">
 										South African Homes
 										<svg className="absolute -bottom-2 left-0 right-0 w-full h-2 text-secondary/30" viewBox="0 0 100 10" preserveAspectRatio="none">
@@ -881,7 +881,7 @@ export default function LandingPage() {
 								</h2>
 
 								{/* Description */}
-								<p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+								<p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
 									We understand local housing realities, common infrastructure issues,
 									and the way South Africans describe home problems.
 								</p>
@@ -892,7 +892,7 @@ export default function LandingPage() {
 									<div className="absolute -top-3 left-6 text-6xl text-secondary/20 font-serif">"</div>
 
 									<div className="relative space-y-3">
-										<p className="text-2xl md:text-3xl font-bold text-secondary">
+										<p className="text-2xl md:text-3xl font-semibold text-secondary">
 											This isn't generic advice.
 										</p>
 										<p className="text-xl md:text-2xl text-muted-foreground font-medium">
@@ -936,12 +936,12 @@ export default function LandingPage() {
 				<div className="container max-w-2xl mx-auto px-4 relative z-10">
 					<div className="text-center space-y-6 md:space-y-7">
 						{/* Heading */}
-						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+						<h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
 							Let's fix what's wrong.
 						</h2>
 
 						{/* Description */}
-						<p className="text-xl md:text-2xl text-secondary-foreground/80 max-w-lg mx-auto">
+						<p className="text-base text-secondary-foreground/80 max-w-lg mx-auto">
 							Start by telling us what's happening.
 						</p>
 
@@ -977,10 +977,10 @@ export default function LandingPage() {
 							<div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mx-auto mb-2">
 								<Home className="w-8 h-8 text-primary" />
 							</div>
-							<h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+							<h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
 								About Pliers
 							</h2>
-							<p className="text-xl text-primary font-medium">
+							<p className="text-base text-primary">
 								Every home problem, solved.
 							</p>
 							<div className="w-20 h-1 bg-primary/20 mx-auto rounded-full" />
@@ -1004,7 +1004,7 @@ export default function LandingPage() {
 
 						{/* Why We Built Pliers */}
 						<div className="space-y-6 max-w-3xl mx-auto">
-							<h3 className="text-2xl md:text-3xl font-semibold tracking-tight flex items-center gap-2">
+							<h3 className="text-xl md:text-2xl font-semibold tracking-tight flex items-center gap-2">
 								<span className="w-1.5 h-6 bg-primary rounded-full" />
 								Why We Built Pliers
 							</h3>
@@ -1051,7 +1051,7 @@ export default function LandingPage() {
 
 						{/* What Makes Pliers Different */}
 						<div className="space-y-6 max-w-3xl mx-auto">
-							<h3 className="text-2xl md:text-3xl font-semibold tracking-tight flex items-center gap-2">
+							<h3 className="text-xl md:text-2xl font-semibold tracking-tight flex items-center gap-2">
 								<span className="w-1.5 h-6 bg-primary rounded-full" />
 								What Makes Pliers Different
 							</h3>
@@ -1097,7 +1097,7 @@ export default function LandingPage() {
 
 						{/* For Homeowners. For Professionals. */}
 						<div className="space-y-6 max-w-3xl mx-auto">
-							<h3 className="text-2xl md:text-3xl font-semibold tracking-tight flex items-center gap-2">
+							<h3 className="text-xl md:text-2xl font-semibold tracking-tight flex items-center gap-2">
 								<span className="w-1.5 h-6 bg-primary rounded-full" />
 								For Homeowners. For Professionals.
 							</h3>
@@ -1153,7 +1153,7 @@ export default function LandingPage() {
 
 						{/* Our Vision */}
 						<div className="space-y-6 max-w-3xl mx-auto text-center">
-							<h3 className="text-2xl md:text-3xl font-semibold tracking-tight">
+							<h3 className="text-xl md:text-2xl font-semibold tracking-tight">
 								Our Vision
 							</h3>
 
@@ -1190,7 +1190,7 @@ export default function LandingPage() {
 						{/* Final CTA */}
 						<div className="text-center pt-8 space-y-6 max-w-2xl mx-auto">
 							<div className="space-y-3">
-								<h3 className="text-2xl md:text-3xl font-semibold tracking-tight">
+								<h3 className="text-xl md:text-2xl font-semibold tracking-tight">
 									Let's Fix What's Wrong
 								</h3>
 								<p className="text-muted-foreground">
@@ -1231,10 +1231,10 @@ export default function LandingPage() {
 						<div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mx-auto mb-2">
 							<span className="text-2xl">❓</span>
 						</div>
-						<h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+						<h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
 							Frequently Asked Questions
 						</h2>
-						<p className="text-muted-foreground text-lg">For Homeowners</p>
+						<p className="text-muted-foreground text-base">For Homeowners</p>
 						<div className="w-20 h-1 bg-primary/20 mx-auto rounded-full" />
 					</div>
 
@@ -1275,7 +1275,7 @@ export default function LandingPage() {
 									<span className="text-2xl">🛠</span>
 								</div>
 
-								<h3 className="text-2xl md:text-3xl font-semibold tracking-tight">
+								<h3 className="text-xl md:text-2xl font-semibold tracking-tight">
 									Still Have Questions?
 								</h3>
 

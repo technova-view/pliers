@@ -165,14 +165,14 @@ export default function ContractorLandingPage() {
 								For Professional Contractors
 							</Badge>
 
-							<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+							<h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight">
 								Grow Your Business.
 								<span className="block text-transparent bg-gradient-to-r from-primary to-green-600 bg-clip-text">
 									Get Quality Leads.
 								</span>
 							</h1>
 
-							<p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+							<p className="text-base text-muted-foreground max-w-xl leading-relaxed">
 								Pliers connects you with homeowners in need of your services. Our AI-driven platform delivers
 								pre-qualified leads with detailed job briefs, helping you win more customers efficiently.
 							</p>
@@ -196,7 +196,7 @@ export default function ContractorLandingPage() {
 							<div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8">
 								{stats.map((stat, index) => (
 									<div key={index} className="text-center group cursor-default">
-										<div className="text-3xl font-bold tracking-tight text-primary group-hover:scale-110 transition-transform duration-300">
+										<div className="text-3xl tracking-tight text-primary group-hover:scale-110 transition-transform duration-300">
 											{stat.value}
 										</div>
 										<div className="text-sm text-muted-foreground">{stat.label}</div>
@@ -238,8 +238,8 @@ export default function ContractorLandingPage() {
 			<section id="benefits" className="py-24 bg-background/50">
 				<div className="container mx-auto px-4 md:px-6">
 					<div className="text-center max-w-3xl mx-auto mb-16">
-						<h2 className="text-3xl md:text-4xl font-bold mb-6">Why Join Pliers as a Contractor</h2>
-						<p className="text-lg text-muted-foreground">
+						<h2 className="text-3xl md:text-4xl font-semibold mb-6">Why Join Pliers as a Contractor</h2>
+						<p className="text-base text-muted-foreground">
 							We provide you with the tools and opportunities to grow your business effectively.
 						</p>
 					</div>
@@ -278,8 +278,8 @@ export default function ContractorLandingPage() {
 			<section id="how-it-works" className="py-24 bg-background">
 				<div className="container mx-auto px-4 md:px-6">
 					<div className="text-center max-w-3xl mx-auto mb-16">
-						<h2 className="text-3xl md:text-4xl font-bold mb-6">How Pliers Works for Contractors</h2>
-						<p className="text-lg text-muted-foreground">
+						<h2 className="text-3xl md:text-4xl font-semibold mb-6">How Pliers Works for Contractors</h2>
+						<p className="text-base text-muted-foreground">
 							Get started in minutes and start receiving quality leads today.
 						</p>
 					</div>
@@ -288,9 +288,8 @@ export default function ContractorLandingPage() {
 						{steps.map((step, index) => (
 							<div
 								key={index}
-								className={`flex flex-col md:flex-row items-center gap-8 ${
-									index % 2 === 1 ? "md:flex-row-reverse" : ""
-								}`}
+								className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 === 1 ? "md:flex-row-reverse" : ""
+									}`}
 							>
 								<div className="md:w-1/2 space-y-4">
 									<div className="flex items-center gap-3">
@@ -298,10 +297,10 @@ export default function ContractorLandingPage() {
 											{step.icon}
 										</div>
 										<div>
-											<h3 className="text-2xl font-bold">{step.title}</h3>
+											<h3 className="text-xl md:text-2xl font-semibold">{step.title}</h3>
 										</div>
 									</div>
-									<p className="text-muted-foreground text-lg">{step.description}</p>
+									<p className="text-muted-foreground text-base">{step.description}</p>
 								</div>
 								<div className="md:w-1/2 relative">
 									<div className="rounded-2xl overflow-hidden border bg-background shadow-lg">
@@ -324,8 +323,8 @@ export default function ContractorLandingPage() {
 			<section id="testimonials" className="py-24 bg-background/50">
 				<div className="container mx-auto px-4 md:px-6">
 					<div className="text-center max-w-3xl mx-auto mb-16">
-						<h2 className="text-3xl md:text-4xl font-bold mb-6">What Contractors Say</h2>
-						<p className="text-lg text-muted-foreground">
+						<h2 className="text-3xl md:text-4xl font-semibold mb-6">What Contractors Say</h2>
+						<p className="text-base text-muted-foreground">
 							Hear from professionals who have grown their businesses with Pliers.
 						</p>
 					</div>
@@ -338,9 +337,8 @@ export default function ContractorLandingPage() {
 										{[...Array(5)].map((_, i) => (
 											<Star
 												key={i}
-												className={`w-4 h-4 ${
-													i < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
-												}`}
+												className={`w-4 h-4 ${i < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+													}`}
 											/>
 										))}
 									</div>
@@ -371,8 +369,8 @@ export default function ContractorLandingPage() {
 			<section id="pricing" className="py-24 bg-background">
 				<div className="container mx-auto px-4 md:px-6">
 					<div className="text-center max-w-3xl mx-auto mb-16">
-						<h2 className="text-3xl md:text-4xl font-bold mb-6">Simple, Transparent Pricing</h2>
-						<p className="text-lg text-muted-foreground">
+						<h2 className="text-3xl md:text-4xl font-semibold mb-6">Simple, Transparent Pricing</h2>
+						<p className="text-base text-muted-foreground">
 							Pay only for the leads that match your expertise and service area.
 						</p>
 					</div>
@@ -383,7 +381,7 @@ export default function ContractorLandingPage() {
 								<CardTitle className="text-2xl">Basic Plan</CardTitle>
 							</CardHeader>
 							<CardContent className="space-y-4">
-								<div className="text-4xl font-bold text-primary">R50/lead</div>
+								<div className="text-4xl text-primary">R50/lead</div>
 								<p className="text-muted-foreground">Perfect for new contractors getting started.</p>
 								<Separator />
 								<ul className="space-y-2">
@@ -412,7 +410,7 @@ export default function ContractorLandingPage() {
 								<CardTitle className="text-2xl">Pro Plan</CardTitle>
 							</CardHeader>
 							<CardContent className="space-y-4">
-								<div className="text-4xl font-bold text-primary">R40/lead</div>
+								<div className="text-4xl text-primary">R40/lead</div>
 								<p className="text-muted-foreground">For growing businesses with higher lead volume.</p>
 								<Separator />
 								<ul className="space-y-2">
@@ -446,8 +444,8 @@ export default function ContractorLandingPage() {
 			<section id="faq" className="py-24 bg-background">
 				<div className="container mx-auto px-4 md:px-6">
 					<div className="text-center max-w-3xl mx-auto mb-16">
-						<h2 className="text-3xl md:text-4xl font-bold mb-6">Frequently Asked Questions</h2>
-						<p className="text-lg text-muted-foreground">
+						<h2 className="text-3xl md:text-4xl font-semibold mb-6">Frequently Asked Questions</h2>
+						<p className="text-base text-muted-foreground">
 							Everything you need to know about using Pliers as a contractor.
 						</p>
 					</div>
@@ -495,8 +493,8 @@ export default function ContractorLandingPage() {
 			<section className="py-24 bg-gradient-to-r from-primary/5 to-blue-500/5">
 				<div className="container mx-auto px-4 md:px-6">
 					<div className="max-w-4xl mx-auto text-center space-y-8">
-						<h2 className="text-3xl md:text-4xl font-bold">Ready to Grow Your Business?</h2>
-						<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+						<h2 className="text-3xl md:text-4xl font-semibold">Ready to Grow Your Business?</h2>
+						<p className="text-base text-muted-foreground max-w-2xl mx-auto">
 							Join Pliers today and start receiving high-quality leads that match your expertise and service area.
 							Create your account in minutes and take control of your business growth.
 						</p>
