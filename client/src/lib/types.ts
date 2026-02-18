@@ -20,14 +20,6 @@ export interface GoogleAuthRequest {
 	accessToken: string;
 }
 
-export interface User {
-	id: string;
-	email: string;
-	firstName?: string;
-	lastName?: string;
-	createdAt: string;
-	updatedAt: string;
-}
 
 
 export interface BaseApiResponse<T> {
@@ -59,4 +51,14 @@ export interface RefreshAccessTokenResponse {
 
 export interface LogoutResponse {
 	loggedOut: boolean;
+}
+
+
+export interface UserResponse {
+	id: string;
+	email: string;
+	firstName?: string;
+	lastName?: string;
+	createdAt: string;
+	updatedAt: string;
 }

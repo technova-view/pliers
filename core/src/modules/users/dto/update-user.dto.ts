@@ -4,14 +4,13 @@ import {
     IsNotEmpty,
     MaxLength,
     Matches,
-    IsEmail,
     MinLength,
     IsOptional,
 } from 'class-validator';
 import { NAME_REGEX } from '../../../common/regex/name.regex';
 import { AtLeastOneField } from 'src/common/decorators/at-least-one-field.decorator';
 
-@AtLeastOneField(['firstName', 'lastName', 'password'])
+@AtLeastOneField(['firstName', 'lastName'])
 export class UpdateUserDto {
     @ApiPropertyOptional({ example: 'John' })
     @IsString()
@@ -30,13 +29,6 @@ export class UpdateUserDto {
     })
     @MaxLength(100)
     lastName?: string;
-
-
-    @ApiProperty({ example: 'password123' })
-    @IsString()
-    @IsNotEmpty()
-    @MinLength(8)
-    password: string;
 }
 
 

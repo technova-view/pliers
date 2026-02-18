@@ -70,7 +70,7 @@ export class AuthService {
         const { email, password } = loginDto;
 
         // Find user
-        const user = await this.userRepository.findOne({ where: { email } });
+        const user = await this.findByEmailWithPassword(email);
         if (!user) {
             throw new UnauthorizedException('Invalid credentials');
         }
@@ -255,4 +255,20 @@ export class AuthService {
       throw new UnauthorizedException('Google authentication failed');
     }
   }
+
+  /**
+   * Find user by email with password
+   * @param email - User email
+   * @return User entity or null
+   * @private
+   * 
+   * 
+   */
+  private  async findByEmailWithPassword(email: string): Promise<User | null> {
+  return this.userRepository
+    .createQueryBuilder('user')
+    .addSelect('user.passwordHash')
+    .where('user.email = :email', { email })
+    .getOne();
+}
 }

@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -9,11 +9,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
 
-  	// Global interceptors (for response transformation)
-	app.useGlobalInterceptors(new TransformInterceptor());
+  // Global interceptors (for response transformation)
+  app.useGlobalInterceptors(new TransformInterceptor());
 
-	// Global filters (for error handling)
-	app.useGlobalFilters(new HttpExceptionFilter());
+  // Global filters (for error handling)
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   const config = new DocumentBuilder()
     .setTitle('Pliers: Core API')
@@ -21,6 +21,14 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth()
     .build();
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
 
   app.enableCors({
     origin: (origin, callback) => {

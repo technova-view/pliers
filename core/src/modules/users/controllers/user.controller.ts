@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Req } from "@nestjs/common";
+import { Body, Controller, Get, Post, Req } from "@nestjs/common";
 import { BaseApiResponse } from "../../../common/interfaces/api-response.interface";
 import { ApiBearerAuth } from "@nestjs/swagger";
 import { UsersService } from "../services/users.service";
@@ -20,7 +20,7 @@ export class UserController {
 
     @Post('me')
     @ApiBearerAuth()
-    async updateLoggedInUser(updateUserDto: UpdateUserDto, @CurrentUser() user: User): Promise<BaseApiResponse<User>> {
+    async updateLoggedInUser(@Body() updateUserDto: UpdateUserDto, @CurrentUser() user: User): Promise<BaseApiResponse<User>> {
         return this.userService.updateLoggedInUser(updateUserDto, user);
     }
 }
