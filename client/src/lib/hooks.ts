@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 import type { RootState, AppDispatch } from './store';
 import { getAccessToken, getRefreshToken } from './cookies';
+import { UserResponse } from './types';
 
 export interface AuthState {
 	accessToken: string | undefined;
 	refreshToken: string | undefined;
 	isAuthenticated: boolean;
+	user: UserResponse | null;
 }
 
 export interface AuthStateProps {
@@ -14,6 +16,7 @@ export interface AuthStateProps {
 		accessToken: string | null;
 		refreshToken: string | null;
 		isAuthenticated: boolean;
+		user: UserResponse | null;
 	};
 }
 
@@ -41,6 +44,7 @@ export const useAuth = (serverAuthState?: AuthStateProps['serverAuthState']) => 
 			accessToken: serverAuthState.accessToken || undefined,
 			refreshToken: serverAuthState.refreshToken || undefined,
 			isAuthenticated: serverAuthState.isAuthenticated,
+			user: serverAuthState.user,
 		};
 	}
 
@@ -51,5 +55,6 @@ export const useAuth = (serverAuthState?: AuthStateProps['serverAuthState']) => 
 		accessToken: clientAccessToken,
 		refreshToken: clientRefreshToken,
 		isAuthenticated,
+		user: null, // User data needs to be fetched separately on client
 	};
 };

@@ -5,8 +5,15 @@ import { useLogoutMutation } from '@/lib/api/auth-api-slice';
 import { useAuth } from '@/lib/hooks';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
+import { ReactNode } from 'react';
 
-export function LogoutButton() {
+interface LogoutButtonProps {
+	className?: string;
+	children?: ReactNode;
+}
+
+export function LogoutButton({ className, children }: LogoutButtonProps) {
 	const router = useRouter();
 	const { refreshToken } = useAuth();
 	const [logout, { isLoading }] = useLogoutMutation();
@@ -29,8 +36,9 @@ export function LogoutButton() {
 			variant="outline"
 			onClick={handleLogout}
 			disabled={isLoading}
+			className={cn(className)}
 		>
-			{isLoading ? 'Logging out...' : 'Logout'}
+			{children || (isLoading ? 'Logging out...' : 'Logout')}
 		</Button>
 	);
 }

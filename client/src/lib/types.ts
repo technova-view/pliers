@@ -59,6 +59,7 @@ export interface UserResponse {
 	email: string;
 	firstName?: string;
 	lastName?: string;
+	userType: UserType;
 	createdAt: string;
 	updatedAt: string;
 }
