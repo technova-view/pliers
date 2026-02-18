@@ -18,38 +18,36 @@ export class AuthController {
 
     @Public()
     @Post('signup')
-    async signup(@Body() signupDto: SignupDto, @Req() request: RequestInterface): Promise<BaseApiResponse<{ userId: string }>> {
-        return this.authService.signup(signupDto, request);
+    async signup(@Body() signupDto: SignupDto): Promise<BaseApiResponse<{ userId: string }>> {
+        return this.authService.signup(signupDto);
     }
 
     @Public()
     @Post('login')
-    async login(@Body() loginDto: LoginDto, @Req() request: RequestInterface): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
-        return this.authService.login(loginDto, request);
+    async login(@Body() loginDto: LoginDto): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
+        return this.authService.login(loginDto);
     }
 
     @Public()
     @Post('refresh')
     async refreshAccessToken(
-        @Body() refreshTokenDto: RefreshTokenDto,
-        @Req() request: RequestInterface,
+        @Body() refreshTokenDto: RefreshTokenDto
     ): Promise<BaseApiResponse<RefreshAccessTokenResponseDto>> {
-        return this.authService.refreshAccessToken(refreshTokenDto, request);
+        return this.authService.refreshAccessToken(refreshTokenDto);
     }
 
     @ApiBearerAuth()
     @Post('logout')
     async logout(
-        @Body() refreshTokenDto: RefreshTokenDto,
-        @Req() request: RequestInterface,
+        @Body() refreshTokenDto: RefreshTokenDto
     ): Promise<BaseApiResponse<LogoutResponseDto>> {
-    return this.authService.logout(refreshTokenDto, request);
+    return this.authService.logout(refreshTokenDto);
   }
 
   @Public()
   @Post('google')
-  async googleAuth(@Body() googleAuthDto: GoogleAuthDto, @Req() request: RequestInterface): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
-    return this.authService.googleAuth(googleAuthDto, request);
+  async googleAuth(@Body() googleAuthDto: GoogleAuthDto): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
+    return this.authService.googleAuth(googleAuthDto);
   }
 
 }

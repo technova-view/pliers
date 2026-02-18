@@ -16,8 +16,6 @@ import { EnvironmentConfig } from '../../../common/interfaces/config.interface';
 import { RefreshAccessTokenResponseDto, LogoutResponseDto, AuthTokensResponseDto } from '../dto/auth-response.dto';
 import { UserType } from '../../../common/enums/user-type.enum';
 import { AccessTokenPayload, RefreshTokenPayload } from 'src/common/interfaces/token.interface';
-import { RequestInterface } from 'src/common/interfaces/request.interface';
-
 @Injectable()
 export class AuthService {
 
@@ -35,7 +33,7 @@ export class AuthService {
      * @param signupDto - Signup data
      * @param request - Request object
      */
-    async signup(signupDto: SignupDto, request: RequestInterface): Promise<BaseApiResponse<{ userId: string }>> {
+    async signup(signupDto: SignupDto): Promise<BaseApiResponse<{ userId: string }>> {
         const { email, password, firstName, lastName } = signupDto;
 
         // Check if user already exists
@@ -68,7 +66,7 @@ export class AuthService {
      * @param loginDto - Login data
      * @param request - Request object
      */
-    async login(loginDto: LoginDto, request: RequestInterface): Promise<BaseApiResponse<AuthTokensResponseDto>> {
+    async login(loginDto: LoginDto): Promise<BaseApiResponse<AuthTokensResponseDto>> {
         const { email, password } = loginDto;
 
         // Find user
@@ -108,7 +106,7 @@ export class AuthService {
      * Refresh a user's accessToken token
      * @param refreshTokenDto - Refresh token data
      */
-    async refreshAccessToken(refreshTokenDto: RefreshTokenDto, request: RequestInterface): Promise<BaseApiResponse<RefreshAccessTokenResponseDto>> {
+    async refreshAccessToken(refreshTokenDto: RefreshTokenDto): Promise<BaseApiResponse<RefreshAccessTokenResponseDto>> {
         const { refreshToken } = refreshTokenDto;
 
         try {
@@ -150,7 +148,7 @@ export class AuthService {
      * Logout a user
      * @param refreshTokenDto - Refresh token to revoke
      */
-    async logout(refreshTokenDto: RefreshTokenDto, request: RequestInterface): Promise<BaseApiResponse<LogoutResponseDto>> {
+    async logout(refreshTokenDto: RefreshTokenDto): Promise<BaseApiResponse<LogoutResponseDto>> {
         const { refreshToken } = refreshTokenDto;
 
         try {
@@ -192,7 +190,7 @@ export class AuthService {
    * @param googleAuthDto - Google access token
    * @param request - Request object
    */
-  async googleAuth(googleAuthDto: GoogleAuthDto, request: RequestInterface): Promise<BaseApiResponse<AuthTokensResponseDto>> {
+  async googleAuth(googleAuthDto: GoogleAuthDto): Promise<BaseApiResponse<AuthTokensResponseDto>> {
     const { accessToken } = googleAuthDto;
 
     try {

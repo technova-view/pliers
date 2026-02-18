@@ -3,6 +3,7 @@ import { DatabaseModule } from '../modules/database/database.module';
 import { AuthModule } from '../modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { configValidationSchema } from '../common/utils/config-validation.util';
+import { UsersModule } from 'src/modules/users/users.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { configValidationSchema } from '../common/utils/config-validation.util';
       validationOptions: { abortEarly: true },
     }),
     DatabaseModule,
-    AuthModule
+    AuthModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],
