@@ -3,6 +3,7 @@ import type { TypedUseSelectorHook } from 'react-redux';
 import type { RootState, AppDispatch } from './store';
 import { getAccessToken, getRefreshToken } from './cookies';
 import { UserResponse } from './types';
+import { useGetUserQuery } from './api/users-api-slice';
 
 export interface AuthState {
 	accessToken: string | undefined;
@@ -24,10 +25,11 @@ export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 /**
- * Client-side auth hook that can optionally accept SSR auth state.
- * When SSR auth state is provided (from server component), it takes precedence
- * during initial render to ensure SSR and client render the same UI.
- * After hydration, falls back to client-side cookie checking.
+ * Unified auth hook that provides user data from a single source.
+ * - On server: uses serverAuthState from SSR
+ * - On client: fetches user data via useGetUserQuery when needed
+ * 
+ * @param serverAuthState - Optional SSR auth state from getServerAuthState()
  */
 export const useAuth = (serverAuthState?: AuthStateProps['serverAuthState']) => {
 	// Use client-side cookies - this works after hydration
@@ -35,7 +37,6 @@ export const useAuth = (serverAuthState?: AuthStateProps['serverAuthState']) => 
 	const clientRefreshToken = getRefreshToken();
 
 	// During SSR/hydration, use the SSR auth state if provided
-	// After client hydration, use client-side values for consistency
 	const isClientSide = typeof window !== 'undefined';
 
 	if (!isClientSide && serverAuthState) {
@@ -51,10 +52,29 @@ export const useAuth = (serverAuthState?: AuthStateProps['serverAuthState']) => 
 	// Client-side: use client cookies
 	const isAuthenticated = !!clientAccessToken;
 
+	// Fetch user data on client side when authenticated
+	const { data: userData, isLoading: isLoadingUser } = useGetUserQuery(undefined, {
+		skip: !isAuthenticated,
+	});
+
+	// Get user from API response
+	const user = userData?.data || null;
+
 	return {
 		accessToken: clientAccessToken,
 		refreshToken: clientRefreshToken,
 		isAuthenticated,
-		user: null, // User data needs to be fetched separately on client
+		user,
+		isLoadingUser,
 	};
+};
+
+/**
+ * Simple hook to get just the user data.
+ * Use this when you only need the user and don't need token info.
+ * Internally uses useAuth.
+ */
+export const useUser = (serverAuthState?: AuthStateProps['serverAuthState']) => {
+	const { user, isLoadingUser, isAuthenticated } = useAuth(serverAuthState);
+	return { user, isLoadingUser, isAuthenticated };
 };

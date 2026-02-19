@@ -6,7 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
 import { User, Mail, Save } from 'lucide-react';
-import { useGetUserQuery, useUpdateUserMutation } from '@/lib/api/users-api-slice';
+import { useUpdateUserMutation } from '@/lib/api/users-api-slice';
+import { useAuth } from '@/lib/hooks';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -20,8 +21,7 @@ const profileSchema = z.object({
 type ProfileFormData = z.infer<typeof profileSchema>;
 
 export default function ProfilePage() {
-	const { data: userData, isLoading: isLoadingUser } = useGetUserQuery();
-	const user = userData?.data;
+	const { user, isLoadingUser } = useAuth();
 	
 	const [updateUser, { isLoading: isUpdating }] = useUpdateUserMutation();
 	

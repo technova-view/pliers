@@ -16,7 +16,6 @@ import { useAuth, AuthStateProps } from '@/lib/hooks';
 import { LogoutButton } from '@/components/logout-button';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { useGetUserQuery } from '@/lib/api/users-api-slice';
 import { UserType } from '@/lib/enums';
 
 interface DashboardLayoutClientProps {
@@ -64,14 +63,9 @@ export function DashboardLayoutClient({
   children,
   serverAuthState,
 }: DashboardLayoutClientProps) {
-  const serverUser = serverAuthState?.user;
-  const { data: userData } = useGetUserQuery();
-
-  // Prefer fresh API data
-  const user = userData?.data || serverUser;
+  const { user, isAuthenticated } = useAuth(serverAuthState);
   const userType = user?.userType;
 
-  const { isAuthenticated } = useAuth(serverAuthState);
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
