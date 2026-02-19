@@ -1,5 +1,5 @@
 import { getServerAuthState } from '@/lib/server-cookies';
-import { AuthGuard } from '@/components/auth-guard';
+import { AuthorizationGuard } from '@/components/authorization-guard';
 import { DashboardLayoutClient } from './dashboard-layout-client';
 
 export default async function DashboardLayout({
@@ -10,10 +10,10 @@ export default async function DashboardLayout({
   const serverAuthState = await getServerAuthState();
 
   return (
-    <AuthGuard>
+    <AuthorizationGuard serverAuthState={serverAuthState}>
       <DashboardLayoutClient serverAuthState={serverAuthState}>
         {children}
       </DashboardLayoutClient>
-    </AuthGuard>
+    </AuthorizationGuard>
   );
 }

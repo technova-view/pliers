@@ -37,7 +37,7 @@ type NavigationItem = {
 const navigationItems: NavigationItem[] = [
   {
     name: 'Dashboard',
-    href: '/dashboard',
+    href: '/dashboard/contractor',
     icon: LayoutDashboard,
     scope: [
       UserType.CONTRACTOR,
@@ -45,7 +45,7 @@ const navigationItems: NavigationItem[] = [
   },
   {
     name: 'Admin',
-    href: '/admin',
+    href: '/dashboard/admin',
     icon: Users,
     scope: [UserType.PLATFORM_ADMIN],
   },
@@ -138,7 +138,7 @@ export function DashboardLayoutClient({
           {navigation.map((item) => {
             const isActive =
               pathname === item.href ||
-              (item.href !== '/dashboard' &&
+              (item.href !== '/dashboard/contractor' &&
                 pathname.startsWith(item.href));
 
             return (
