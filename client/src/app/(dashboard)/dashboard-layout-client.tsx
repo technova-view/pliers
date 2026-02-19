@@ -75,7 +75,7 @@ export function DashboardLayoutClient({
       {/* Sidebar */}
       <aside 
         className={cn(
-          "fixed lg:static inset-y-0 left-0 z-50 flex flex-col border-r bg-card transition-all duration-300",
+          "fixed lg:static inset-y-0 left-0 z-50 flex flex-col border-r bg-card transition-all duration-300 min-h-svh",
           // Mobile: slide in/out
           mobileOpen ? "w-64 translate-x-0" : "-translate-x-full lg:translate-x-0",
           // Desktop: collapse
