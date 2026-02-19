@@ -10,7 +10,7 @@ export function ReduxProvider({ children }: { children: React.ReactNode }) {
 		<Provider store={store}>
 			<ThemeProvider>
 				{children}
-				<Toaster position="top-right" />
+				<Toaster position="bottom-right" />
 			</ThemeProvider>
 		</Provider>
 	);
