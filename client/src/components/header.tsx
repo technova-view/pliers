@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header() {
   return (
@@ -40,10 +39,13 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
           <Link href="/login">
-            <Button variant="ghost" className="hidden sm:inline-flex hover:bg-primary/10">
-              Login
+            <Button
+              variant="outline"
+              className="hidden sm:inline-flex border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+            >
+              Sign In
             </Button>
           </Link>
         </div>

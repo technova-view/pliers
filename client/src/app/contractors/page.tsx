@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -131,7 +130,7 @@ export default function ContractorLandingPage() {
 					</nav>
 
 					<div className="flex items-center gap-3">
-						<ThemeToggle />
+						{/* <ThemeToggle /> */}
 						<Link href="/login">
 							<Button variant="ghost" className="hidden sm:inline-flex hover:bg-primary/10">
 								Login
