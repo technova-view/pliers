@@ -130,64 +130,61 @@ export default function LandingPage() {
 			<Header />
 
 			{/* Hero Section */}
-			<section className="relative flex items-center justify-center overflow-hidden min-h-[40vh] md:min-h-[50vh] lg:min-h-[60vh]">
-				{/* Background Image with Overlay */}
-				<div className="absolute inset-0 z-0">
-					<Image
-						src="/homePageImage.jpg"
-						alt="Modern home interior background"
-						fill
-						className="object-cover"
-						priority
-					/>
-					{/* Lighter overlay for text readability */}
-					<div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
-				</div>
+			<section className="relative flex items-center overflow-hidden min-h-[40vh] md:min-h-[50vh] lg:min-h-[60vh] bg-[#e5ebf2]">
+				<div className="container max-w-6xl mx-auto px-4">
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-12 md:py-16 lg:py-20">
 
-				{/* Content */}
-				<div className="relative z-10 container max-w-6xl mx-auto px-4 py-12 md:py-16 lg:py-20">
-					<div className="max-w-4xl mx-auto text-center space-y-8 md:space-y-10">
-						{/* Badge */}
-						<Badge
-							variant="outline"
-							className="px-5 py-2.5 border-white/30 bg-black/20 backdrop-blur-md text-white text-sm tracking-wider"
-						>
-							<Home className="w-4 h-4 mr-2 text-white" />
-							PLIERS — HOME SERVICES
-						</Badge>
-
-						{/* Main Heading */}
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-tight">
-							Something wrong at home?
-							<span className="block text-primary mt-2">
-								Let's fix it.
-							</span>
-						</h1>
-
-
-						{/* Description */}
-						<p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-							Describe the problem in plain language. Pliers helps you understand
-							what's happening, what to do next, and connects you to trusted local
-							professionals if you need them.
-						</p>
-
-						{/* CTA Buttons */}
-						<div className="flex flex-col sm:flex-row gap-5 justify-center pt-8 md:pt-10">
-							<Button
-								size="lg"
-								className="group px-8 py-6 text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90"
-							>
-								Describe Your Problem
-								<ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-							</Button>
-							<Button
-								size="lg"
+						{/* Left Content */}
+						<div className="space-y-8 md:space-y-10 text-center lg:text-left">
+							{/* Badge */}
+							<Badge
 								variant="outline"
-								className="px-8 py-6 text-base md:text-lg border-2 border-white/30 bg-black/20 backdrop-blur-md text-white hover:bg-black/30 hover:text-white transition-all duration-300"
+								className="px-5 py-2.5 border-secondary/30 bg-white/10 backdrop-blur-md text-secondary text-sm tracking-wider inline-flex"
 							>
-								Find a Contractor
-							</Button>
+								<Home className="w-4 h-4 mr-2 text-secondary" />
+								PLIERS — HOME SERVICES
+							</Badge>
+
+							{/* Main Heading */}
+							<h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-secondary leading-tight">
+								Every home problem, <span className="text-primary">solved.</span>
+							</h1>
+
+							{/* Description */}
+							<p className="text-lg md:text-xl text-secondary/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+								Your AI-powered home care assistant. Diagnose issues instantly, get DIY solutions, or connect with trusted local contractors in South Africa.
+							</p>
+
+							{/* CTA Buttons */}
+							<div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start pt-8 md:pt-10">
+								<Button
+									size="lg"
+									className="group px-8 py-6 text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90"
+								>
+									Describe Your Problem
+									<ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+								</Button>
+								<Button
+									size="lg"
+									variant="outline"
+									className="px-8 py-6 text-base md:text-lg border-2 border-secondary/30 bg-white/10 backdrop-blur-md text-secondary hover:bg-secondary/10 hover:text-secondary transition-all duration-300"
+								>
+									Find a Contractor
+								</Button>
+							</div>
+						</div>
+
+						{/* Right Side Image */}
+						<div className="relative h-[300px] md:h-[400px] lg:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
+							<Image
+								src="/homePageImage.jpg"
+								alt="Modern home interior"
+								fill
+								className="object-cover hover:scale-105 transition-transform duration-700"
+								priority
+							/>
+							{/* Optional subtle overlay for better text contrast if needed */}
+							<div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 						</div>
 					</div>
 				</div>
@@ -337,145 +334,8 @@ export default function LandingPage() {
 				</div>
 			</section>
 
-			{/* Why Pliers */}
-			<section className="py-16 md:py-20 bg-gradient-to-b from-secondary/5 to-secondary/10">
-				<div className="container max-w-6xl mx-auto px-4">
-					<div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-						{/* Left Column - Content */}
-						<div className="space-y-6">
-							{/* Badge */}
-							<Badge
-								variant="outline"
-								className="px-4 py-1.5 border-primary/20 text-primary bg-primary/5 font-medium"
-							>
-								Why Pliers?
-							</Badge>
-
-							{/* Headings */}
-							<div className="space-y-3">
-								<h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
-									Why Not Just Google or ChatGPT?
-								</h2>
-								<p className="text-base text-muted-foreground border-l-4 border-primary pl-4 py-1">
-									Because advice alone doesn't fix the problem.
-								</p>
-							</div>
-
-							{/* Feature List */}
-							<div className="space-y-4 pt-2">
-								{[
-									"Asks follow-up questions specific to home issues",
-									"Flags safety risks automatically",
-									"Helps you decide between DIY or professional help",
-									"Connects you directly to local contractors",
-								].map((item, index) => (
-									<div key={index} className="flex items-center gap-3 group"> {/* Changed from items-start to items-center */}
-										<div className="relative">
-											<CheckCircle className="w-5 h-5 text-primary shrink-0 group-hover:scale-110 transition-transform" />
-											<div className="absolute inset-0 bg-primary/20 blur-md rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-										</div>
-										<span className="text-base md:text-lg text-secondary">{item}</span>
-									</div>
-								))}
-							</div>
-
-							{/* Comparison Card */}
-							<div className="p-6 bg-gradient-to-br from-primary/5 to-primary/[0.02] rounded-xl border border-primary/10 shadow-sm hover:shadow-md transition-shadow">
-								<div className="flex items-center gap-3 mb-3">
-									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-										<span className="text-primary text-sm">vs</span>
-									</div>
-									<div className="h-8 w-px bg-secondary/10" />
-									<p className="text-secondary/70">
-										ChatGPT gives information.
-									</p>
-								</div>
-								<p className="text-xl font-semibold text-primary pl-11">
-									Pliers helps you take action.
-								</p>
-							</div>
-						</div>
-
-						{/* Right Column - Chat Card */}
-						<div className="relative">
-							{/* Main Card */}
-							<Card className="border-0 shadow-md hover:shadow-lg transition-shadow duration-300 relative bg-white">
-								<CardContent className="p-6 md:p-8">
-									{/* Header */}
-									<div className="flex items-center gap-4 mb-6">
-										<div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg">
-											<MessageCircle className="w-6 h-6 text-white" />
-										</div>
-										<div>
-											<h3 className="font-semibold text-lg text-secondary">Pliers AI Assistant</h3>
-											<div className="flex items-center gap-2">
-												<div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-												<p className="text-xs text-secondary/60">
-													Understanding your problem...
-												</p>
-											</div>
-										</div>
-									</div>
-
-									{/* Chat Messages */}
-									<div className="space-y-4">
-										{/* User Message */}
-										<div className="flex items-start gap-3">
-											<div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center text-xs font-medium text-secondary shrink-0">
-												U
-											</div>
-											<div className="bg-secondary/5 rounded-2xl rounded-tl-none px-4 py-3 max-w-[90%]">
-												<p className="text-xs font-medium mb-1 text-secondary/60">
-													You:
-												</p>
-												<p className="text-sm text-secondary">"My geyser is leaking from the bottom"</p>
-											</div>
-										</div>
-
-										{/* AI Response */}
-										<div className="flex items-start gap-3">
-											<div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-xs font-medium text-primary shrink-0">
-												AI
-											</div>
-											<div className="bg-gradient-to-br from-primary/[0.02] to-primary/5 rounded-2xl rounded-tl-none px-4 py-3 border border-primary/10 max-w-[90%] shadow-sm">
-												<p className="text-xs font-medium mb-2 text-primary flex items-center gap-1">
-													<span className="w-1.5 h-1.5 bg-primary rounded-full" />
-													Pliers:
-												</p>
-												<p className="text-sm mb-3 font-medium text-secondary">
-													⚠️ This could be a pressure valve issue or a tank leak. If it's the tank,
-													it needs immediate professional attention.
-												</p>
-												<div className="bg-white p-3 rounded-lg border border-primary/10">
-													<p className="text-sm text-secondary/70">
-														Turn off the power supply and water inlet. Don't attempt to repair a tank leak yourself.
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									{/* Typing Indicator */}
-									<div className="flex items-center gap-1 mt-4 ml-9">
-										<div className="w-2 h-2 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-										<div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-										<div className="w-2 h-2 bg-primary/80 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-									</div>
-								</CardContent>
-							</Card>
-
-							{/* Floating Badge */}
-							<div className="absolute -bottom-3 -left-3 bg-white rounded-full px-4 py-2 shadow-lg border border-secondary/10 flex items-center gap-2">
-								<div className="w-2 h-2 bg-primary rounded-full" />
-								<span className="text-xs font-medium text-secondary">Real-time assistance</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
 			{/* Built for Real Homes */}
-			<section className="py-16 md:py-20 bg-gradient-to-b from-white via-secondary/5 to-secondary/10">
+			<section className="py-16 md:py-20 bg-gradient-to-b from-secondary/2 to-secondary/5">
 				<div className="container max-w-6xl mx-auto px-4 relative z-10">
 					{/* Section Header */}
 					<div className="text-center mb-12 md:mb-16">
@@ -558,252 +418,7 @@ export default function LandingPage() {
 				</div>
 			</section>
 
-			{/* Safety Section */}
-			<section className="py-16 md:py-20 bg-gradient-to-b from-secondary/5 to-white relative overflow-hidden">
-				{/* Decorative Elements */}
-				<div className="container max-w-6xl mx-auto px-4 relative z-10">
-					<div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-						{/* Left Column - Content */}
-						<div className="space-y-6 animate-in fade-in slide-in-from-left-4 duration-700">
-							<Badge
-								variant="outline"
-								className="px-4 py-1.5 border-primary/20 text-primary bg-primary/5 font-medium"
-							>
-								<Shield className="w-3.5 h-3.5 mr-2 text-primary" />
-								Designed for Safety
-							</Badge>
 
-							<h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
-								We prioritise your safety
-							</h2>
-
-							<p className="text-base text-muted-foreground max-w-xl leading-relaxed">
-								Clear warnings, no risky DIY advice, and professional escalation
-								when necessary. Because some problems shouldn't be guessed.
-							</p>
-
-							{/* Trust Indicators */}
-							<div className="flex items-center gap-6 pt-4">
-								<div className="flex items-center gap-2">
-									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-										<span className="text-primary text-xs">✓</span>
-									</div>
-									<span className="text-sm text-secondary/60">Safety verified</span>
-								</div>
-								<div className="flex items-center gap-2">
-									<div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-										<span className="text-primary text-xs">24/7</span>
-									</div>
-									<span className="text-sm text-secondary/60">Always monitored</span>
-								</div>
-							</div>
-						</div>
-
-						{/* Right Column - Safety Card */}
-						<div className="relative animate-in fade-in slide-in-from-right-4 duration-700 delay-200">
-							<Card className="border-0 bg-gradient-to-br from-primary/[0.02] to-primary/5 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden relative">
-								{/* Accent Stripe */}
-								<div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-primary" />
-
-								<CardContent className="px-8 py-2">
-									{/* Header */}
-									<div className="flex items-center gap-4 mb-8">
-										<div className="relative">
-											<div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg">
-												<Shield className="w-8 h-8 text-white" />
-											</div>
-											<div className="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center">
-												<div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-											</div>
-										</div>
-										<div>
-											<h3 className="text-xl md:text-2xl font-semibold text-secondary">Safety First Approach</h3>
-											<p className="text-sm text-primary/70">Your protection is our priority</p>
-										</div>
-									</div>
-
-									{/* Safety Features */}
-									<div className="space-y-4 mb-8">
-										{[
-											"Clear warnings where needed",
-											"No risky DIY advice",
-											"Professional escalation when necessary",
-										].map((item, index) => (
-											<div key={index} className="flex items-start gap-4 group">
-												<div className="relative">
-													<div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-														<AlertTriangle className="w-3.5 h-3.5 text-primary" />
-													</div>
-													{index < 2 && (
-														<div className="absolute top-6 left-3 w-0.5 h-4 bg-primary/20" />
-													)}
-												</div>
-												<p className="text-base text-secondary">{item}</p>
-											</div>
-										))}
-									</div>
-
-									{/* Footer Quote */}
-									<div className="relative">
-										<div className="absolute -left-2 top-0 text-4xl text-primary/20">"</div>
-										<p className="mt-6 text-base text-secondary/70 italic pl-4 border-l-2 border-primary/30">
-											Because some problems shouldn't be guessed.
-										</p>
-									</div>
-
-									{/* Safety Badge */}
-									<div className="mt-6 flex items-center gap-2 text-xs text-primary/70">
-										<div className="w-1.5 h-1.5 bg-primary rounded-full" />
-										<span>Safety protocols active</span>
-										<div className="w-1.5 h-1.5 bg-primary rounded-full" />
-									</div>
-								</CardContent>
-							</Card>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			{/* For When You Need a Pro */}
-			<section className="py-16 md:py-20 bg-white relative overflow-hidden">
-				<div className="container max-w-6xl mx-auto px-4 relative z-10">
-					<div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-						{/* Left Column - Content */}
-						<div className="space-y-6 animate-in fade-in slide-in-from-left-4 duration-700 order-2 lg:order-1">
-							<Badge
-								variant="outline"
-								className="px-4 py-1.5 border-primary/20 text-primary bg-primary/5 font-medium"
-							>
-								<Wrench className="w-3.5 h-3.5 mr-2 text-primary" />
-								For Professionals
-							</Badge>
-
-							<h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
-								For When You Need a Pro
-							</h2>
-
-							<p className="text-base text-secondary/70 border-l-4 border-primary pl-4 py-1">
-								Not the DIY type? No problem.
-							</p>
-
-							{/* Feature List */}
-							<div className="space-y-4 pt-2">
-								{[
-									'Generate a structured job brief',
-									'Match you with contractors in your area',
-									'Help you move from "What\'s wrong?" to "It\'s fixed."',
-								].map((item, index) => (
-									<div key={index} className="flex items-start gap-3 group">
-										<div className="relative">
-											<CheckCircle className="w-6 h-6 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-											<div className="absolute inset-0 bg-primary/20 blur-md rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-										</div>
-										<span className="text-base md:text-lg text-secondary">{item}</span>
-									</div>
-								))}
-							</div>
-
-							{/* Stats */}
-							<div className="flex items-center gap-6 pt-4">
-								<div className="text-center">
-									<div className="text-2xl font-semibold text-primary">500+</div>
-									<div className="text-xs text-secondary/60">Contractors</div>
-								</div>
-								<div className="w-px h-8 bg-secondary/10" />
-								<div className="text-center">
-									<div className="text-2xl font-semibold text-primary">24h</div>
-									<div className="text-xs text-secondary/60">Avg response</div>
-								</div>
-							</div>
-						</div>
-
-						{/* Right Column - Job Brief Card */}
-						<div className="relative animate-in fade-in slide-in-from-right-4 duration-700 delay-200 order-1 lg:order-2">
-							<Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm overflow-hidden">
-								{/* Card Header with Accent */}
-								<div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-primary/60" />
-
-								<CardContent className="px-8 py-2">
-									{/* Header */}
-									<div className="flex items-center gap-4 mb-6">
-										<div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg">
-											<Wrench className="w-7 h-7 text-white" />
-										</div>
-										<div>
-											<h3 className="text-xl font-semibold text-secondary">Job Brief Example</h3>
-											<div className="flex items-center gap-2">
-												<div className="w-1.5 h-1.5 bg-primary rounded-full" />
-												<p className="text-xs text-secondary/60">Generated by Pliers</p>
-											</div>
-										</div>
-									</div>
-
-									{/* Job Details Grid */}
-									<div className="space-y-4">
-										<div className="grid grid-cols-2 gap-4 bg-secondary/5 p-4 rounded-lg">
-											<div className="space-y-3">
-												<div>
-													<span className="text-xs text-secondary/60 block">Issue:</span>
-													<span className="text-base font-medium text-secondary">Geyser leaking</span>
-												</div>
-												<div>
-													<span className="text-xs text-secondary/60 block">Location:</span>
-													<span className="text-base font-medium text-secondary">Cape Town</span>
-												</div>
-											</div>
-											<div className="space-y-3">
-												<div>
-													<span className="text-xs text-secondary/60 block">Urgency:</span>
-													<span className="inline-flex items-center gap-1.5 text-base font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-														<div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-														High
-													</span>
-												</div>
-												<div>
-													<span className="text-xs text-secondary/60 block">Access:</span>
-													<span className="text-base font-medium text-secondary">Roof space</span>
-												</div>
-											</div>
-										</div>
-
-										<Separator className="my-4 bg-secondary/10" />
-
-										{/* Additional Info */}
-										<div className="flex items-center justify-between bg-primary/5 p-3 rounded-lg">
-											<div className="flex items-center gap-2">
-												<div className="flex -space-x-2">
-													{[1, 2, 3].map((i) => (
-														<div key={i} className="w-6 h-6 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center text-[10px] font-medium text-secondary">
-															📸
-														</div>
-													))}
-												</div>
-												<span className="text-xs text-secondary/60">Photos attached: 3</span>
-											</div>
-											<div className="flex items-center gap-1 text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
-												<AlertTriangle className="w-3 h-3 text-primary" />
-												<span>Power off required</span>
-											</div>
-										</div>
-
-										{/* Footer Note */}
-										<p className="text-xs text-secondary/60 italic flex items-center gap-2 mt-2">
-											<span className="w-1 h-1 bg-primary rounded-full" />
-											Ready to send to contractors
-										</p>
-									</div>
-								</CardContent>
-							</Card>
-
-							{/* Floating Badge */}
-							<div className="absolute -bottom-3 -right-3 bg-white rounded-full px-4 py-2 shadow-lg border border-secondary/10 flex items-center gap-2">
-								<div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-								<span className="text-xs font-medium text-secondary">Matching available</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
 
 			{/* Built for South African Homes */}
 			<section className="py-16 md:py-20 bg-gradient-to-b from-white to-secondary/5 relative overflow-hidden">
@@ -892,50 +507,7 @@ export default function LandingPage() {
 				</div>
 			</section>
 
-			{/* Final CTA */}
-			<section className="py-16 md:py-20 bg-secondary text-secondary-foreground relative overflow-hidden">
-				{/* Simple Background Pattern */}
-				<div className="absolute inset-0 opacity-10">
-					<div className="absolute inset-0" style={{
-						backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 1px)`,
-						backgroundSize: '32px 32px'
-					}} />
-				</div>
-
-				<div className="container max-w-2xl mx-auto px-4 relative z-10">
-					<div className="text-center space-y-6 md:space-y-7">
-						{/* Heading */}
-						<h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-							Let's fix what's wrong.
-						</h2>
-
-						{/* Description */}
-						<p className="text-base text-secondary-foreground/80 max-w-lg mx-auto">
-							Start by telling us what's happening.
-						</p>
-
-						{/* CTA Button */}
-						<div className="pt-2">
-							<Button
-								size="lg"
-								variant="default"
-								className="group px-8 py-6 text-base bg-white text-secondary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
-							>
-								<span className="flex items-center gap-2">
-									Explain My Problem Now
-									<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-								</span>
-							</Button>
-						</div>
-
-						{/* Simple Trust Indicator */}
-						<p className="text-sm text-secondary-foreground/60 pt-2">
-							Free • No obligation • Takes 2 minutes
-						</p>
-					</div>
-				</div>
-			</section>
-
+	
 
 			{/* About Pliers */}
 			<section className="py-16 md:py-20 bg-gradient-to-b from-white to-secondary/5">
@@ -1234,47 +806,6 @@ export default function LandingPage() {
 							</AccordionItem>
 						))}
 					</Accordion>
-
-					{/* Still Have Questions - Enhanced Card */}
-					<div className="mt-16 text-center">
-						<Card className="border-0 shadow-md bg-white/90 backdrop-blur-sm overflow-hidden">
-							{/* Decorative accent */}
-							<div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50" />
-
-							<CardContent className="p-8 md:p-10 space-y-5">
-								<div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mx-auto">
-									<span className="text-2xl">🛠</span>
-								</div>
-
-								<h3 className="text-xl md:text-2xl font-semibold tracking-tight text-secondary">
-									Still Have Questions?
-								</h3>
-
-								<p className="text-secondary/70 max-w-md mx-auto">
-									If you're unsure about anything, feel free to reach out. We're building
-									Pliers to make home care simpler — and we're always improving.
-								</p>
-
-								<div className="pt-4">
-									<Button
-										variant="outline"
-										size="lg"
-										className="group px-8 py-6 text-base border-2 border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
-									>
-										<span className="flex items-center gap-2">
-											Contact Us
-											<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-										</span>
-									</Button>
-								</div>
-
-								{/* Trust indicator */}
-								<p className="text-xs text-secondary/40 pt-4">
-									Usually responds within 24 hours
-								</p>
-							</CardContent>
-						</Card>
-					</div>
 				</div>
 			</section>
 
