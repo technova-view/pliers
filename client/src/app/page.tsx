@@ -177,7 +177,7 @@ export default function LandingPage() {
 						{/* Right Side Image */}
 						<div className="relative h-[300px] md:h-[400px] lg:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
 							<Image
-								src="/homePageImage.jpg"
+								src="/heroImage.jpeg"
 								alt="Modern home interior"
 								fill
 								className="object-cover hover:scale-105 transition-transform duration-700"
@@ -507,7 +507,7 @@ export default function LandingPage() {
 				</div>
 			</section>
 
-	
+
 
 			{/* About Pliers */}
 			<section className="py-16 md:py-20 bg-gradient-to-b from-white to-secondary/5">
