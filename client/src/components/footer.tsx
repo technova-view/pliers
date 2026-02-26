@@ -116,8 +116,9 @@ export function Footer() {
         <Separator className="bg-secondary/10 my-8" />
 
         <div className="text-secondary/60 text-center text-sm">
-          © {new Date().getFullYear()} Pliers. All rights reserved. Made with ❤️
+          All rights reserved. Made with ❤️
           for homeowners and contractors.
+          Pliers © {new Date().getFullYear()}
         </div>
       </div>
     </footer>

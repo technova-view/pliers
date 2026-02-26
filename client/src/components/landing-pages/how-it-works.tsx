@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle } from "lucide-react";
+import { NumberBadge } from "../ui/number-badge";
 
 interface Problem {
   icon: React.ReactNode;
@@ -60,11 +61,8 @@ export function HowItWorks({
               <CardContent className="relative p-6 md:p-8">
                 {/* Step Number with Icon */}
                 <div className="mb-6 flex items-start justify-between">
-                  <div className="from-primary to-primary/80 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br shadow-md">
-                    <span className="text-2xl">{step.emoji}</span>
-                  </div>
-                  <div className="bg-primary/10 text-primary flex h-8 w-8 items-center justify-center rounded-full">
-                    {step.number}
+                  <div className="flex items-center justify-center rounded-2xl">
+                    <NumberBadge number={step.number} />
                   </div>
                 </div>
 
