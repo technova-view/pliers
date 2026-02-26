@@ -7,6 +7,7 @@ import Joi from 'joi';
 export const configValidationSchema = Joi.object({
   NODE_ENV: Joi.string().valid('development', 'production'),
   DATABASE_URL: Joi.string().required(),
+  REDIS_URL: Joi.string().required(),
   JWT_SECRET_KEY: Joi.string().min(32).required(),
   JWT_EXPIRES_IN: Joi.alternatives().try(
     Joi.number().integer().positive(),
@@ -14,6 +15,11 @@ export const configValidationSchema = Joi.object({
   ).required(),
   GOOGLE_CLIENT_ID: Joi.string().required(),
   GOOGLE_CLIENT_SECRET: Joi.string().required(),
+  MAIL_PROVIDER: Joi.string().valid('smtp').required(),
+  SMTP_HOST: Joi.string().required(),
+  SMTP_PORT: Joi.number().integer().positive().required(),
+  SMTP_USER: Joi.string().required(),
+  SMTP_PASS: Joi.string().required(),
 });
 
 /**
