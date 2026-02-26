@@ -25,44 +25,26 @@ export const homeownerLandingPageData = {
   howItWorks: {
     title: "How It Works",
     badgeText: "Simple Process",
-    steps: [
+    features: [
       {
-        number: 1,
-        emoji: "1️⃣",
-        title: "Tell us what's happening",
-        problems: [
-          {
-            icon: <Droplets className="h-5 w-5" />,
-            text: "My geyser is leaking.",
-          },
-          {
-            icon: <ZapOff className="h-5 w-5" />,
-            text: "My power keeps tripping.",
-          },
-          {
-            icon: <Flame className="h-5 w-5" />,
-            text: "There's a strange smell in the kitchen.",
-          },
-        ],
+        icon: "Bot",
+        title: "AI Diagnosis",
+        description: "Describe your problem in plain language and get instant expert advice on what's wrong.",
       },
       {
-        number: 2,
-        emoji: "2️⃣",
-        title: "Get clear guidance",
-        items: [
-          "What might be causing it",
-          "Whether it's urgent",
-          "What you should (and shouldn't) do",
-          "If it's safe to try fixing it yourself",
-        ],
+        icon: "Wrench",
+        title: "DIY Solutions",
+        description: "Get step-by-step guidance for simple fixes you can do yourself safely.",
       },
       {
-        number: 3,
-        emoji: "3️⃣",
-        title: "Get it sorted",
-        description:
-          "If you need help, Pliers generates a clear job brief and connects you to local professionals near you.",
-        highlightText: "No confusion. No guessing. No endless searching.",
+        icon: "BadgeCheck",
+        title: "Verified Contractors",
+        description: "Connect with qualified local professionals when you need expert help.",
+      },
+      {
+        icon: "Shield",
+        title: "Safety First",
+        description: "We prioritize your safety with clear warnings and professional recommendations.",
       },
     ],
   },
