@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle } from "lucide-react";
-import { NumberBadge } from "../ui/number-badge";
+import { NumberBadge } from "./number-badge";
 
 interface Problem {
   icon: React.ReactNode;
