@@ -21,7 +21,7 @@ export function BuiltForRealHomes({
   footerText = "Pliers is designed for everyday home problems.",
 }: BuiltForRealHomesProps) {
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-b from-secondary/2 to-secondary/5">
+    <section className="py-16 md:py-20 bg-linear-to-b from-secondary/2 to-secondary/5">
       <div className="container max-w-6xl mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
@@ -55,7 +55,7 @@ export function BuiltForRealHomes({
             >
               {/* Icon Container with Gradient */}
               <div className="mb-3">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center group-hover:from-primary/20 group-hover:to-primary/10 transition-all duration-300 group-hover:scale-110">
+                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-primary/10 to-primary/5 flex items-center justify-center group-hover:from-primary/20 group-hover:to-primary/10 transition-all duration-300 group-hover:scale-110">
                   <div className="text-primary group-hover:scale-110 transition-transform duration-300">
                     {category.icon}
                   </div>

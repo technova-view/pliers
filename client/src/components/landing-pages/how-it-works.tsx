@@ -48,7 +48,7 @@ export function HowItWorks({
         {/* Steps Grid */}
         <div className="grid md:grid-cols-3 gap-8 lg:gap-6 relative">
           {/* Connecting Line (hidden on mobile) */}
-          <div className="hidden md:block absolute top-24 left-[18%] right-[18%] h-0.5 bg-gradient-to-r from-primary/10 via-primary/40 to-primary/10 rounded-full" />
+          <div className="hidden md:block absolute top-24 left-[18%] right-[18%] h-0.5 bg-linear-to-r from-primary/10 via-primary/40 to-primary/10 rounded-full" />
 
           {steps.map((step, index) => (
             <Card
@@ -60,7 +60,7 @@ export function HowItWorks({
               <CardContent className="p-6 md:p-8 relative">
                 {/* Step Number with Icon */}
                 <div className="flex items-start justify-between mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-md">
+                  <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-primary to-primary/80 flex items-center justify-center shadow-md">
                     <span className="text-2xl">{step.emoji}</span>
                   </div>
                   <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
@@ -106,7 +106,7 @@ export function HowItWorks({
                 )}
 
                 {step.highlightText && (
-                  <div className="bg-gradient-to-r from-primary/10 to-transparent p-4 rounded-lg border-l-4 border-primary mt-4">
+                  <div className="bg-linear-to-r from-primary/10 to-transparent p-4 rounded-lg border-l-4 border-primary mt-4">
                     <p className="text-sm font-medium text-primary">
                       {step.highlightText}
                     </p>

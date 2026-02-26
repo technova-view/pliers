@@ -17,7 +17,7 @@ export function BuiltForSouthAfricanHomes({
   highlightSubQuote = "It's built for where you live.",
 }: BuiltForSouthAfricanHomesProps) {
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-b from-white to-secondary/5 relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-linear-to-b from-white to-secondary/5 relative overflow-hidden">
       {/* Map Pattern Overlay (subtle) */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0" style={{
@@ -33,7 +33,7 @@ export function BuiltForSouthAfricanHomes({
           {/* Card with Flag Accent - Keeping SA flag colors as they're specific to South Africa */}
           <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm overflow-hidden">
             {/* South African Flag Stripe - Preserved as it's culturally significant */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-black via-yellow-500 to-green-600" />
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-black via-yellow-500 to-green-600" />
 
             <CardContent className="p-10 md:p-12 text-center space-y-8">
               {/* Badge with Location Icon */}
@@ -66,7 +66,7 @@ export function BuiltForSouthAfricanHomes({
               </p>
 
               {/* Highlight Box */}
-              <div className="relative p-8 bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl border border-primary/20 shadow-inner">
+              <div className="relative p-8 bg-linear-to-br from-primary/5 to-primary/10 rounded-2xl border border-primary/20 shadow-inner">
                 {/* Decorative Quote Marks */}
                 <div className="absolute -top-3 left-6 text-6xl text-primary/20 font-serif">"</div>
 

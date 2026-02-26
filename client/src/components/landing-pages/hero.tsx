@@ -80,7 +80,7 @@ export function Hero({
           </div>
 
           {/* Right Side Image */}
-          <div className="relative h-[300px] md:h-[400px] lg:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative h-75 md:h-100 lg:h-125 w-full rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src={heroImageSrc}
               alt={heroImageAlt}
