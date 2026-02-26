@@ -191,7 +191,7 @@ export class AuthService {
    * @param request - Request object
    */
   async googleAuth(googleAuthDto: GoogleAuthDto): Promise<BaseApiResponse<AuthTokensResponseDto>> {
-    const { accessToken } = googleAuthDto;
+    const { accessToken, userType } = googleAuthDto;
 
     try {
       const client = new OAuth2Client(this.configService.get('GOOGLE_CLIENT_ID'));
@@ -220,7 +220,7 @@ export class AuthService {
           lastName: payload.family_name,
           provider: 'google',
           accountVerified: true, // Google accounts are verified by default
-          userType: UserType.CONTRACTOR,
+          userType: userType,
         });
 
         user = await this.userRepository.save(user);

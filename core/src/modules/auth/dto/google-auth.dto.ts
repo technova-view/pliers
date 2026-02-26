@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsEnum } from 'class-validator';
+import { UserType } from 'src/common/enums/user-type.enum';
 
 export class GoogleAuthDto {
   @ApiProperty({
@@ -9,4 +10,13 @@ export class GoogleAuthDto {
   @IsString()
   @IsNotEmpty()
   accessToken: string;
+
+  @ApiProperty({
+    description: 'Type of user (CONTRACTOR or HOME_OWNER or PLATFORM_ADMIN)',
+    enum: UserType,
+    example: UserType.CONTRACTOR,
+  })
+  @IsEnum(UserType)
+  @IsNotEmpty()
+  userType: UserType;
 }
