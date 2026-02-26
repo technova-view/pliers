@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, Suspense, useState } from "react";
+import { useEffect, Suspense, useState, act } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -165,11 +165,11 @@ function LoginContent() {
                 <GoogleLoginButton userType={activeTab} className="w-full" />
                 
                 <p className="text-center text-sm text-gray-600">
-                  Don't have an account?{" "}
-                  <Link href={`/signup?userType=${activeTab}`} className="text-orange-600 hover:underline">
-                    Sign up
-                  </Link>
-                </p>
+                   Don't have an account?{" "}
+                   <Link href={ROUTES.signup({ userType: activeTab })} className="text-primary hover:underline">
+                     Sign up
+                   </Link>
+                 </p>
               </form>
             </div>
           </div>

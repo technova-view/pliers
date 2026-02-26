@@ -223,12 +223,12 @@ function SignupContent() {
                 
                 <GoogleLoginButton userType={activeTab} className="w-full" />
                 
-                <p className="text-center text-sm text-gray-600">
-                  Already have an account?{" "}
-                  <Link href={`/login?userType=${activeTab}`} className="text-orange-600 hover:underline">
-                    Login
-                  </Link>
-                </p>
+                 <p className="text-center text-sm text-gray-600">
+                   Already have an account?{" "}
+                   <Link href={ROUTES.login({ userType: activeTab })} className="text-primary hover:underline">
+                     Login
+                   </Link>
+                 </p>
               </form>
             </div>
           </div>
