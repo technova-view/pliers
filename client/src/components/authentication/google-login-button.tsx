@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { UserType } from "@/lib/enums";
 import { cn } from "@/lib/utils";
+import { ROUTES } from "@/lib/routes";
 
 export default function GoogleLoginButton({
   userType = UserType.CONTRACTOR,
@@ -66,7 +67,7 @@ export default function GoogleLoginButton({
       const idToken = await openGooglePopup();
       await googleAuth({ accessToken: idToken, userType: userType }).unwrap();
       toast.success("Google Sign-In successful");
-      router.push("/dashboard");
+      router.push(ROUTES.dashboard());
       router.refresh();
     } catch (err) {
       console.error(err);

@@ -18,6 +18,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { UserType } from "@/lib/enums";
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/lib/routes";
 
 interface DashboardLayoutClientProps {
   children: React.ReactNode;
@@ -37,19 +38,19 @@ type NavigationItem = {
 const navigationItems: NavigationItem[] = [
   {
     name: "Dashboard",
-    href: "/dashboard/contractor",
+    href: ROUTES.contractor(),
     icon: LayoutDashboard,
     scope: [UserType.CONTRACTOR],
   },
   {
     name: "Admin",
-    href: "/dashboard/admin",
+    href: ROUTES.admin(),
     icon: Users,
     scope: [UserType.PLATFORM_ADMIN],
   },
   {
     name: "Profile",
-    href: "/dashboard/profile",
+    href: ROUTES.profile(),
     icon: User,
     scope: [UserType.PLATFORM_ADMIN, UserType.CONTRACTOR],
   },
@@ -99,7 +100,7 @@ export function DashboardLayoutClient({
         {/* Logo */}
         <div className="flex h-16 items-center justify-between border-b px-4">
           {!collapsed && (
-            <Link href="/" className="text-lg font-bold">
+            <Link href={ROUTES.home()} className="text-lg font-bold">
               Pliers
             </Link>
           )}

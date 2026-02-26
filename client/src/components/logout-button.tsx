@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
+import { ROUTES } from "@/lib/routes";
+import { UserType } from "@/lib/enums";
 
 interface LogoutButtonProps {
   className?: string;
@@ -24,7 +26,7 @@ export function LogoutButton({ className, children }: LogoutButtonProps) {
         await logout({ refreshToken }).unwrap();
       }
       toast.success("Logged out successfully");
-      router.push("/login");
+      router.push(ROUTES.login({ userType: UserType.CONTRACTOR }));
       router.refresh();
     } catch {
       toast.error("Logout failed");

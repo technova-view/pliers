@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuth, AuthStateProps } from "@/lib/hooks";
 import { UserType } from "@/lib/enums";
+import { ROUTES } from "@/lib/routes";
 
 interface AuthorizationGuardProps {
   children: React.ReactNode;
@@ -29,17 +30,17 @@ export const ROUTE_CONFIG: Record<
   }
 > = {
   // Admin-only routes
-  "/dashboard/admin": {
+  [ROUTES.admin()]: {
     requiredUserTypes: [UserType.PLATFORM_ADMIN],
-    fallbackUrl: "/dashboard/contractor",
+    fallbackUrl: ROUTES.contractor(),
   },
   // Contractor-only routes
-  "/dashboard/contractor": {
+  [ROUTES.contractor()]: {
     requiredUserTypes: [UserType.CONTRACTOR],
-    fallbackUrl: "/dashboard/admin",
+    fallbackUrl: ROUTES.admin(),
   },
   // Common routes (accessible to both admin and contractor) - at /dashboard/xxxx
-  "/dashboard/profile": {
+  [ROUTES.profile()]: {
     requiredUserTypes: [UserType.PLATFORM_ADMIN, UserType.CONTRACTOR],
     fallbackUrl: undefined,
   },
@@ -78,7 +79,7 @@ export function AuthorizationGuard({
     const checkAuthorization = async () => {
       // Step 1: Check if user is authenticated
       if (!isAuthenticated) {
-        router.push("/login");
+        router.push(ROUTES.login());
         return;
       }
 
@@ -111,7 +112,7 @@ export function AuthorizationGuard({
 
       // If still no user type, redirect to login
       if (!userType) {
-        router.push("/login");
+        router.push(ROUTES.login({ userType: UserType.CONTRACTOR }));
         return;
       }
 
@@ -129,8 +130,8 @@ export function AuthorizationGuard({
           const redirectUrl =
             routeFallback ||
             (userType === UserType.PLATFORM_ADMIN
-              ? "/dashboard/admin"
-              : "/dashboard/contractor");
+              ? ROUTES.admin()
+              : ROUTES.contractor());
           router.push(redirectUrl);
           return;
         }
@@ -140,8 +141,8 @@ export function AuthorizationGuard({
           const redirectUrl =
             fallbackUrl ||
             (userType === UserType.PLATFORM_ADMIN
-              ? "/dashboard/admin"
-              : "/dashboard/contractor");
+              ? ROUTES.admin()
+              : ROUTES.contractor());
           router.push(redirectUrl);
           return;
         }

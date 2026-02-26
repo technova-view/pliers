@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { BaseApiError } from "@/lib/types";
 import { UserType } from "@/lib/enums";
 import GoogleLoginButton from "@/components/authentication/google-login-button";
+import { ROUTES } from "@/lib/routes";
 
 const signupSchema = z
   .object({
@@ -51,7 +52,7 @@ function SignupContent() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/");
+      router.push(ROUTES.home());
     }
   }, [isAuthenticated, router]);
 
@@ -77,7 +78,7 @@ function SignupContent() {
         signupResponse.message ||
           "Account created successfully! Please sign in.",
       );
-      router.push(`/login?userType=${activeTab}`);
+      router.push(ROUTES.login({ userType: activeTab }));
     } catch (error: unknown) {
       const errorformat = error as BaseApiError;
       const errorMessage =
@@ -123,7 +124,7 @@ function SignupContent() {
                   <button
                     onClick={() => {
                       setActiveTab(UserType.CONTRACTOR);
-                      router.push("/signup?userType=CONTRACTOR");
+                      router.push(ROUTES.signup({ userType: UserType.CONTRACTOR }));
                     }}
                     className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 cursor-pointer ${
                       activeTab === UserType.CONTRACTOR
@@ -136,7 +137,7 @@ function SignupContent() {
                   <button
                     onClick={() => {
                       setActiveTab(UserType.HOME_OWNER);
-                      router.push("/signup?userType=HOME_OWNER");
+                      router.push(ROUTES.signup({ userType: UserType.HOME_OWNER }));
                     }}
                     className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 cursor-pointer ${
                       activeTab === UserType.HOME_OWNER

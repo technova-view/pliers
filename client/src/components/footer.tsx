@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import { ROUTES } from "@/lib/routes";
 
 export function Footer() {
   return (
@@ -57,7 +58,7 @@ export function Footer() {
             <ul className="text-secondary/70 space-y-2 text-sm">
               <li>
                 <Link
-                  href="/about"
+                  href={ROUTES.about()}
                   className="hover:text-primary transition-colors"
                 >
                   About
@@ -65,7 +66,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href={ROUTES.blog()}
                   className="hover:text-primary transition-colors"
                 >
                   Blog
@@ -73,7 +74,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/careers"
+                  href={ROUTES.careers()}
                   className="hover:text-primary transition-colors"
                 >
                   Careers
@@ -87,7 +88,7 @@ export function Footer() {
             <ul className="text-secondary/70 space-y-2 text-sm">
               <li>
                 <Link
-                  href="/privacy"
+                  href={ROUTES.privacy()}
                   className="hover:text-primary transition-colors"
                 >
                   Privacy
@@ -95,7 +96,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/terms"
+                  href={ROUTES.terms()}
                   className="hover:text-primary transition-colors"
                 >
                   Terms
@@ -103,7 +104,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/security"
+                  href={ROUTES.security()}
                   className="hover:text-primary transition-colors"
                 >
                   Security

@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/hooks";
+import { ROUTES } from "@/lib/routes";
+import { UserType } from "@/lib/enums";
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -16,7 +18,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
   useEffect(() => {
     // Check auth status
     if (!isAuthenticated) {
-      router.push("/login");
+      router.push(ROUTES.login({ userType: UserType.CONTRACTOR }));
     } else {
       setIsLoading(false);
     }

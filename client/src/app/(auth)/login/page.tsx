@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { BaseApiError } from "@/lib/types";
 import GoogleLoginButton from "@/components/authentication/google-login-button";
 import { UserType } from "@/lib/enums";
+import { ROUTES } from "@/lib/routes";
 
 const loginSchema = z.object({
   email: z.email("Invalid email address"),
@@ -43,7 +44,7 @@ function LoginContent() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/dashboard");
+      router.push(ROUTES.dashboard());
     }
   }, [isAuthenticated, router]);
 
@@ -59,9 +60,7 @@ function LoginContent() {
     try {
       const response = await login(data).unwrap();
       toast.success(response.message || "Login successful");
-      response.data?.userType === UserType.PLATFORM_ADMIN
-        ? router.push("/admin")
-        : router.push("/dashboard");
+      router.push(ROUTES.dashboard());
       router.refresh();
     } catch (error: unknown) {
       const errorformat = error as BaseApiError;
@@ -108,7 +107,7 @@ function LoginContent() {
                   <button
                     onClick={() => {
                       setActiveTab(UserType.CONTRACTOR);
-                      router.push("/login?userType=CONTRACTOR");
+                      router.push(ROUTES.login({ userType: UserType.CONTRACTOR }));
                     }}
                     className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 cursor-pointer ${
                       activeTab === UserType.CONTRACTOR
@@ -121,7 +120,7 @@ function LoginContent() {
                   <button
                     onClick={() => {
                       setActiveTab(UserType.HOME_OWNER);
-                      router.push("/login?userType=HOME_OWNER");
+                      router.push(ROUTES.login({ userType: UserType.HOME_OWNER }));
                     }}
                     className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 cursor-pointer ${
                       activeTab === UserType.HOME_OWNER
