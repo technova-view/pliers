@@ -3,11 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, UserPlus, LogIn } from "lucide-react";
 import { useState } from "react";
+import { UserType } from "@/lib/enums";
+import { useSearchParams } from "next/navigation";
 
-export function Header() {
+interface HeaderProps {
+  userType?: UserType;
+}
+
+export function Header({ userType: propUserType }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const searchParams = useSearchParams();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -18,6 +25,9 @@ export function Header() {
   };
 
   const navItems = ["Features", "How it works", "Pricing", "Testimonials"];
+  
+  // Determine user type: use prop if provided, then search params, then default to CONTRACTOR
+  const userType = propUserType || (searchParams.get("userType") as UserType) || UserType.CONTRACTOR;
 
   return (
     <header className="font-primary sticky top-0 z-50 border-b bg-white">
@@ -56,12 +66,22 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/login">
+          <Link href={`/login?userType=${userType}`}>
             <Button
               variant="outline"
               className="border-primary/30 text-primary hover:bg-primary hover:border-primary hidden transition-all duration-300 hover:text-white sm:inline-flex"
             >
+              <LogIn className="mr-2 h-4 w-4" />
               Sign In
+            </Button>
+          </Link>
+          
+          <Link href={`/signup?userType=${userType}`}>
+            <Button
+              className="bg-primary hover:bg-primary/90 text-white hidden transition-all duration-300 hover:text-white sm:inline-flex"
+            >
+              <UserPlus className="mr-2 h-4 w-4" />
+              Create an Account
             </Button>
           </Link>
 
@@ -141,9 +161,17 @@ export function Header() {
                 Become a Contractor
               </Link>
 
-              <Link href="/login" onClick={closeMenu} className="mt-4 px-4">
+              <Link href={`/login?userType=${userType}`} onClick={closeMenu} className="mt-4 px-4">
                 <Button variant="outline" className="w-full">
+                  <LogIn className="mr-2 h-4 w-4" />
                   Sign In
+                </Button>
+              </Link>
+              
+              <Link href={`/signup?userType=${userType}`} onClick={closeMenu} className="mt-2 px-4">
+                <Button className="w-full bg-primary hover:bg-primary/90 text-white">
+                  <UserPlus className="mr-2 h-4 w-4" />
+                  Create an Account
                 </Button>
               </Link>
             </nav>
