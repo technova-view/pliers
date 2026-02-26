@@ -71,13 +71,15 @@ export const homeownerLandingPageData = {
     badgeText: "Built for You",
     subtitle: "Whether it's:",
     categories: [
-      { icon: <Droplets className="h-6 w-6" />, name: "Plumbing leaks" },
-      { icon: <Zap className="h-6 w-6" />, name: "Electrical faults" },
-      { icon: <Thermometer className="h-6 w-6" />, name: "Geyser problems" },
-      { icon: <Wrench className="h-6 w-6" />, name: "Appliance breakdowns" },
-      { icon: <Lock className="h-6 w-6" />, name: "Security issues" },
-    ],
-    footerText: "Pliers is designed for everyday home problems.",
+      { name: "Plumbers" },
+      { name: "Electricians" },
+      { name: "Handymen" },
+      { name: "Roofers" },
+      { name: "Painters" },
+      { name: "HVAC Technicians" },
+      { name: "Locksmiths" },
+      { name: "Pest Control" },
+    ]
   },
   builtForSouthAfricanHomes: {
     title: "Built for South African Homes",

@@ -27,12 +27,12 @@ export default function LandingPage() {
     <div className="font-primary flex min-h-screen flex-col">
       <Header userType={UserType.HOME_OWNER} />
       <Hero {...homeownerLandingPageData.hero} />
+			<AboutPliers {...aboutPliersData} />
       <HowItWorks {...homeownerLandingPageData.howItWorks} />
       <BuiltForRealHomes {...homeownerLandingPageData.builtForRealHomes} />
-      <BuiltForSouthAfricanHomes
+      {/* <BuiltForSouthAfricanHomes
         {...homeownerLandingPageData.builtForSouthAfricanHomes}
-      />
-      <AboutPliers {...aboutPliersData} />
+      /> */}
       <FAQ {...homeownerLandingPageData.faq} />
       <Separator />
       <Footer />
