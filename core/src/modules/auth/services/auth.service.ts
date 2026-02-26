@@ -14,7 +14,6 @@ import { UserSession } from '../../database/entities/user-session.entity';
 import { BaseApiResponse } from '../../../common/interfaces/api-response.interface';
 import { EnvironmentConfig } from '../../../common/interfaces/config.interface';
 import { RefreshAccessTokenResponseDto, LogoutResponseDto, AuthTokensResponseDto } from '../dto/auth-response.dto';
-import { UserType } from '../../../common/enums/user-type.enum';
 import { AccessTokenPayload, RefreshTokenPayload } from 'src/common/interfaces/token.interface';
 @Injectable()
 export class AuthService {
