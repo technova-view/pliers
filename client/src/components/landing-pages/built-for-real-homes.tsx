@@ -21,82 +21,80 @@ export function BuiltForRealHomes({
   footerText = "Pliers is designed for everyday home problems.",
 }: BuiltForRealHomesProps) {
   return (
-    <section className="py-16 md:py-20 bg-linear-to-b from-secondary/2 to-secondary/5">
-      <div className="container max-w-6xl mx-auto px-4 relative z-10">
+    <section className="from-secondary/2 to-secondary/5 bg-linear-to-b py-16 md:py-20">
+      <div className="relative z-10 container mx-auto max-w-6xl px-4">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="mb-12 text-center md:mb-16">
           <Badge
             variant="outline"
-            className="px-4 py-1.5 border-primary/20 text-primary bg-primary/5 font-medium mb-4 animate-in fade-in slide-in-from-top-4 duration-700"
+            className="border-primary/20 text-primary bg-primary/5 animate-in fade-in slide-in-from-top-4 mb-4 px-4 py-1.5 font-medium duration-700"
           >
             {badgeText}
           </Badge>
 
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-3 text-secondary animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+          <h2 className="text-secondary animate-in fade-in slide-in-from-bottom-4 mb-3 text-3xl font-semibold tracking-tight delay-100 duration-700 md:text-4xl">
             {title}
           </h2>
 
-          <div className="flex items-center justify-center gap-3 animate-in fade-in duration-700 delay-200">
-            <div className="h-px w-8 bg-primary/30" />
-            <p className="text-base text-secondary/70">
-              {subtitle}
-            </p>
-            <div className="h-px w-8 bg-primary/30" />
+          <div className="animate-in fade-in flex items-center justify-center gap-3 delay-200 duration-700">
+            <div className="bg-primary/30 h-px w-8" />
+            <p className="text-secondary/70 text-base">{subtitle}</p>
+            <div className="bg-primary/30 h-px w-8" />
           </div>
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-5 max-w-3xl mx-auto">
+        <div className="mx-auto grid max-w-3xl grid-cols-2 gap-4 md:grid-cols-5 md:gap-5">
           {categories.map((category, index) => (
             <div
               key={index}
-              className="group flex flex-col items-center text-center p-4 md:p-5 bg-white rounded-xl border border-secondary/10 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-4"
+              className="group border-secondary/10 animate-in fade-in slide-in-from-bottom-4 flex flex-col items-center rounded-xl border bg-white p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-md md:p-5"
               style={{ animationDelay: `${300 + index * 100}ms` }}
             >
               {/* Icon Container with Gradient */}
               <div className="mb-3">
-                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-primary/10 to-primary/5 flex items-center justify-center group-hover:from-primary/20 group-hover:to-primary/10 transition-all duration-300 group-hover:scale-110">
-                  <div className="text-primary group-hover:scale-110 transition-transform duration-300">
+                <div className="from-primary/10 to-primary/5 group-hover:from-primary/20 group-hover:to-primary/10 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br transition-all duration-300 group-hover:scale-110">
+                  <div className="text-primary transition-transform duration-300 group-hover:scale-110">
                     {category.icon}
                   </div>
                 </div>
               </div>
 
               {/* Category Name */}
-              <span className="text-sm font-medium text-secondary group-hover:text-primary transition-colors duration-300">
+              <span className="text-secondary group-hover:text-primary text-sm font-medium transition-colors duration-300">
                 {category.name}
               </span>
 
               {/* Subtle Indicator */}
-              <div className="w-6 h-0.5 bg-primary/0 group-hover:bg-primary/30 rounded-full mt-2 transition-all duration-300" />
+              <div className="bg-primary/0 group-hover:bg-primary/30 mt-2 h-0.5 w-6 rounded-full transition-all duration-300" />
             </div>
           ))}
         </div>
 
         {/* Footer Message */}
-        <div className="relative mt-12 md:mt-16 text-center">
+        <div className="relative mt-12 text-center md:mt-16">
           {/* Decorative Line */}
-          <div className="absolute left-1/2 -translate-x-1/2 -top-6 w-12 h-12">
-            <div className="w-full h-full border-t-2 border-l-2 border-primary/20 rounded-tl-2xl" />
+          <div className="absolute -top-6 left-1/2 h-12 w-12 -translate-x-1/2">
+            <div className="border-primary/20 h-full w-full rounded-tl-2xl border-t-2 border-l-2" />
           </div>
 
-          <p className="text-base md:text-lg text-secondary/70 max-w-2xl mx-auto px-6 py-4 bg-white/50 backdrop-blur-sm rounded-full border border-secondary/10 shadow-sm inline-flex items-center gap-3">
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+          <p className="text-secondary/70 border-secondary/10 mx-auto inline-flex max-w-2xl items-center gap-3 rounded-full border bg-white/50 px-6 py-4 text-base shadow-sm backdrop-blur-sm md:text-lg">
+            <span className="bg-primary h-2 w-2 animate-pulse rounded-full" />
             {footerText}
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            <span className="bg-primary h-2 w-2 animate-pulse rounded-full" />
           </p>
         </div>
 
         {/* Bottom Decorative Dots */}
-        <div className="flex justify-center gap-3 mt-8">
+        <div className="mt-8 flex justify-center gap-3">
           {[1, 2, 3, 2, 1].map((size, index) => (
             <div
               key={index}
-              className={`rounded-full bg-primary/20 transition-all duration-300 hover:bg-primary/40`}
+              className={`bg-primary/20 hover:bg-primary/40 rounded-full transition-all duration-300`}
               style={{
                 width: `${size * 4}px`,
                 height: `${size * 4}px`,
-                animationDelay: `${index * 100}ms`
+                animationDelay: `${index * 100}ms`,
               }}
             />
           ))}

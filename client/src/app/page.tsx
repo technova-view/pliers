@@ -14,19 +14,23 @@ export default function LandingPage() {
   // Convert icon strings to actual components
   const aboutPliersData = {
     ...homeownerLandingPageData.aboutPliers,
-    forWhoItems: homeownerLandingPageData.aboutPliers.forWhoItems?.map(item => ({
-      ...item,
-      icon: item.icon === "Home" ? Home : item.icon === "Users" ? Users : Zap,
-    })),
+    forWhoItems: homeownerLandingPageData.aboutPliers.forWhoItems?.map(
+      (item) => ({
+        ...item,
+        icon: item.icon === "Home" ? Home : item.icon === "Users" ? Users : Zap,
+      }),
+    ),
   };
 
   return (
-    <div className="flex flex-col min-h-screen font-primary">
+    <div className="font-primary flex min-h-screen flex-col">
       <Header />
       <Hero {...homeownerLandingPageData.hero} />
       <HowItWorks {...homeownerLandingPageData.howItWorks} />
       <BuiltForRealHomes {...homeownerLandingPageData.builtForRealHomes} />
-      <BuiltForSouthAfricanHomes {...homeownerLandingPageData.builtForSouthAfricanHomes} />
+      <BuiltForSouthAfricanHomes
+        {...homeownerLandingPageData.builtForSouthAfricanHomes}
+      />
       <AboutPliers {...aboutPliersData} />
       <FAQ {...homeownerLandingPageData.faq} />
       <Separator />

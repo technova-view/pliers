@@ -31,46 +31,46 @@ export function Hero({
   onSecondaryCtaClick,
 }: HeroProps) {
   return (
-    <section className="relative flex items-center overflow-hidden min-h-[40vh] md:min-h-[50vh] lg:min-h-[60vh] bg-[#e5ebf2]">
-      <div className="container max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-12 md:py-16 lg:py-20">
+    <section className="relative flex min-h-[40vh] items-center overflow-hidden bg-[#e5ebf2] md:min-h-[50vh] lg:min-h-[60vh]">
+      <div className="container mx-auto max-w-6xl px-4">
+        <div className="grid grid-cols-1 items-center gap-8 py-12 md:py-16 lg:grid-cols-2 lg:gap-12 lg:py-20">
           {/* Left Content */}
-          <div className="order-2 lg:order-1 space-y-8 md:space-y-10 text-center lg:text-left">
+          <div className="order-2 space-y-8 text-center md:space-y-10 lg:order-1 lg:text-left">
             {/* Badge */}
             <Badge
               variant="outline"
-              className="px-5 py-2.5 border-secondary/30 bg-white/10 backdrop-blur-md text-secondary text-sm tracking-wider inline-flex"
+              className="border-secondary/30 text-secondary inline-flex bg-white/10 px-5 py-2.5 text-sm tracking-wider backdrop-blur-md"
             >
-              <Home className="w-4 h-4 mr-2 text-secondary" />
+              <Home className="text-secondary mr-2 h-4 w-4" />
               {badgeText}
             </Badge>
 
             {/* Main Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-secondary leading-tight">
+            <h1 className="text-secondary text-4xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl">
               {title.text}
               <span className="text-primary ml-4">{title.span}</span>
             </h1>
 
             {/* Description */}
-            <p className="text-lg md:text-xl text-secondary/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-secondary/80 mx-auto max-w-2xl text-lg leading-relaxed md:text-xl lg:mx-0">
               {description}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start pt-8 md:pt-10">
+            <div className="flex flex-col justify-center gap-5 pt-8 sm:flex-row md:pt-10 lg:justify-start">
               <Button
                 size="lg"
-                className="group px-8 py-6 text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 bg-primary hover:bg-primary/90"
+                className="group bg-primary hover:bg-primary/90 px-8 py-6 text-base shadow-lg transition-all duration-300 hover:shadow-xl md:text-lg"
                 onClick={onPrimaryCtaClick}
               >
                 {primaryCtaText}
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
               {secondaryCtaText && (
                 <Button
                   size="lg"
                   variant="outline"
-                  className="px-8 py-6 text-base md:text-lg border-2 border-secondary/30 bg-white/10 backdrop-blur-md text-secondary hover:bg-secondary/10 hover:text-secondary transition-all duration-300"
+                  className="border-secondary/30 text-secondary hover:bg-secondary/10 hover:text-secondary border-2 bg-white/10 px-8 py-6 text-base backdrop-blur-md transition-all duration-300 md:text-lg"
                   onClick={onSecondaryCtaClick}
                 >
                   {secondaryCtaText}
@@ -80,12 +80,12 @@ export function Hero({
           </div>
 
           {/* Right Side Image */}
-          <div className="order-1 lg:order-2 relative h-50 md:h-100 lg:h-125 w-full rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative order-1 h-50 w-full overflow-hidden rounded-2xl shadow-2xl md:h-100 lg:order-2 lg:h-125">
             <Image
               src={heroImageSrc}
               alt={heroImageAlt}
               fill
-              className="object-cover hover:scale-105 transition-transform duration-700"
+              className="object-cover transition-transform duration-700 hover:scale-105"
               priority
             />
             {/* Optional subtle overlay for better text contrast if needed */}

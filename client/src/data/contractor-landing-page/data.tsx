@@ -1,10 +1,4 @@
-import {
-  Wrench,
-  Users,
-  Zap,
-  Shield,
-  Clock,
-} from "lucide-react";
+import { Wrench, Users, Zap, Shield, Clock } from "lucide-react";
 
 export const contractorLandingPageData = {
   hero: {
@@ -13,7 +7,8 @@ export const contractorLandingPageData = {
       text: "Grow your business",
       span: "with quality leads.",
     },
-    description: "Connect with homeowners who need your expertise. Get clear, well-defined job briefs and build your reputation with our trusted platform.",
+    description:
+      "Connect with homeowners who need your expertise. Get clear, well-defined job briefs and build your reputation with our trusted platform.",
     primaryCtaText: "Join as a Contractor",
     secondaryCtaText: "View Jobs",
     heroImageSrc: "/professionals.jpg",
@@ -38,7 +33,8 @@ export const contractorLandingPageData = {
         number: 2,
         emoji: "2️⃣",
         title: "Get matched with jobs",
-        description: "Pliers connects you with homeowners who need your services with clear, well-defined job briefs.",
+        description:
+          "Pliers connects you with homeowners who need your services with clear, well-defined job briefs.",
         highlightText: "No more vague inquiries or wasted time on calls.",
       },
       {

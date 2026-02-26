@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Users,
@@ -11,17 +11,17 @@ import {
   ChevronRight,
   Menu,
   X,
-} from 'lucide-react';
-import { useAuth, AuthStateProps } from '@/lib/hooks';
-import { LogoutButton } from '@/components/logout-button';
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
-import { UserType } from '@/lib/enums';
-import { Button } from '@/components/ui/button';
+} from "lucide-react";
+import { useAuth, AuthStateProps } from "@/lib/hooks";
+import { LogoutButton } from "@/components/logout-button";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { UserType } from "@/lib/enums";
+import { Button } from "@/components/ui/button";
 
 interface DashboardLayoutClientProps {
   children: React.ReactNode;
-  serverAuthState?: AuthStateProps['serverAuthState'];
+  serverAuthState?: AuthStateProps["serverAuthState"];
 }
 
 type NavigationItem = {
@@ -36,27 +36,22 @@ type NavigationItem = {
  */
 const navigationItems: NavigationItem[] = [
   {
-    name: 'Dashboard',
-    href: '/dashboard/contractor',
+    name: "Dashboard",
+    href: "/dashboard/contractor",
     icon: LayoutDashboard,
-    scope: [
-      UserType.CONTRACTOR,
-    ],
+    scope: [UserType.CONTRACTOR],
   },
   {
-    name: 'Admin',
-    href: '/dashboard/admin',
+    name: "Admin",
+    href: "/dashboard/admin",
     icon: Users,
     scope: [UserType.PLATFORM_ADMIN],
   },
   {
-    name: 'Profile',
-    href: '/dashboard/profile',
+    name: "Profile",
+    href: "/dashboard/profile",
     icon: User,
-    scope: [
-      UserType.PLATFORM_ADMIN,
-      UserType.CONTRACTOR,
-    ],
+    scope: [UserType.PLATFORM_ADMIN, UserType.CONTRACTOR],
   },
 ];
 
@@ -75,13 +70,13 @@ export function DashboardLayoutClient({
    * ✅ Filter navigation based on scope
    */
   const navigation = navigationItems.filter((item) =>
-    userType ? item.scope.includes(userType) : false
+    userType ? item.scope.includes(userType) : false,
   );
 
   if (!isAuthenticated) return null;
 
   return (
-    <div className="min-h-screen flex bg-background">
+    <div className="bg-background flex min-h-screen">
       {/* Mobile overlay */}
       {mobileOpen && (
         <div
@@ -93,25 +88,25 @@ export function DashboardLayoutClient({
       {/* Sidebar */}
       <aside
         className={cn(
-          'fixed lg:static inset-y-0 left-0 z-50 flex flex-col border-r bg-card transition-all duration-300 min-h-svh',
+          "bg-card fixed inset-y-0 left-0 z-50 flex min-h-svh flex-col border-r transition-all duration-300 lg:static",
           mobileOpen
-            ? 'w-64 translate-x-0'
-            : '-translate-x-full lg:translate-x-0',
-          collapsed ? 'lg:w-16' : 'lg:w-64',
-          'h-full'
+            ? "w-64 translate-x-0"
+            : "-translate-x-full lg:translate-x-0",
+          collapsed ? "lg:w-16" : "lg:w-64",
+          "h-full",
         )}
       >
         {/* Logo */}
         <div className="flex h-16 items-center justify-between border-b px-4">
           {!collapsed && (
-            <Link href="/" className="font-bold text-lg">
+            <Link href="/" className="text-lg font-bold">
               Pliers
             </Link>
           )}
 
           <Button
             onClick={() => setCollapsed(!collapsed)}
-            className="hidden lg:flex p-1 rounded-md hover:bg-accent"
+            className="hover:bg-accent hidden rounded-md p-1 lg:flex"
           >
             {collapsed ? (
               <ChevronRight className="h-5 w-5" />
@@ -122,18 +117,18 @@ export function DashboardLayoutClient({
 
           <Button
             onClick={() => setMobileOpen(false)}
-            className="lg:hidden p-1 rounded-md hover:bg-accent"
+            className="hover:bg-accent rounded-md p-1 lg:hidden"
           >
             <X className="h-5 w-5" />
           </Button>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 space-y-1 p-2 overflow-y-auto">
+        <nav className="flex-1 space-y-1 overflow-y-auto p-2">
           {navigation.map((item) => {
             const isActive =
               pathname === item.href ||
-              (item.href !== '/dashboard/contractor' &&
+              (item.href !== "/dashboard/contractor" &&
                 pathname.startsWith(item.href));
 
             return (
@@ -142,10 +137,10 @@ export function DashboardLayoutClient({
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                  "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                   isActive
-                    ? 'bg-primary text-primary-foreground'
-                    : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:bg-accent hover:text-foreground",
                 )}
               >
                 <item.icon className="h-5 w-5 shrink-0" />
@@ -159,14 +154,14 @@ export function DashboardLayoutClient({
         <div className="border-t p-4">
           {!collapsed && (
             <div className="mb-3">
-              <p className="text-sm font-medium truncate">
-                {user?.firstName || 'User'} {user?.lastName || ''}
+              <p className="truncate text-sm font-medium">
+                {user?.firstName || "User"} {user?.lastName || ""}
               </p>
-              <p className="text-xs text-muted-foreground truncate">
+              <p className="text-muted-foreground truncate text-xs">
                 {user?.email}
               </p>
               {userType === UserType.PLATFORM_ADMIN && (
-                <span className="inline-block mt-1 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded">
+                <span className="bg-primary/10 text-primary mt-1 inline-block rounded px-2 py-0.5 text-xs">
                   Admin
                 </span>
               )}
@@ -175,8 +170,8 @@ export function DashboardLayoutClient({
 
           <LogoutButton
             className={cn(
-              'w-full justify-start',
-              collapsed && 'lg:justify-center px-0'
+              "w-full justify-start",
+              collapsed && "px-0 lg:justify-center",
             )}
           >
             {collapsed ? (
@@ -192,12 +187,12 @@ export function DashboardLayoutClient({
       </aside>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex min-w-0 flex-1 flex-col">
         {/* Mobile header */}
-        <header className="lg:hidden flex h-14 items-center justify-between border-b px-4 bg-background">
+        <header className="bg-background flex h-14 items-center justify-between border-b px-4 lg:hidden">
           <Button
             onClick={() => setMobileOpen(true)}
-            className="p-2 -ml-2 rounded-md hover:bg-accent"
+            className="hover:bg-accent -ml-2 rounded-md p-2"
           >
             <Menu className="h-5 w-5" />
           </Button>
@@ -206,9 +201,7 @@ export function DashboardLayoutClient({
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto p-4 lg:p-8">
-          {children}
-        </main>
+        <main className="flex-1 overflow-y-auto p-4 lg:p-8">{children}</main>
       </div>
     </div>
   );

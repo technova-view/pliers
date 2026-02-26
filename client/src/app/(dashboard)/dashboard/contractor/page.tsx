@@ -1,5 +1,5 @@
-import { DashboardClient } from '@/components/dashboard-client';
+import { DashboardClient } from "@/components/dashboard-client";
 
 export default function ContractorDashboard() {
-	return <DashboardClient />;
+  return <DashboardClient />;
 }

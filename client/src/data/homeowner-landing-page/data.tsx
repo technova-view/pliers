@@ -15,7 +15,8 @@ export const homeownerLandingPageData = {
       text: "Every home problem,",
       span: "solved.",
     },
-    description: "Your AI-powered home care assistant. Diagnose issues instantly, get DIY solutions, or connect with trusted local contractors in South Africa.",
+    description:
+      "Your AI-powered home care assistant. Diagnose issues instantly, get DIY solutions, or connect with trusted local contractors in South Africa.",
     primaryCtaText: "Describe Your Problem",
     secondaryCtaText: "Find a Contractor",
     heroImageSrc: "/heroImage.jpeg",
@@ -30,9 +31,18 @@ export const homeownerLandingPageData = {
         emoji: "1️⃣",
         title: "Tell us what's happening",
         problems: [
-          { icon: <Droplets className="w-5 h-5" />, text: "My geyser is leaking." },
-          { icon: <ZapOff className="w-5 h-5" />, text: "My power keeps tripping." },
-          { icon: <Flame className="w-5 h-5" />, text: "There's a strange smell in the kitchen." },
+          {
+            icon: <Droplets className="h-5 w-5" />,
+            text: "My geyser is leaking.",
+          },
+          {
+            icon: <ZapOff className="h-5 w-5" />,
+            text: "My power keeps tripping.",
+          },
+          {
+            icon: <Flame className="h-5 w-5" />,
+            text: "There's a strange smell in the kitchen.",
+          },
         ],
       },
       {
@@ -50,7 +60,8 @@ export const homeownerLandingPageData = {
         number: 3,
         emoji: "3️⃣",
         title: "Get it sorted",
-        description: "If you need help, Pliers generates a clear job brief and connects you to local professionals near you.",
+        description:
+          "If you need help, Pliers generates a clear job brief and connects you to local professionals near you.",
         highlightText: "No confusion. No guessing. No endless searching.",
       },
     ],
@@ -60,18 +71,19 @@ export const homeownerLandingPageData = {
     badgeText: "Built for You",
     subtitle: "Whether it's:",
     categories: [
-      { icon: <Droplets className="w-6 h-6" />, name: "Plumbing leaks" },
-      { icon: <Zap className="w-6 h-6" />, name: "Electrical faults" },
-      { icon: <Thermometer className="w-6 h-6" />, name: "Geyser problems" },
-      { icon: <Wrench className="w-6 h-6" />, name: "Appliance breakdowns" },
-      { icon: <Lock className="w-6 h-6" />, name: "Security issues" },
+      { icon: <Droplets className="h-6 w-6" />, name: "Plumbing leaks" },
+      { icon: <Zap className="h-6 w-6" />, name: "Electrical faults" },
+      { icon: <Thermometer className="h-6 w-6" />, name: "Geyser problems" },
+      { icon: <Wrench className="h-6 w-6" />, name: "Appliance breakdowns" },
+      { icon: <Lock className="h-6 w-6" />, name: "Security issues" },
     ],
     footerText: "Pliers is designed for everyday home problems.",
   },
   builtForSouthAfricanHomes: {
     title: "Built for South African Homes",
     badgeText: "Local Focus",
-    description: "We understand local housing realities, common infrastructure issues, and the way South Africans describe home problems.",
+    description:
+      "We understand local housing realities, common infrastructure issues, and the way South Africans describe home problems.",
     highlightQuote: "This isn't generic advice.",
     highlightSubQuote: "It's built for where you live.",
   },

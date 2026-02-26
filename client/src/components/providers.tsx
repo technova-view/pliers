@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { Provider } from 'react-redux';
-import { store } from '@/lib/store';
-import { Toaster } from '@/components/ui/sonner';
+import { Provider } from "react-redux";
+import { store } from "@/lib/store";
+import { Toaster } from "@/components/ui/sonner";
 
 export function ReduxProvider({ children }: { children: React.ReactNode }) {
-	return (
-		<Provider store={store}>
-			{children}
-			<Toaster position="bottom-right" />
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      {children}
+      <Toaster position="bottom-right" />
+    </Provider>
+  );
 }

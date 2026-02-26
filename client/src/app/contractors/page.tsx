@@ -8,15 +8,15 @@ import { FAQ } from "@/components/landing-pages/faq";
 import { contractorLandingPageData } from "@/data/contractor-landing-page/data";
 
 export default function ContractorLandingPage() {
-	return (
-		<div className="flex flex-col min-h-screen font-primary">
-			<Header />
-			<Hero {...contractorLandingPageData.hero} />
-			<HowItWorks {...contractorLandingPageData.howItWorks} />
-			<AboutPliers {...contractorLandingPageData.aboutPliers} />
-			<FAQ {...contractorLandingPageData.faq} />
-			<Separator />
-			<Footer />
-		</div>
-	);
+  return (
+    <div className="font-primary flex min-h-screen flex-col">
+      <Header />
+      <Hero {...contractorLandingPageData.hero} />
+      <HowItWorks {...contractorLandingPageData.howItWorks} />
+      <AboutPliers {...contractorLandingPageData.aboutPliers} />
+      <FAQ {...contractorLandingPageData.faq} />
+      <Separator />
+      <Footer />
+    </div>
+  );
 }
