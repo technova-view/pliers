@@ -39,9 +39,14 @@ export const ROUTE_CONFIG: Record<
     requiredUserTypes: [UserType.CONTRACTOR],
     fallbackUrl: ROUTES.admin(),
   },
-  // Common routes (accessible to both admin and contractor) - at /dashboard/xxxx
+  // Home owner-only routes
+  [ROUTES.homeOwner()]: {
+    requiredUserTypes: [UserType.HOME_OWNER],
+    fallbackUrl: ROUTES.admin(),
+  },
+  // Common routes (accessible to all user types) - at /dashboard/xxxx
   [ROUTES.profile()]: {
-    requiredUserTypes: [UserType.PLATFORM_ADMIN, UserType.CONTRACTOR],
+    requiredUserTypes: [UserType.PLATFORM_ADMIN, UserType.CONTRACTOR, UserType.HOME_OWNER],
     fallbackUrl: undefined,
   },
 };

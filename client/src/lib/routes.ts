@@ -24,5 +24,6 @@ export const ROUTES = {
   dashboard: () => '/dashboard',
   admin: () => '/dashboard/admin',
   contractor: () => '/dashboard/contractor',
+  homeOwner: () => '/dashboard/home-owner',
   profile: () => '/dashboard/profile',
 };

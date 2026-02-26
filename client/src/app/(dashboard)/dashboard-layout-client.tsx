@@ -43,6 +43,12 @@ const navigationItems: NavigationItem[] = [
     scope: [UserType.CONTRACTOR],
   },
   {
+    name: "Dashboard",
+    href: ROUTES.homeOwner(),
+    icon: LayoutDashboard,
+    scope: [UserType.HOME_OWNER],
+  },
+  {
     name: "Admin",
     href: ROUTES.admin(),
     icon: Users,
@@ -52,7 +58,7 @@ const navigationItems: NavigationItem[] = [
     name: "Profile",
     href: ROUTES.profile(),
     icon: User,
-    scope: [UserType.PLATFORM_ADMIN, UserType.CONTRACTOR],
+    scope: [UserType.PLATFORM_ADMIN, UserType.CONTRACTOR, UserType.HOME_OWNER],
   },
 ];
 
