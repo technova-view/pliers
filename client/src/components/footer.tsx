@@ -1,58 +1,125 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import { ROUTES } from "@/lib/routes";
 
 export function Footer() {
   return (
-    <footer className="py-12 bg-[#F7F7F7] text-secondary">
+    <footer className="text-secondary bg-[#F7F7F7] py-12">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="mb-8 grid gap-8 md:grid-cols-4">
           <div className="space-y-4">
-            <div className="relative w-30 h-12">
+            <div className="relative h-12 w-30">
               <Image
                 fill
                 src="/logo.svg"
                 alt="Pliers Logo"
-                className="object-contain group-hover:scale-110 transition-transform duration-300 shrink-0"
+                className="shrink-0 object-contain transition-transform duration-300 group-hover:scale-110"
               />
             </div>
-            <p className="text-sm text-secondary/70">
-              AI-powered home diagnostics connecting homeowners with trusted contractors.
+            <p className="text-secondary/70 text-sm">
+              AI-powered home diagnostics connecting homeowners with trusted
+              contractors.
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-secondary">Product</h4>
-            <ul className="space-y-2 text-sm text-secondary/70">
-              <li><Link href="#features" className="hover:text-primary transition-colors">Features</Link></li>
-              <li><Link href="#pricing" className="hover:text-primary transition-colors">Pricing</Link></li>
-              <li><Link href="#testimonials" className="hover:text-primary transition-colors">Testimonials</Link></li>
+            <h4 className="text-secondary mb-4 font-semibold">Product</h4>
+            <ul className="text-secondary/70 space-y-2 text-sm">
+              <li>
+                <Link
+                  href="#features"
+                  className="hover:text-primary transition-colors"
+                >
+                  Features
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#pricing"
+                  className="hover:text-primary transition-colors"
+                >
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#testimonials"
+                  className="hover:text-primary transition-colors"
+                >
+                  Testimonials
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-secondary">Company</h4>
-            <ul className="space-y-2 text-sm text-secondary/70">
-              <li><Link href="/about" className="hover:text-primary transition-colors">About</Link></li>
-              <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
-              <li><Link href="/careers" className="hover:text-primary transition-colors">Careers</Link></li>
+            <h4 className="text-secondary mb-4 font-semibold">Company</h4>
+            <ul className="text-secondary/70 space-y-2 text-sm">
+              <li>
+                <Link
+                  href={ROUTES.about()}
+                  className="hover:text-primary transition-colors"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={ROUTES.blog()}
+                  className="hover:text-primary transition-colors"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={ROUTES.careers()}
+                  className="hover:text-primary transition-colors"
+                >
+                  Careers
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-secondary">Legal</h4>
-            <ul className="space-y-2 text-sm text-secondary/70">
-              <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy</Link></li>
-              <li><Link href="/terms" className="hover:text-primary transition-colors">Terms</Link></li>
-              <li><Link href="/security" className="hover:text-primary transition-colors">Security</Link></li>
+            <h4 className="text-secondary mb-4 font-semibold">Legal</h4>
+            <ul className="text-secondary/70 space-y-2 text-sm">
+              <li>
+                <Link
+                  href={ROUTES.privacy()}
+                  className="hover:text-primary transition-colors"
+                >
+                  Privacy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={ROUTES.terms()}
+                  className="hover:text-primary transition-colors"
+                >
+                  Terms
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={ROUTES.security()}
+                  className="hover:text-primary transition-colors"
+                >
+                  Security
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
-        <Separator className="my-8 bg-secondary/10" />
+        <Separator className="bg-secondary/10 my-8" />
 
-        <div className="text-center text-sm text-secondary/60">
-          © {new Date().getFullYear()} Pliers. All rights reserved. Made with ❤️ for homeowners and contractors.
+        <div className="text-secondary/60 text-center text-sm">
+          All rights reserved. Made with ❤️
+          for homeowners and contractors.
+          Pliers © {new Date().getFullYear()}
         </div>
       </div>
     </footer>

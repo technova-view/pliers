@@ -1,4 +1,5 @@
 export enum UserType {
   PLATFORM_ADMIN = 'PLATFORM_ADMIN',
   CONTRACTOR = 'CONTRACTOR',
+  HOME_OWNER = 'HOME_OWNER',
 }
