@@ -7,6 +7,7 @@ import { BuiltForRealHomes } from "@/components/landing-pages/built-for-real-hom
 import { BuiltForSouthAfricanHomes } from "@/components/landing-pages/built-for-south-african-homes";
 import { AboutPliers } from "@/components/landing-pages/about-pliers";
 import { FAQ } from "@/components/landing-pages/faq";
+import { FinalCta } from "@/components/landing-pages/final-cta";
 import { Home, Users, Zap } from "lucide-react";
 import { homeownerLandingPageData } from "../data/homeowner-landing-page/data";
 import { UserType } from "@/lib/enums";
@@ -27,13 +28,14 @@ export default function LandingPage() {
     <div className="font-primary flex min-h-screen flex-col">
       <Header userType={UserType.HOME_OWNER} />
       <Hero {...homeownerLandingPageData.hero} />
-			<AboutPliers {...aboutPliersData} />
+      <AboutPliers {...aboutPliersData} />
       <HowItWorks {...homeownerLandingPageData.howItWorks} />
       <BuiltForRealHomes {...homeownerLandingPageData.builtForRealHomes} />
       {/* <BuiltForSouthAfricanHomes
         {...homeownerLandingPageData.builtForSouthAfricanHomes}
       /> */}
       <FAQ {...homeownerLandingPageData.faq} />
+      <FinalCta />
       <Separator />
       <Footer />
     </div>
