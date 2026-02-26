@@ -56,7 +56,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* <ThemeToggle /> */}
           <Link href="/login">
             <Button
               variant="outline"
@@ -67,17 +66,18 @@ export function Header() {
           </Link>
 
           {/* Mobile Menu Button */}
-          <button
+          <div
+            role="button"
             onClick={toggleMenu}
-            className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="md:hidden hover:bg-gray-100 rounded-lg transition-colors"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6 text-gray-600" />
+              <X className="h-6 w-6 text-gray-600 shrink-0" />
             ) : (
-              <Menu className="h-6 w-6 text-gray-600" />
+              <Menu className="h-6 w-6 text-gray-600 shrink-0" />
             )}
-          </button>
+          </div>
         </div>
       </div>
 
@@ -140,7 +140,7 @@ export function Header() {
               <Link href="/login" onClick={closeMenu} className="mt-4 px-4">
                 <Button
                   variant="outline"
-                  className="w-full border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 py-6 text-base"
+                  className="w-full"
                 >
                   Sign In
                 </Button>

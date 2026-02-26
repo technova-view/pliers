@@ -11,7 +11,7 @@ export const contractorLandingPageData = {
     badgeText: "PLIERS — FOR PROFESSIONALS",
     title: {
       text: "Grow your business",
-      span: <span className='text-primary'>with quality leads.</span>
+      span: "with quality leads.",
     },
     description: "Connect with homeowners who need your expertise. Get clear, well-defined job briefs and build your reputation with our trusted platform.",
     primaryCtaText: "Join as a Contractor",

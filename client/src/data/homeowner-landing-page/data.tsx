@@ -13,7 +13,7 @@ export const homeownerLandingPageData = {
     badgeText: "PLIERS — HOME SERVICES",
     title: {
       text: "Every home problem,",
-      span: <span className="text-primary">solved.</span>
+      span: "solved.",
     },
     description: "Your AI-powered home care assistant. Diagnose issues instantly, get DIY solutions, or connect with trusted local contractors in South Africa.",
     primaryCtaText: "Describe Your Problem",

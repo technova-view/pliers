@@ -8,7 +8,7 @@ interface HeroProps {
   badgeText?: string;
   title: {
     text: string;
-    span?: ReactNode;
+    span: string;
   };
   description: string;
   primaryCtaText?: string;
@@ -35,7 +35,7 @@ export function Hero({
       <div className="container max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-12 md:py-16 lg:py-20">
           {/* Left Content */}
-          <div className="space-y-8 md:space-y-10 text-center lg:text-left">
+          <div className="order-2 lg:order-1 space-y-8 md:space-y-10 text-center lg:text-left">
             {/* Badge */}
             <Badge
               variant="outline"
@@ -48,7 +48,7 @@ export function Hero({
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-secondary leading-tight">
               {title.text}
-              {title.span}
+              <span className="text-primary ml-4">{title.span}</span>
             </h1>
 
             {/* Description */}
@@ -80,7 +80,7 @@ export function Hero({
           </div>
 
           {/* Right Side Image */}
-          <div className="relative h-75 md:h-100 lg:h-125 w-full rounded-2xl overflow-hidden shadow-2xl">
+          <div className="order-1 lg:order-2 relative h-50 md:h-100 lg:h-125 w-full rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src={heroImageSrc}
               alt={heroImageAlt}

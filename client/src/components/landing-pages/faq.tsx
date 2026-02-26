@@ -37,7 +37,7 @@ export function FAQ({
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="bg-white rounded-xl border border-secondary/10 hover:border-primary/30 transition-colors data-[state=open]:border-primary/30 data-[state=open]:shadow-sm"
+              className="last:border-b overflow-visible bg-white rounded-xl border border-secondary/10 hover:border-primary/30 transition-colors data-[state=open]:border-primary/30 data-[state=open]:shadow-sm"
             >
               <AccordionTrigger className="px-6 py-4 font-medium hover:no-underline hover:bg-secondary/5 rounded-t-xl transition-colors group">
                 <span className="flex items-start gap-3 text-left">

@@ -17,6 +17,7 @@ import { LogoutButton } from '@/components/logout-button';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { UserType } from '@/lib/enums';
+import { Button } from '@/components/ui/button';
 
 interface DashboardLayoutClientProps {
   children: React.ReactNode;
@@ -108,7 +109,7 @@ export function DashboardLayoutClient({
             </Link>
           )}
 
-          <button
+          <Button
             onClick={() => setCollapsed(!collapsed)}
             className="hidden lg:flex p-1 rounded-md hover:bg-accent"
           >
@@ -117,14 +118,14 @@ export function DashboardLayoutClient({
             ) : (
               <ChevronLeft className="h-5 w-5" />
             )}
-          </button>
+          </Button>
 
-          <button
+          <Button
             onClick={() => setMobileOpen(false)}
             className="lg:hidden p-1 rounded-md hover:bg-accent"
           >
             <X className="h-5 w-5" />
-          </button>
+          </Button>
         </div>
 
         {/* Navigation */}
@@ -194,12 +195,12 @@ export function DashboardLayoutClient({
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile header */}
         <header className="lg:hidden flex h-14 items-center justify-between border-b px-4 bg-background">
-          <button
+          <Button
             onClick={() => setMobileOpen(true)}
             className="p-2 -ml-2 rounded-md hover:bg-accent"
           >
             <Menu className="h-5 w-5" />
-          </button>
+          </Button>
           <span className="font-semibold">Pliers</span>
           <div className="w-9" />
         </header>
