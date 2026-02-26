@@ -2,17 +2,9 @@ import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Injectable, Logger } from '@nestjs/common';
 import { Job } from 'bullmq';
 import { MailJobData } from '../types';
-import { MailerManager } from './mailer-manager.service';
+import { MailerManager } from '../services/mail-manager.service';
 
-/**
- * Mail Processor - Fallback Mail Handler
- * 
- * This processor is kept as a fallback for:
- * 1. Legacy code that still uses BullMQ directly
- * 2. Retry scenarios where Kafka events fail
- * 
- * For new code, use MailerService.publishEmail() which publishes MAIL_QUEUED events.
- */
+
 @Injectable()
 @Processor('mail')
 export class MailProcessor extends WorkerHost {

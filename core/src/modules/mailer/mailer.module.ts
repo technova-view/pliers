@@ -2,12 +2,12 @@ import { Module } from "@nestjs/common";
 import { BullModule } from "@nestjs/bullmq";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { EnvironmentConfig } from "src/common/interfaces/config.interface";
-import { MailTemplateRenderer } from "./services/template-renderer.service";
+import { MailTemplateRenderer } from "./services/mail-template.renderer";
 import { MailerService } from "./services/mailer.service";
-import { MjmlTemplateEngine } from "./services/mjml-engine.service";
-import { MailerManager } from "./services/mailer-manager.service";
-import { MailProcessor } from "./services/processor.service";
-import { SmtpProvider } from "./services/smtp-provider.service";
+import { MjmlTemplateEngine } from "./engines/mjml.engine";
+import { MailerManager } from "./services/mail-manager.service";
+import { MailProcessor } from "./processors/processor";
+import { SmtpProvider } from "./providers/smtp.provider";
 import { MailProvider } from "./types";
 
 @Module({

@@ -1,7 +1,7 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectQueue } from "@nestjs/bullmq";
 import { Queue } from "bullmq";
-import { MailTemplateRenderer } from "./template-renderer.service";
+import { MailTemplateRenderer } from "./mail-template.renderer";
 import { SendMailOptions, MailJobData } from "../types";
 
 @Injectable()
@@ -14,7 +14,7 @@ export class MailerService {
     ) {}
 
     /**
-     * Directly queue a mail job using BullMQ (no event layer)
+     * Directly queue a mail job using BullMQ
      */
     async sendMail(options: SendMailOptions): Promise<string> {
         const content = await this.mailRenderer.render(options.template, options.data);
