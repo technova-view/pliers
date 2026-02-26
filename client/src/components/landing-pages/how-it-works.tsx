@@ -26,7 +26,6 @@ interface HowItWorksProps {
 export function HowItWorks({
   title = "How It Works",
   badgeText = "Simple Process",
-  steps,
 }: HowItWorksProps) {
   return (
     <section className="py-16 md:py-20 bg-white">

@@ -10,10 +10,19 @@ interface BuiltForRealHomesProps {
   subtitle?: string;
   categories: Category[];
   footerText?: string;
+  description?: string;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 export function BuiltForRealHomes({
+  title,
+  badgeText,
+  subtitle,
   categories,
+  description,
+  imageSrc = "/contractors.jpeg",
+  imageAlt = "Professional contractor at work",
 }: BuiltForRealHomesProps) {
   return (
     <section className="py-20 bg-secondary">
@@ -21,15 +30,24 @@ export function BuiltForRealHomes({
         <div className="grid grid-cols-1 md:grid-cols-2 rounded-3xl overflow-hidden">
           {/* Left Content */}
           <div className="flex flex-col justify-center p-8 md:p-12">
+            {badgeText && (
+              <Badge className="mb-4 bg-white/10 px-4 py-1.5 text-white border-white/20">
+                {badgeText}
+              </Badge>
+            )}
+
             <h2 className="text-3xl md:text-4xl font-semibold text-white leading-tight mb-5">
-              Connecting You With Trusted <br />
-              Professionals
+              {title}
             </h2>
 
+            {subtitle && (
+              <p className="text-white/80 text-base md:text-lg font-medium mb-4">
+                {subtitle}
+              </p>
+            )}
+
             <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-md mb-8">
-              Our network includes verified contractors across South Africa,
-              ready to assist with home repairs, maintenance, and renovation
-              services.
+              {description}
             </p>
 
             {/* Tags */}
@@ -48,8 +66,8 @@ export function BuiltForRealHomes({
           {/* Right Image */}
           <div className="relative hidden md:block">
             <img
-              src="/contractors.jpeg"
-              alt="Professional contractor at work"
+              src={imageSrc}
+              alt={imageAlt}
               className="absolute inset-0 w-full h-full object-cover"
             />
 

@@ -67,9 +67,10 @@ export const homeownerLandingPageData = {
     ],
   },
   builtForRealHomes: {
-    title: "Built for Real Homes",
+    title: "Connecting You With Trusted Professionals",
     badgeText: "Built for You",
     subtitle: "Whether it's:",
+    description: "Our network includes verified contractors across South Africa, ready to assist with home repairs, maintenance, and renovation services.",
     categories: [
       { name: "Plumbers" },
       { name: "Electricians" },
@@ -79,7 +80,10 @@ export const homeownerLandingPageData = {
       { name: "HVAC Technicians" },
       { name: "Locksmiths" },
       { name: "Pest Control" },
-    ]
+    ],
+    footerText: "Find the right professional for your needs",
+    imageSrc: "/contractors.jpeg",
+    imageAlt: "Professional contractor at work",
   },
   builtForSouthAfricanHomes: {
     title: "Built for South African Homes",
