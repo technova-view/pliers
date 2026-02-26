@@ -18,6 +18,7 @@ export interface RefreshTokenRequest {
 }
 
 export interface GoogleAuthRequest {
+	userType: UserType;
 	accessToken: string;
 }
 

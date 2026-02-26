@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { UserType } from '@/lib/enums';
 
-export default function GoogleLoginButton() {
+export default function GoogleLoginButton({ userType = UserType.CONTRACTOR }: { userType?: UserType }) {
     const router = useRouter();
     const [googleAuth, { isLoading }] = useGoogleAuthMutation();
 
@@ -56,10 +56,9 @@ export default function GoogleLoginButton() {
     const handleGoogleSignIn = async () => {
         try {
             const idToken = await openGooglePopup();
-
-            const response = await googleAuth({ accessToken: idToken }).unwrap();
+            await googleAuth({ accessToken: idToken, userType: userType }).unwrap();
             toast.success('Google Sign-In successful');
-            response.data?.userType === UserType.PLATFORM_ADMIN ? router.push('/admin') : router.push('/dashboard');
+            router.push('/dashboard');
             router.refresh();
         } catch (err) {
             console.error(err);
