@@ -11,6 +11,7 @@ import { useAuth } from "@/lib/hooks";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { BaseApiError } from "@/lib/types";
 import GoogleLoginButton from "@/components/authentication/google-login-button";
@@ -90,9 +91,9 @@ function LoginContent() {
             <div className="w-full max-w-md">
               <div className="relative">
                 <img 
-                  src={"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop"}
+                  src={"/auth-illustration.png"}
                   alt={isHomeowner ? "Homeowner illustration" : "Contractor illustration"}
-                  className="w-full h-auto rounded-lg shadow-2xl"
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -101,71 +102,54 @@ function LoginContent() {
           {/* Right side - Form */}
           <div className="flex items-center justify-center">
             <div className="w-full max-w-md">
-              {/* Tab system */}
-              <div className="mb-8">
-                <div className="flex bg-gray-100 p-1 rounded-lg">
-                  <button
-                    onClick={() => {
-                      setActiveTab(UserType.CONTRACTOR);
-                      router.push(ROUTES.login({ userType: UserType.CONTRACTOR }));
-                    }}
-                    className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 cursor-pointer ${
-                      activeTab === UserType.CONTRACTOR
-                        ? "bg-white text-gray-900 shadow-sm"
-                        : "text-gray-600 hover:text-gray-800"
-                    }`}
-                  >
-                    Contractor
-                  </button>
-                  <button
-                    onClick={() => {
-                      setActiveTab(UserType.HOME_OWNER);
-                      router.push(ROUTES.login({ userType: UserType.HOME_OWNER }));
-                    }}
-                    className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 cursor-pointer ${
-                      activeTab === UserType.HOME_OWNER
-                        ? "bg-white text-gray-900 shadow-sm"
-                        : "text-gray-600 hover:text-gray-800"
-                    }`}
-                  >
-                    Homeowner
-                  </button>
-                </div>
-              </div>
+               {/* Tab system */}
+               <div className="mb-8">
+                 <Tabs defaultValue={UserType.CONTRACTOR} value={activeTab} onValueChange={(value) => {
+                   setActiveTab(value as UserType);
+                   router.push(ROUTES.login({ userType: value as UserType }));
+                 }}>
+                   <TabsList className="w-full">
+                     <TabsTrigger value={UserType.CONTRACTOR} className="flex-1">
+                       Contractor
+                     </TabsTrigger>
+                     <TabsTrigger value={UserType.HOME_OWNER} className="flex-1">
+                       Homeowner
+                     </TabsTrigger>
+                   </TabsList>
+                 </Tabs>
+               </div>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="user@example.com"
-                    {...register("email")}
-                    className="rounded-lg"
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-red-500">{errors.email.message}</p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    {...register("password")}
-                    className="rounded-lg"
-                  />
-                  {errors.password && (
-                    <p className="text-sm text-red-500">
-                      {errors.password.message}
-                    </p>
-                  )}
-                </div>
-                
-                <Button type="submit" className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg font-medium" disabled={isLoading}>
-                  {isLoading ? "Signing in..." : "Sign In"}
-                </Button>
+               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                 <div className="space-y-2">
+                   <Label htmlFor="email">Email</Label>
+                   <Input
+                     id="email"
+                     type="email"
+                     placeholder="user@example.com"
+                     {...register("email")}
+                   />
+                   {errors.email && (
+                     <p className="text-sm text-red-500">{errors.email.message}</p>
+                   )}
+                 </div>
+                 <div className="space-y-2">
+                   <Label htmlFor="password">Password</Label>
+                   <Input
+                     id="password"
+                     type="password"
+                     placeholder="Enter your password"
+                     {...register("password")}
+                   />
+                   {errors.password && (
+                     <p className="text-sm text-red-500">
+                       {errors.password.message}
+                     </p>
+                   )}
+                 </div>
+                 
+                 <Button type="submit" className="w-full" disabled={isLoading}>
+                   {isLoading ? "Signing in..." : "Sign In"}
+                 </Button>
                 
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
