@@ -7,10 +7,19 @@ import {
     IsEmail,
     MinLength,
     IsOptional,
+    IsEnum,
 } from 'class-validator';
 import { NAME_REGEX } from '../../../common/regex/name.regex';
+import { UserType } from 'src/common/enums/user-type.enum';
+import { Column } from 'typeorm';
 
 export class SignupDto {
+
+    @ApiProperty({ example: 'contracor' })
+    @IsEnum(UserType)
+    @IsNotEmpty()
+    @Column({ type: 'enum', enum: UserType, default: UserType.CONTRACTOR })
+    userType: UserType;
 
     @ApiProperty({ example: 'user@pliers.com' })
     @IsEmail()

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req } from "@nestjs/common";
+import { Body, Controller, Post } from "@nestjs/common";
 import { AuthService } from "../services/auth.service";
 import { Public } from "../../../common/decorators/public.decorator";
 import { SignupDto } from "../dto/signup.dto";
@@ -8,7 +8,6 @@ import { GoogleAuthDto } from "../dto/google-auth.dto";
 import { BaseApiResponse } from "../../../common/interfaces/api-response.interface";
 import { RefreshAccessTokenResponseDto, LogoutResponseDto } from "../dto/auth-response.dto";
 import { ApiBearerAuth } from "@nestjs/swagger";
-import { RequestInterface } from "src/common/interfaces/request.interface";
 
 @Controller('auth')
 export class AuthController {

@@ -53,7 +53,7 @@ export class AuthService {
             lastName,
             provider: 'email',
             accountVerified: false,
-            userType: UserType.CONTRACTOR,
+            userType: signupDto.userType,
         });
 
         const savedUser = await this.userRepository.save(user);

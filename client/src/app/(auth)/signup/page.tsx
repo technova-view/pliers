@@ -15,6 +15,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { toast } from 'sonner';
 import { BaseApiError } from '@/lib/types';
 import GoogleLoginButton from '@/components/google-login-button';
+import { UserType } from '@/lib/enums';
 
 const signupSchema = z.object({
 	email: z.email('Invalid email address'),
@@ -59,6 +60,7 @@ export default function SignupPage() {
 				password: data.password,
 				firstName: data.firstName,
 				lastName: data.lastName,
+				userType: UserType.CONTRACTOR,
 			}).unwrap();
 
 			toast.success(signupResponse.message || 'Account created successfully! Please sign in.');

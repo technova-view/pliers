@@ -6,6 +6,7 @@ export interface LoginRequest {
 }
 
 export interface SignupRequest {
+	userType: UserType;
 	email: string;
 	password: string;
 	firstName?: string;
@@ -19,8 +20,6 @@ export interface RefreshTokenRequest {
 export interface GoogleAuthRequest {
 	accessToken: string;
 }
-
-
 
 export interface BaseApiResponse<T> {
 	success: boolean;
