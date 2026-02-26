@@ -5,11 +5,14 @@ import { useGoogleAuthMutation } from "@/lib/api/auth-api-slice";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { UserType } from "@/lib/enums";
+import { cn } from "@/lib/utils";
 
 export default function GoogleLoginButton({
   userType = UserType.CONTRACTOR,
+  className,
 }: {
   userType?: UserType;
+  className?: string;
 }) {
   const router = useRouter();
   const [googleAuth, { isLoading }] = useGoogleAuthMutation();
@@ -75,7 +78,7 @@ export default function GoogleLoginButton({
     <Button
       type="button"
       variant="outline"
-      className="w-full"
+      className={cn("w-full", className)}
       onClick={handleGoogleSignIn}
       disabled={isLoading}
     >
