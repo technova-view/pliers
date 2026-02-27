@@ -39,13 +39,6 @@ export function BuiltForRealHomes({
             <h2 className="text-3xl md:text-4xl font-semibold text-white leading-tight mb-5">
               {title}
             </h2>
-
-            {subtitle && (
-              <p className="text-white/80 text-base md:text-lg font-medium mb-4">
-                {subtitle}
-              </p>
-            )}
-
             <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-md mb-8">
               {description}
             </p>
