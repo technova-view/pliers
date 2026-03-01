@@ -17,6 +17,7 @@ import GoogleLoginButton from "@/components/authentication/google-login-button";
 import { UserType } from "@/lib/enums";
 import { ROUTES } from "@/lib/routes";
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { Header } from "@/components/header";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -71,13 +72,14 @@ function LoginContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 flex flex-col font-primary">
+      <Header userType={userType} />
       <div className="flex-1 flex items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left side - Branding & Illustration */}
           <div className="hidden lg:flex flex-col items-center text-center space-y-8">
             <div className="space-y-4">
               <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
-                <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                <span className="bg-secondary bg-clip-text text-transparent">
                   Log in to your account
                 </span>
               </h1>

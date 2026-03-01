@@ -17,6 +17,7 @@ import { UserType, ServiceCategory } from "@/lib/enums";
 import GoogleLoginButton from "@/components/authentication/google-login-button";
 import { ROUTES } from "@/lib/routes";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Header } from "@/components/header";
 
 const contractorSignupSchema = z
   .object({
@@ -117,7 +118,7 @@ function SignupContent() {
 
       toast.success(
         signupResponse.message ||
-          "Account created successfully! Please sign in."
+        "Account created successfully! Please sign in."
       );
       router.push(ROUTES.login({ userType: activeTab }));
     } catch (error: unknown) {
@@ -142,6 +143,7 @@ function SignupContent() {
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
+      <Header userType={activeTab} />
       <div className="grow flex items-center justify-center p-4">
         <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left side - Illustration */}
@@ -154,10 +156,10 @@ function SignupContent() {
                 Let's get started with your account
               </p>
             </div>
-            
+
             <div className="w-full max-w-md">
               <div className="relative">
-                <img 
+                <img
                   src={"/auth-illustration.png"}
                   alt={isContractor ? "Contractor illustration" : "Homeowner illustration"}
                   className="w-full h-auto"
@@ -169,8 +171,8 @@ function SignupContent() {
           {/* Right side - Form */}
           <div className="flex items-center justify-center">
             <div className="w-full max-w-md">
-               {/* Tab system */}
-               <div className="mb-8">
+              {/* Tab system */}
+              <div className="mb-8">
                 <Tabs defaultValue={UserType.CONTRACTOR} value={activeTab} onValueChange={(value) => {
                   setActiveTab(value as UserType);
                   router.push(ROUTES.signup({ userType: value as UserType }));
@@ -309,11 +311,11 @@ function SignupContent() {
                     </p>
                   )}
                 </div>
-                
+
                 <Button type="submit" className="w-full" disabled={isSignupLoading}>
                   {isSignupLoading ? "Creating account..." : "Sign Up"}
                 </Button>
-               
+
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
                     <span className="w-full border-t" />
@@ -324,15 +326,15 @@ function SignupContent() {
                     </span>
                   </div>
                 </div>
-                
+
                 <GoogleLoginButton userType={activeTab} className="w-full" />
-                
-                 <p className="text-center text-sm text-gray-600">
-                   Already have an account?{" "}
-                   <Link href={ROUTES.login({ userType: activeTab })} className="text-primary hover:underline">
-                     Login
-                   </Link>
-                 </p>
+
+                <p className="text-center text-sm text-gray-600">
+                  Already have an account?{" "}
+                  <Link href={ROUTES.login({ userType: activeTab })} className="text-primary hover:underline">
+                    Login
+                  </Link>
+                </p>
               </form>
             </div>
           </div>
