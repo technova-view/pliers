@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X, UserPlus, LogIn } from "lucide-react";
+import { Menu, X, UserPlus, LogIn, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { UserType } from "@/lib/enums";
+import { useAuth } from "@/lib/hooks";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { ROUTES } from "@/lib/routes";
 
@@ -18,6 +20,7 @@ interface HeaderProps {
 export function Header({ userType: propUserType, showAuthButtons = true }: HeaderProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -27,11 +30,18 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
     setIsMenuOpen(false);
   };
 
+  const toggleUserMenu = () => {
+    setIsUserMenuOpen(!isUserMenuOpen);
+  };
+
   const navItems = ["Home", "About", "How It Works", "Find A Contractor", "Post A Project"];
 
   // Determine user type: use prop if provided, then default to CONTRACTOR
   // Note: We're avoiding useSearchParams() here to prevent CSR bailout during pre-rendering
   const userType = propUserType || UserType.CONTRACTOR;
+
+  // Get auth state
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <header className="font-primary sticky top-0 z-50 border-b bg-white">
@@ -79,7 +89,54 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
         </nav>
 
         <div className="flex items-center gap-3">
-          {showAuthButtons && (
+          {showAuthButtons && isAuthenticated && user ? (
+            // Authenticated user menu
+            <div className="relative">
+              <button
+                onClick={toggleUserMenu}
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+              >
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src="/avatar.jpeg" alt="User avatar" />
+                  <AvatarFallback>
+                    {user.firstName?.charAt(0) || ""}{user.lastName?.charAt(0) || ""}
+                  </AvatarFallback>
+                </Avatar>
+                <span className="hidden sm:inline-block">
+                  {user.firstName} {user.lastName}
+                </span>
+                <ChevronDown className="h-4 w-4 opacity-50" />
+              </button>
+
+              {isUserMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border py-1 z-50">
+                  <Link
+                    href={ROUTES.profile()}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    href={ROUTES.dashboard()}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <div className="border-t my-1"></div>
+                  <Link
+                    href={ROUTES.logout()}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsUserMenuOpen(false)}
+                  >
+                    Logout
+                  </Link>
+                </div>
+              )}
+            </div>
+          ) : showAuthButtons ? (
+            // Unauthenticated auth buttons
             <>
               <Link href={ROUTES.login({ userType })}>
                 <Button
@@ -100,7 +157,7 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
                 </Button>
               </Link>
             </>
-          )}
+          ) : null}
 
           {/* Mobile Menu Button */}
           <div
@@ -184,7 +241,37 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
                 For Contractors
               </Link>
 
-              {showAuthButtons && (
+              {showAuthButtons && isAuthenticated && user ? (
+                <div className="mt-4 px-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src="/avatar.jpeg" alt="User avatar" />
+                      <AvatarFallback>
+                        {user.firstName?.charAt(0) || ""}{user.lastName?.charAt(0) || ""}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <p className="font-medium">{user.firstName} {user.lastName}</p>
+                      <p className="text-sm text-gray-500">{user.email}</p>
+                    </div>
+                  </div>
+                  <Link href={ROUTES.profile()} onClick={closeMenu} className="block">
+                    <Button variant="outline" className="w-full mb-2">
+                      Profile
+                    </Button>
+                  </Link>
+                  <Link href={ROUTES.dashboard()} onClick={closeMenu} className="block">
+                    <Button variant="outline" className="w-full mb-2">
+                      Dashboard
+                    </Button>
+                  </Link>
+                  <Link href={ROUTES.logout()} onClick={closeMenu} className="block">
+                    <Button variant="outline" className="w-full">
+                      Logout
+                    </Button>
+                  </Link>
+                </div>
+              ) : showAuthButtons ? (
                 <>
                   <Link href={ROUTES.login({ userType })} onClick={closeMenu} className="mt-4 px-4">
                     <Button variant="outline" className="w-full">
@@ -200,7 +287,7 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
                     </Button>
                   </Link>
                 </>
-              )}
+              ) : null}
             </nav>
           </div>
         </>
