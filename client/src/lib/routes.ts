@@ -12,10 +12,6 @@ export const ROUTES = {
     return params?.userType ? `${path}?userType=${params.userType}` : path;
   },
   forgotPassword: () => '/forgot-password',
-  resetPassword: (params?: { email?: string }) => {
-    const path = '/reset-password';
-    return params?.email ? `${path}?email=${encodeURIComponent(params.email)}` : path;
-  },
   contractors: () => '/contractors',
   googleOAuthCallback: () => '/google-oauth-callback',
   about: () => '/about',

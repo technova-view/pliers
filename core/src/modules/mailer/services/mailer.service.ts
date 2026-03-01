@@ -17,6 +17,7 @@ export class MailerService {
      * Directly queue a mail job using BullMQ
      */
     async sendMail(options: SendMailOptions): Promise<string> {
+        Logger.log(`Sending mail to ${options.to} with subject ${options.subject}`);
         const content = await this.mailRenderer.render(options.template, options.data);
 
         const jobData: MailJobData = {
