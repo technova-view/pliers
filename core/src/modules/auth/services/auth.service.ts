@@ -10,14 +10,19 @@ import { ContractorSignupDto } from '../dto/contractor-signup.dto';
 import { LoginDto } from '../dto/login.dto';
 import { RefreshTokenDto } from '../dto/refresh-token.dto';
 import { GoogleAuthDto } from '../dto/google-auth.dto';
+import { ForgotPasswordDto } from '../dto/forgot-password.dto';
+import { VerifyOtpDto } from '../dto/verify-otp.dto';
+import { ResetPasswordDto } from '../dto/reset-password.dto';
 import { User } from '../../database/entities/user.entity';
 import { UserSession } from '../../database/entities/user-session.entity';
 import { Business } from '../../database/entities/business.entity';
+import { PasswordResetOtp } from '../../database/entities/password-reset-otp.entity';
 import { BaseApiResponse } from '../../../common/interfaces/api-response.interface';
 import { EnvironmentConfig } from '../../../common/interfaces/config.interface';
 import { RefreshAccessTokenResponseDto, LogoutResponseDto, AuthTokensResponseDto } from '../dto/auth-response.dto';
 import { AccessTokenPayload, RefreshTokenPayload } from 'src/common/interfaces/token.interface';
 import { UserType } from 'src/common/enums/user-type.enum';
+import { MailerService } from '../../mailer/services/mailer.service';
 @Injectable()
 export class AuthService {
 
@@ -28,8 +33,11 @@ export class AuthService {
         private readonly userSessionRepository: Repository<UserSession>,
         @InjectRepository(Business)
         private readonly businessRepository: Repository<Business>,
+        @InjectRepository(PasswordResetOtp)
+        private readonly passwordResetOtpRepository: Repository<PasswordResetOtp>,
         private readonly jwtService: JwtService,
         private readonly configService: ConfigService<EnvironmentConfig>,
+        private readonly mailerService: MailerService,
     ) { }
 
     /**
@@ -289,4 +297,143 @@ export class AuthService {
     .where('user.email = :email', { email })
     .getOne();
 }
+
+  /**
+   * Generate a 6-digit OTP
+   * @returns 6-digit OTP string
+   */
+  private generateOtp(): string {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+  }
+
+  /**
+   * Send password reset OTP to user's email
+   * @param forgotPasswordDto - Forgot password data
+   */
+  async forgotPassword(forgotPasswordDto: ForgotPasswordDto): Promise<BaseApiResponse<{ message: string }>> {
+    const { email } = forgotPasswordDto;
+
+    // Find user by email
+    const user = await this.userRepository.findOne({ where: { email } });
+    
+    // Even if user doesn't exist, don't reveal that
+    // Just return success to prevent email enumeration
+    if (!user) {
+      return BaseApiResponse.success('If an account exists with this email, an OTP will be sent', { message: 'OTP sent' });
+    }
+
+    // Generate 6-digit OTP
+    const otp = this.generateOtp();
+
+    // Set OTP expiry to 15 minutes
+    const expiresAt = new Date();
+    expiresAt.setMinutes(expiresAt.getMinutes() + 15);
+
+    // Create OTP record
+    const passwordResetOtp = this.passwordResetOtpRepository.create({
+      email,
+      otp,
+      userId: user.id,
+      expiresAt,
+      used: false,
+      expired: false,
+    });
+
+    await this.passwordResetOtpRepository.save(passwordResetOtp);
+
+    // Send email with OTP
+    await this.mailerService.sendMail({
+      to: email,
+      subject: 'Password Reset OTP',
+      template: 'password-reset',
+      data: {
+        otp,
+        firstName: user.firstName,
+        expiresIn: '15 minutes',
+      },
+    });
+
+    return BaseApiResponse.success('If an account exists with this email, an OTP will be sent', { message: 'OTP sent' });
+  }
+
+  /**
+   * Verify the OTP sent to user's email
+   * @param verifyOtpDto - Verify OTP data
+   */
+  async verifyOtp(verifyOtpDto: VerifyOtpDto): Promise<BaseApiResponse<{ valid: boolean }>> {
+    const { email, otp } = verifyOtpDto;
+
+    // Find the most recent unused OTP for this email
+    const passwordResetOtp = await this.passwordResetOtpRepository.findOne({
+      where: { email, used: false },
+      order: { createdAt: 'DESC' },
+    });
+
+    if (!passwordResetOtp) {
+      throw new BadRequestException('Invalid or expired OTP');
+    }
+
+    // Check if OTP is expired
+    if (passwordResetOtp.expiresAt < new Date() || passwordResetOtp.expired) {
+      throw new BadRequestException('OTP has expired');
+    }
+
+    // Verify OTP
+    if (passwordResetOtp.otp !== otp) {
+      throw new BadRequestException('Invalid OTP');
+    }
+
+    return BaseApiResponse.success('OTP verified successfully', { valid: true });
+  }
+
+  /**
+   * Reset user's password using OTP
+   * @param resetPasswordDto - Reset password data
+   */
+  async resetPassword(resetPasswordDto: ResetPasswordDto): Promise<BaseApiResponse<{ message: string }>> {
+    const { email, otp, newPassword } = resetPasswordDto;
+
+    // Find the most recent unused OTP for this email
+    const passwordResetOtp = await this.passwordResetOtpRepository.findOne({
+      where: { email, used: false },
+      order: { createdAt: 'DESC' },
+    });
+
+    if (!passwordResetOtp) {
+      throw new BadRequestException('Invalid or expired OTP');
+    }
+
+    // Check if OTP is expired
+    if (passwordResetOtp.expiresAt < new Date() || passwordResetOtp.expired) {
+      throw new BadRequestException('OTP has expired');
+    }
+
+    // Verify OTP
+    if (passwordResetOtp.otp !== otp) {
+      throw new BadRequestException('Invalid OTP');
+    }
+
+    // Find user
+    const user = await this.userRepository.findOne({ where: { email } });
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    // Hash new password
+    const passwordHash = await bcrypt.hash(newPassword, 10);
+
+    // Update user's password
+    await this.userRepository.update(user.id, { passwordHash });
+
+    // Mark OTP as used
+    await this.passwordResetOtpRepository.update(passwordResetOtp.id, { used: true });
+
+    // Optionally, revoke all active sessions for security
+    // await this.userSessionRepository.update(
+    //   { user: { id: user.id }, revokedAt: IsNull() },
+    //   { revokedAt: new Date() }
+    // );
+
+    return BaseApiResponse.success('Password reset successfully', { message: 'Password has been reset' });
+  }
 }

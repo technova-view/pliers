@@ -8,6 +8,9 @@ import type {
   SignupRequest,
   RefreshTokenRequest,
   GoogleAuthRequest,
+  ForgotPasswordRequest,
+  VerifyOtpRequest,
+  ResetPasswordRequest,
 } from "../types";
 import {
   getAccessToken,
@@ -119,6 +122,45 @@ export const authApi = createApi({
         };
       },
     }),
+
+    // Forgot password - send OTP to email
+    forgotPassword: builder.mutation<
+      BaseApiResponse<{ message: string }>,
+      ForgotPasswordRequest
+    >({
+      query: (data) => ({
+        url: "/auth/forgot-password",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
+    // Verify OTP
+    verifyOtp: builder.mutation<
+      BaseApiResponse<{ valid: boolean }>,
+      VerifyOtpRequest
+    >({
+      query: (data) => ({
+        url: "/auth/verify-otp",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+
+    // Reset password
+    resetPassword: builder.mutation<
+      BaseApiResponse<{ message: string }>,
+      ResetPasswordRequest
+    >({
+      query: (data) => ({
+        url: "/auth/reset-password",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
@@ -129,4 +171,7 @@ export const {
   useLogoutMutation,
   useGetTokensQuery,
   useGoogleAuthMutation,
+  useForgotPasswordMutation,
+  useVerifyOtpMutation,
+  useResetPasswordMutation,
 } = authApi;

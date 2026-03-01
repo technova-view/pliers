@@ -10,6 +10,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../database/entities/user.entity';
 import { UserSession } from '../database/entities/user-session.entity';
 import { Business } from '../database/entities/business.entity';
+import { PasswordResetOtp } from '../database/entities/password-reset-otp.entity';
+import { MailerModule } from '../mailer/mailer.module';
 
 @Module({
    imports: [
@@ -24,7 +26,8 @@ import { Business } from '../database/entities/business.entity';
         },
       }),
     }),
-    TypeOrmModule.forFeature([User, UserSession, Business])
+    TypeOrmModule.forFeature([User, UserSession, Business, PasswordResetOtp]),
+    MailerModule,
   ],
 
   controllers: [AuthController],

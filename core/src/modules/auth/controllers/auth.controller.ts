@@ -5,6 +5,9 @@ import { SignupDto } from "../dto/signup.dto";
 import { LoginDto } from "../dto/login.dto";
 import { RefreshTokenDto } from "../dto/refresh-token.dto";
 import { GoogleAuthDto } from "../dto/google-auth.dto";
+import { ForgotPasswordDto } from "../dto/forgot-password.dto";
+import { VerifyOtpDto } from "../dto/verify-otp.dto";
+import { ResetPasswordDto } from "../dto/reset-password.dto";
 import { BaseApiResponse } from "../../../common/interfaces/api-response.interface";
 import { RefreshAccessTokenResponseDto, LogoutResponseDto } from "../dto/auth-response.dto";
 import { ApiBearerAuth } from "@nestjs/swagger";
@@ -47,6 +50,24 @@ export class AuthController {
   @Post('google')
   async googleAuth(@Body() googleAuthDto: GoogleAuthDto): Promise<BaseApiResponse<{ accessToken: string; refreshToken: string }>> {
     return this.authService.googleAuth(googleAuthDto);
+  }
+
+  @Public()
+  @Post('forgot-password')
+  async forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto): Promise<BaseApiResponse<{ message: string }>> {
+    return this.authService.forgotPassword(forgotPasswordDto);
+  }
+
+  @Public()
+  @Post('verify-otp')
+  async verifyOtp(@Body() verifyOtpDto: VerifyOtpDto): Promise<BaseApiResponse<{ valid: boolean }>> {
+    return this.authService.verifyOtp(verifyOtpDto);
+  }
+
+  @Public()
+  @Post('reset-password')
+  async resetPassword(@Body() resetPasswordDto: ResetPasswordDto): Promise<BaseApiResponse<{ message: string }>> {
+    return this.authService.resetPassword(resetPasswordDto);
   }
 
 }

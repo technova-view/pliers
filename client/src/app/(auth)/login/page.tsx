@@ -142,7 +142,7 @@ function LoginContent() {
                       Password
                     </Label>
                     <Link
-                      href="/forgot-password"
+                      href={ROUTES.forgotPassword()}
                       className="text-sm text-primary hover:text-primary/80 hover:underline transition-colors"
                     >
                       Forgot password?

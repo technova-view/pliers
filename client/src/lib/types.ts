@@ -25,6 +25,21 @@ export interface GoogleAuthRequest {
   accessToken: string;
 }
 
+export interface ForgotPasswordRequest {
+  email: string;
+}
+
+export interface VerifyOtpRequest {
+  email: string;
+  otp: string;
+}
+
+export interface ResetPasswordRequest {
+  email: string;
+  otp: string;
+  newPassword: string;
+}
+
 export interface BaseApiResponse<T> {
   success: boolean;
   message: string;
