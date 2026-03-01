@@ -240,18 +240,6 @@ function LoginContent() {
           </div>
         </div>
       </div>
-
-      {/* Footer - Desktop only */}
-      <div className="hidden lg:block text-center pb-6 text-xs text-gray-500">
-        By signing in, you agree to our{" "}
-        <Link href="/terms" className="hover:underline text-gray-700">
-          Terms of Service
-        </Link>{" "}
-        and{" "}
-        <Link href="/privacy" className="hover:underline text-gray-700">
-          Privacy Policy
-        </Link>
-      </div>
     </div>
   );
 }
