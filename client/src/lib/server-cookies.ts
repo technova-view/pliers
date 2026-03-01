@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { UserType } from "./enums";
+import { UserStatus, UserType } from "./enums";
 
 export const COOKIE_NAMES = {
   ACCESS_TOKEN: "accessToken",
@@ -14,6 +14,7 @@ export interface ServerUser {
   userType: UserType;
   createdAt: string;
   updatedAt: string;
+  status: UserStatus;
 }
 
 export interface ServerAuthState {
