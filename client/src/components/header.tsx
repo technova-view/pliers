@@ -11,9 +11,10 @@ import { ROUTES } from "@/lib/routes";
 
 interface HeaderProps {
   userType?: UserType;
+  showAuthButtons?: boolean;
 }
 
-export function Header({ userType: propUserType }: HeaderProps) {
+export function Header({ userType: propUserType, showAuthButtons = true }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -24,7 +25,7 @@ export function Header({ userType: propUserType }: HeaderProps) {
     setIsMenuOpen(false);
   };
 
-  const navItems = ["About", "How It Works", "Find A Contractor", "Post A Project"];
+  const navItems = ["Home","About", "How It Works", "Find A Contractor", "Post A Project"];
 
   // Determine user type: use prop if provided, then default to CONTRACTOR
   // Note: We're avoiding useSearchParams() here to prevent CSR bailout during pre-rendering
@@ -67,24 +68,28 @@ export function Header({ userType: propUserType }: HeaderProps) {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href={ROUTES.login({ userType })}>
-            <Button
-              variant="outline"
-              className="border-primary/30 text-primary hover:bg-primary hover:border-primary hidden transition-all duration-300 hover:text-white sm:inline-flex"
-            >
-              <LogIn className="mr-2 h-4 w-4" />
-              Sign In
-            </Button>
-          </Link>
+          {showAuthButtons && (
+            <>
+              <Link href={ROUTES.login({ userType })}>
+                <Button
+                  variant="outline"
+                  className="border-primary/30 text-primary hover:bg-primary hover:border-primary hidden transition-all duration-300 hover:text-white sm:inline-flex"
+                >
+                  <LogIn className="mr-2 h-4 w-4" />
+                  Sign In
+                </Button>
+              </Link>
 
-          <Link href={ROUTES.signup({ userType })}>
-            <Button
-              className="bg-primary hover:bg-primary/90 text-white hidden transition-all duration-300 hover:text-white sm:inline-flex"
-            >
-              <UserPlus className="mr-2 h-4 w-4" />
-              Create an Account
-            </Button>
-          </Link>
+              <Link href={ROUTES.signup({ userType })}>
+                <Button
+                  className="bg-primary hover:bg-primary/90 text-white hidden transition-all duration-300 hover:text-white sm:inline-flex"
+                >
+                  <UserPlus className="mr-2 h-4 w-4" />
+                  Create an Account
+                </Button>
+              </Link>
+            </>
+          )}
 
           {/* Mobile Menu Button */}
           <div
@@ -162,19 +167,23 @@ export function Header({ userType: propUserType }: HeaderProps) {
                 For Contractors
               </Link>
 
-               <Link href={ROUTES.login({ userType })} onClick={closeMenu} className="mt-4 px-4">
-                <Button variant="outline" className="w-full">
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Sign In
-                </Button>
-              </Link>
+              {showAuthButtons && (
+                <>
+                  <Link href={ROUTES.login({ userType })} onClick={closeMenu} className="mt-4 px-4">
+                    <Button variant="outline" className="w-full">
+                      <LogIn className="mr-2 h-4 w-4" />
+                      Sign In
+                    </Button>
+                  </Link>
 
-               <Link href={ROUTES.signup({ userType })} onClick={closeMenu} className="mt-2 px-4">
-                <Button className="w-full bg-primary hover:bg-primary/90 text-white">
-                  <UserPlus className="mr-2 h-4 w-4" />
-                  Create an Account
-                </Button>
-              </Link>
+                  <Link href={ROUTES.signup({ userType })} onClick={closeMenu} className="mt-2 px-4">
+                    <Button className="w-full bg-primary hover:bg-primary/90 text-white">
+                      <UserPlus className="mr-2 h-4 w-4" />
+                      Create an Account
+                    </Button>
+                  </Link>
+                </>
+              )}
             </nav>
           </div>
         </>
