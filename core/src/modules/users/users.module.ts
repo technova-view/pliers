@@ -4,6 +4,7 @@ import { User } from '../database/entities/user.entity';
 import { UserSession } from '../database/entities/user-session.entity';
 import { UserController } from './controllers/user.controller';
 import { UsersService } from './services/users.service';
+import { AdminGuard } from '../auth/guards/admin.guard';
 
 @Module({
    imports: [
@@ -11,7 +12,7 @@ import { UsersService } from './services/users.service';
   ],
 
   controllers: [UserController],
-  providers: [UsersService],
+  providers: [UsersService, AdminGuard],
   exports: [UsersService],
 })
 export class UsersModule { }

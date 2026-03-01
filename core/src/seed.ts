@@ -99,7 +99,6 @@ async function seedUsers(): Promise<void> {
     lastName: '@admin',
     email: 'mdmarufbinsalim@gmail.com',
     passwordHash,
-    accountVerified: true,
     provider: 'email',
     userType: UserType.PLATFORM_ADMIN,
   });

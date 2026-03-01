@@ -1,4 +1,4 @@
-import { UserType, ServiceCategory } from "./enums";
+import { UserType, ServiceCategory, UserStatus } from "./enums";
 
 export interface LoginRequest {
   email: string;
@@ -77,6 +77,28 @@ export interface UserResponse {
   firstName?: string;
   lastName?: string;
   userType: UserType;
+  status: UserStatus;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface AdminUserQueryParams {
+  page?: number;
+  limit?: number;
+  userType?: UserType;
+  status?: UserStatus;
+  search?: string;
+}
+
+export interface PaginatedUsersResponse {
+  items: UserResponse[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
+export interface UpdateUserStatusRequest {
+  userId: string;
+  status: UserStatus;
 }

@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, Index, OneToOne } from 'typeorm';
 import { UserType } from '../../../common/enums/user-type.enum';
+import { UserStatus } from '../../../common/enums/user-status.enum';
 import { Business } from './business.entity';
 
 @Entity('users')
@@ -18,19 +19,13 @@ export class User {
   lastName?: string;
 
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
+  @Column({ type: 'varchar', length: 255, nullable: false, unique: true })
   @Index()
   email: string;
 
   @ApiProperty({ type: String, example: '$2b$10$...' })
   @Column({ type: 'varchar', length: 255, nullable: false, select: false })
   passwordHash: string;
-
-  @ApiProperty({ type: Boolean, default: false })
-  @Column({ type: 'boolean', nullable: false, default: false })
-  @Index()
-  accountVerified: boolean;
-
   
   // add provider: email | google 
   @Column({ type: 'varchar', length: 255, nullable: false, default: 'email' })
@@ -54,6 +49,16 @@ export class User {
   })
   @Index()
   userType: UserType;
+
+  @ApiProperty({ enum: UserStatus, default: UserStatus.ACTIVE })
+  @Column({
+    type: 'enum',
+    enum: UserStatus,
+    nullable: false,
+    default: UserStatus.ACTIVE,
+  })
+  @Index()
+  status: UserStatus;
 
   @OneToOne(() => Business, (business) => business.user)
   business: Business;

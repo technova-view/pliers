@@ -4,6 +4,13 @@ export enum UserType {
   HOME_OWNER = "HOME_OWNER",
 }
 
+export enum UserStatus {
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+  SUSPENDED = "SUSPENDED",
+  PENDING = "PENDING",
+}
+
 export enum ServiceCategory {
   PLUMBING = "PLUMBING",
   ELECTRICAL = "ELECTRICAL",

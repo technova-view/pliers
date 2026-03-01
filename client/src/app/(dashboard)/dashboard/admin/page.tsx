@@ -1,5 +1,5 @@
-import { AdminClient } from "@/components/admin-client";
+import { AdminDashboard } from "@/components/admin-dashboard";
 
 export default function Admin() {
-  return <AdminClient />;
+  return <AdminDashboard />;
 }
