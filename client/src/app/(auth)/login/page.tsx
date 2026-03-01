@@ -91,7 +91,7 @@ function LoginContent() {
             <div className="relative w-full max-w-md">
               <div className="absolute inset-0" />
               <img
-                src="/auth-illustration1.png"
+                src="/auth-illustration.webp"
                 alt="Login Illustration"
                 className="relative w-full h-auto "
               />
