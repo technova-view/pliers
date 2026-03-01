@@ -7,7 +7,6 @@ const navigation = {
     { name: "Start Diagnosis", href: "#" },
     { name: "For Contractors", href: ROUTES.contractors?.() ?? "/contractors" },
     { name: "Features", href: "#features" },
-    { name: "How It Works", href: "#how-it-works" },
     { name: "FAQ", href: "#faq" },
   ],
   social: [
