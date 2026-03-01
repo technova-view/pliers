@@ -161,11 +161,7 @@ export function AuthorizationGuard({
   }, [
     isAuthenticated,
     clientUser,
-    serverAuthState,
-    pathname,
-    router,
-    requiredUserTypes,
-    fallbackUrl,
+    serverAuthState
   ]);
 
   if (isLoading) {
