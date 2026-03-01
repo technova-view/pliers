@@ -87,11 +87,11 @@ function LoginContent() {
                 Log in to your account to continue
               </p>
             </div>
-            
+
             <div className="w-full max-w-md">
               <div className="relative">
-                <img 
-                  src={"/auth-illustration.png"}
+                <img
+                  src={"/auth-illustration1.png"}
                   alt={isHomeowner ? "Homeowner illustration" : "Contractor illustration"}
                   className="w-full h-auto"
                 />
@@ -146,11 +146,11 @@ function LoginContent() {
                      </p>
                    )}
                  </div>
-                 
+
                  <Button type="submit" className="w-full" disabled={isLoading}>
                    {isLoading ? "Signing in..." : "Sign In"}
                  </Button>
-                
+
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
                     <span className="w-full border-t" />
@@ -161,9 +161,9 @@ function LoginContent() {
                     </span>
                   </div>
                 </div>
-                
+
                 <GoogleLoginButton userType={activeTab} className="w-full" />
-                
+
                 <p className="text-center text-sm text-gray-600">
                    Don't have an account?{" "}
                    <Link href={ROUTES.signup({ userType: activeTab })} className="text-primary hover:underline">
