@@ -25,6 +25,7 @@ export class SmtpProvider implements MailProvider {
 
     async send(options: MailJobData): Promise<MailResult> {
         const info = await this.transporter.sendMail({
+            from: "noreply@pliers.co.za",
             to: options.to,
             subject: options.subject,
             html: options.html,
