@@ -50,7 +50,7 @@ export function AboutPliers({
           {/* Simplified About Content */}
           <div className="max-w-3xl mx-auto space-y-6">
             <div className="space-y-4">
-              <p className="text-secondary/70 leading-relaxed">
+              <p className="text-secondary/70 leading-relaxed text-justify">
                 {story}
               </p>
             </div>
