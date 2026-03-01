@@ -1,4 +1,4 @@
-import { Injectable, BadRequestException, UnauthorizedException, ForbiddenException } from '@nestjs/common';
+import { Injectable, BadRequestException, UnauthorizedException, ForbiddenException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
@@ -319,7 +319,7 @@ export class AuthService {
     // Even if user doesn't exist, don't reveal that
     // Just return success to prevent email enumeration
     if (!user) {
-      return BaseApiResponse.success('If an account exists with this email, an OTP will be sent', { message: 'OTP sent' });
+        throw new BadRequestException("User not found");
     }
 
     // Generate 6-digit OTP
@@ -339,21 +339,28 @@ export class AuthService {
       expired: false,
     });
 
-    await this.passwordResetOtpRepository.save(passwordResetOtp);
+    try {
 
-    // Send email with OTP
-    await this.mailerService.sendMail({
-      to: email,
-      subject: 'Password Reset OTP',
-      template: 'password-reset',
-      data: {
-        otp,
-        firstName: user.firstName,
-        expiresIn: '15 minutes',
-      },
-    });
+        await this.passwordResetOtpRepository.save(passwordResetOtp);
+        // Send email with OTP
+        await this.mailerService.sendMail({
+          to: email,
+          subject: 'Password Reset OTP',
+          template: 'reset-password.mjml',
+          data: {
+            otp,
+            firstName: user.firstName,
+            expiresIn: '15 minutes',
+          },
+        });
+        return BaseApiResponse.success('If an account exists with this email, an OTP will be sent', { message: 'OTP sent' });
+    }
+    catch (error) {
+        Logger.error(error);
+        throw new BadRequestException("Failed to send OTP");
+    }
 
-    return BaseApiResponse.success('If an account exists with this email, an OTP will be sent', { message: 'OTP sent' });
+
   }
 
   /**

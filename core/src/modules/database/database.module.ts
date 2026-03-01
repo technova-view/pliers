@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { EnvironmentConfig } from '../../common/interfaces/config.interface';
 import { UserSession } from './entities/user-session.entity';
 import { Business } from './entities/business.entity';
+import { PasswordResetOtp } from './entities/password-reset-otp.entity';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { Business } from './entities/business.entity';
           User,
           UserSession,
           Business,
+          PasswordResetOtp,
         ],
         synchronize: config.get('NODE_ENV') === 'development',
         extra: {
