@@ -15,7 +15,7 @@ interface HeaderProps {
 
 export function Header({ userType: propUserType }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -24,8 +24,8 @@ export function Header({ userType: propUserType }: HeaderProps) {
     setIsMenuOpen(false);
   };
 
-  const navItems = ["Features", "How it works", "Pricing", "Testimonials"];
-  
+  const navItems = ["About", "How It Works", "Find A Contractor", "Post A Project"];
+
   // Determine user type: use prop if provided, then default to CONTRACTOR
   // Note: We're avoiding useSearchParams() here to prevent CSR bailout during pre-rendering
   const userType = propUserType || UserType.CONTRACTOR;
@@ -76,7 +76,7 @@ export function Header({ userType: propUserType }: HeaderProps) {
               Sign In
             </Button>
           </Link>
-          
+
           <Link href={ROUTES.signup({ userType })}>
             <Button
               className="bg-primary hover:bg-primary/90 text-white hidden transition-all duration-300 hover:text-white sm:inline-flex"
@@ -159,7 +159,7 @@ export function Header({ userType: propUserType }: HeaderProps) {
                 onClick={closeMenu}
                 className="text-primary hover:text-primary/80 hover:bg-primary/5 rounded-lg px-4 py-4 text-base font-medium transition-colors"
               >
-                Become a Contractor
+                For Contractors
               </Link>
 
                <Link href={ROUTES.login({ userType })} onClick={closeMenu} className="mt-4 px-4">
@@ -168,7 +168,7 @@ export function Header({ userType: propUserType }: HeaderProps) {
                   Sign In
                 </Button>
               </Link>
-              
+
                <Link href={ROUTES.signup({ userType })} onClick={closeMenu} className="mt-2 px-4">
                 <Button className="w-full bg-primary hover:bg-primary/90 text-white">
                   <UserPlus className="mr-2 h-4 w-4" />
