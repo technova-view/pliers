@@ -27,4 +27,5 @@ export const ROUTES = {
   contractor: () => '/dashboard/contractor',
   homeOwner: () => '/dashboard/home-owner',
   profile: () => '/dashboard/profile',
+  logout: () => '/dashboard/logout',
 };
