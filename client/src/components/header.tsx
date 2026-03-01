@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X, UserPlus, LogIn } from "lucide-react";
 import { useState } from "react";
@@ -15,6 +16,7 @@ interface HeaderProps {
 }
 
 export function Header({ userType: propUserType, showAuthButtons = true }: HeaderProps) {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -25,7 +27,7 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
     setIsMenuOpen(false);
   };
 
-  const navItems = ["Home","About", "How It Works", "Find A Contractor", "Post A Project"];
+  const navItems = ["Home", "About", "How It Works", "Find A Contractor", "Post A Project"];
 
   // Determine user type: use prop if provided, then default to CONTRACTOR
   // Note: We're avoiding useSearchParams() here to prevent CSR bailout during pre-rendering
@@ -47,16 +49,25 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-1 md:flex lg:gap-2">
-          {navItems.map((item) => (
-            <Link
-              key={item}
-              href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-              className="text-muted-foreground hover:text-primary group relative px-4 py-2 text-sm font-medium transition-colors"
-            >
-              {item}
-              <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActive = item === "Home" && pathname === ROUTES.home();
+            return (
+              <Link
+                key={item}
+                href={item === "Home" ? ROUTES.home() : `#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                className={`${isActive
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-primary"
+                  } group relative px-4 py-2 text-sm font-medium transition-colors`}
+              >
+                <span className="inline-block">
+                  {item}
+                  <span className={`${isActive ? "w-full" : "w-0 group-hover:w-full"
+                    } bg-primary absolute -bottom-1 left-0 h-0.5 transition-all duration-300`} />
+                </span>
+              </Link>
+            );
+          })}
           <span className="bg-border mx-2 h-6 w-px" aria-hidden="true" />
 
           <Link
@@ -146,16 +157,22 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
             </div>
 
             <nav className="flex flex-col gap-1 px-6 py-6">
-              {navItems.map((item) => (
-                <Link
-                  key={item}
-                  href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                  onClick={closeMenu}
-                  className="hover:text-primary hover:bg-primary/5 rounded-lg px-4 py-4 text-base font-medium text-gray-700 transition-colors"
-                >
-                  {item}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = item === "Home" && pathname === ROUTES.home();
+                return (
+                  <Link
+                    key={item}
+                    href={item === "Home" ? ROUTES.home() : `#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                    onClick={closeMenu}
+                    className={`${isActive
+                      ? "text-primary bg-primary/5"
+                      : "hover:text-primary hover:bg-primary/5"
+                      } rounded-lg px-4 py-4 text-base font-medium text-gray-700 transition-colors`}
+                  >
+                    {item}
+                  </Link>
+                );
+              })}
 
               <div className="my-4 border-t border-gray-200" />
 
