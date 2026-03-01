@@ -143,7 +143,7 @@ function SignupContent() {
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
-      <Header userType={activeTab} />
+      <Header userType={activeTab} showAuthButtons={false} />
       <div className="grow flex items-center justify-center p-4">
         <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left side - Illustration */}

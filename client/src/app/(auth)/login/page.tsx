@@ -72,7 +72,7 @@ function LoginContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 flex flex-col font-primary">
-      <Header userType={userType} />
+      <Header userType={userType} showAuthButtons={false} />
       <div className="flex-1 flex items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left side - Branding & Illustration */}
