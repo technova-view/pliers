@@ -1,4 +1,4 @@
-import { UserType } from "./enums";
+import { UserType, ServiceCategory } from "./enums";
 
 export interface LoginRequest {
   email: string;
@@ -9,8 +9,11 @@ export interface SignupRequest {
   userType: UserType;
   email: string;
   password: string;
-  firstName?: string;
-  lastName?: string;
+  firstName: string;
+  lastName: string;
+  phone?: string;
+  businessName?: string;
+  serviceCategory?: ServiceCategory;
 }
 
 export interface RefreshTokenRequest {

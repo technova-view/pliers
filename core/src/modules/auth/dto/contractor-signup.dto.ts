@@ -6,32 +6,18 @@ import {
     Matches,
     IsEmail,
     MinLength,
-    IsOptional,
     IsEnum,
 } from 'class-validator';
 import { NAME_REGEX } from '../../../common/regex/name.regex';
 import { UserType } from 'src/common/enums/user-type.enum';
-import { ServiceCategory } from 'src/common/enums/service-category.enum';
-import { Column } from 'typeorm';
+import { ServiceCategory } from '../../../common/enums/service-category.enum';
 
-export class SignupDto {
+export class ContractorSignupDto {
 
     @ApiProperty({ example: UserType.CONTRACTOR })
     @IsEnum(UserType)
     @IsNotEmpty()
-    @Column({ type: 'enum', enum: UserType, default: UserType.CONTRACTOR })
     userType: UserType;
-
-    @ApiProperty({ example: 'user@pliers.com' })
-    @IsEmail()
-    @IsNotEmpty()
-    email: string;
-
-    @ApiProperty({ example: 'password123' })
-    @IsString()
-    @IsNotEmpty()
-    @MinLength(8)
-    password: string;
 
     @ApiProperty({ example: 'John' })
     @IsString()
@@ -51,21 +37,31 @@ export class SignupDto {
     @MaxLength(100)
     lastName: string;
 
-    // Contractor-specific fields
-    @ApiPropertyOptional({ example: '+1234567890' })
+    @ApiProperty({ example: '+1234567890' })
     @IsString()
-    @IsOptional()
+    @IsNotEmpty()
     @MaxLength(50)
-    phone?: string;
+    phone: string;
 
-    @ApiPropertyOptional({ example: 'ABC Plumbing Services' })
+    @ApiProperty({ example: 'ABC Plumbing Services' })
     @IsString()
-    @IsOptional()
+    @IsNotEmpty()
     @MaxLength(255)
-    businessName?: string;
+    businessName: string;
 
-    @ApiPropertyOptional({ enum: ServiceCategory })
+    @ApiProperty({ example: 'user@pliers.com' })
+    @IsEmail()
+    @IsNotEmpty()
+    email: string;
+
+    @ApiProperty({ example: 'password123' })
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(8)
+    password: string;
+
+    @ApiProperty({ enum: ServiceCategory, example: ServiceCategory.PLUMBING })
     @IsEnum(ServiceCategory)
-    @IsOptional()
-    serviceCategory?: ServiceCategory;
+    @IsNotEmpty()
+    serviceCategory: ServiceCategory;
 }

@@ -9,6 +9,7 @@ import { EnvironmentConfig } from 'src/common/interfaces/config.interface';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../database/entities/user.entity';
 import { UserSession } from '../database/entities/user-session.entity';
+import { Business } from '../database/entities/business.entity';
 
 @Module({
    imports: [
@@ -23,7 +24,7 @@ import { UserSession } from '../database/entities/user-session.entity';
         },
       }),
     }),
-    TypeOrmModule.forFeature([User, UserSession])
+    TypeOrmModule.forFeature([User, UserSession, Business])
   ],
 
   controllers: [AuthController],
