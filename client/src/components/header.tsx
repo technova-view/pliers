@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X, UserPlus, LogIn, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { UserType } from "@/lib/enums";
 import { useAuth } from "@/lib/hooks";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -21,6 +21,8 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const userButtonRef = useRef<HTMLButtonElement>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -33,6 +35,30 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
   };
+
+  // Close user menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        userMenuRef.current &&
+        userButtonRef.current &&
+        !userMenuRef.current.contains(event.target as Node) &&
+        !userButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsUserMenuOpen(false);
+      }
+    };
+
+    // Add event listener when menu is open
+    if (isUserMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup event listener on component unmount or when menu closes
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isUserMenuOpen]);
 
   const navItems = ["Home", "About", "How It Works", "Find A Contractor", "Post A Project"];
 
@@ -91,8 +117,9 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
         <div className="flex items-center gap-3">
           {showAuthButtons && isAuthenticated && user ? (
             // Authenticated user menu
-            <div className="relative">
+            <div className="relative" ref={userMenuRef}>
               <button
+                ref={userButtonRef}
                 onClick={toggleUserMenu}
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
               >
