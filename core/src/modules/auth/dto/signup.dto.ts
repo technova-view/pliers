@@ -52,10 +52,11 @@ export class SignupDto {
     lastName: string;
 
     // Contractor-specific fields
-    @ApiPropertyOptional({ example: '+1234567890' })
+    @ApiPropertyOptional({ example: '1234567890' })
     @IsString()
     @IsOptional()
     @MaxLength(50)
+    @Matches(/^\d+$/, { message: 'Phone number must contain only digits' })
     phone?: string;
 
     @ApiPropertyOptional({ example: 'ABC Plumbing Services' })

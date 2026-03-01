@@ -27,7 +27,7 @@ const contractorSignupSchema = z
     confirmPassword: z.string(),
     firstName: z.string().min(1, "First name is required"),
     lastName: z.string().min(1, "Last name is required"),
-    phone: z.string().min(1, "Phone number is required"),
+    phone: z.string().min(1, "Phone number is required").regex(/^\d+$/, "Phone number must contain only digits"),
     businessName: z.string().min(1, "Business name is required"),
     serviceCategory: z.string().min(1, "Please select a service category"),
   })
@@ -281,8 +281,15 @@ function SignupContent() {
                         <Input
                           id="phone"
                           type="tel"
-                          placeholder="+1 (555) 000-0000"
+                          placeholder="1234567890"
                           className="pl-9 h-10 bg-white border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm"
+                          pattern="[0-9]*"
+                          inputMode="numeric"
+                          onKeyPress={(e) => {
+                            if (!/[0-9]/.test(e.key)) {
+                              e.preventDefault();
+                            }
+                          }}
                           {...register("phone")}
                         />
                       </div>

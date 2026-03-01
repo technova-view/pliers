@@ -37,10 +37,11 @@ export class ContractorSignupDto {
     @MaxLength(100)
     lastName: string;
 
-    @ApiProperty({ example: '+1234567890' })
+    @ApiProperty({ example: '1234567890' })
     @IsString()
     @IsNotEmpty()
     @MaxLength(50)
+    @Matches(/^\d+$/, { message: 'Phone number must contain only digits' })
     phone: string;
 
     @ApiProperty({ example: 'ABC Plumbing Services' })
