@@ -36,15 +36,6 @@ export function Hero({
         <div className="grid grid-cols-1 items-center gap-8 py-12 md:py-16 lg:grid-cols-2 lg:gap-12 lg:py-20">
           {/* Left Content */}
           <div className="order-2 space-y-8 text-center md:space-y-10 lg:order-1 lg:text-left">
-            {/* Badge */}
-            <Badge
-              variant="outline"
-              className="border-secondary/30 text-secondary inline-flex bg-white/10 px-5 py-2.5 text-sm tracking-wider backdrop-blur-md"
-            >
-              <Home className="text-secondary mr-2 h-4 w-4" />
-              {badgeText}
-            </Badge>
-
             {/* Main Heading */}
             <h1 className="text-secondary text-4xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl">
               {title.text}
