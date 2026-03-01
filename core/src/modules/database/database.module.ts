@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from './entities/user.entity';
 import { EnvironmentConfig } from '../../common/interfaces/config.interface';
 import { UserSession } from './entities/user-session.entity';
+import { Business } from './entities/business.entity';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { UserSession } from './entities/user-session.entity';
         entities: [
           User,
           UserSession,
+          Business,
         ],
         synchronize: config.get('NODE_ENV') === 'development',
         extra: {

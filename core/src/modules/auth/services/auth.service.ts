@@ -6,15 +6,18 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { OAuth2Client } from 'google-auth-library';
 import { SignupDto } from '../dto/signup.dto';
+import { ContractorSignupDto } from '../dto/contractor-signup.dto';
 import { LoginDto } from '../dto/login.dto';
 import { RefreshTokenDto } from '../dto/refresh-token.dto';
 import { GoogleAuthDto } from '../dto/google-auth.dto';
 import { User } from '../../database/entities/user.entity';
 import { UserSession } from '../../database/entities/user-session.entity';
+import { Business } from '../../database/entities/business.entity';
 import { BaseApiResponse } from '../../../common/interfaces/api-response.interface';
 import { EnvironmentConfig } from '../../../common/interfaces/config.interface';
 import { RefreshAccessTokenResponseDto, LogoutResponseDto, AuthTokensResponseDto } from '../dto/auth-response.dto';
 import { AccessTokenPayload, RefreshTokenPayload } from 'src/common/interfaces/token.interface';
+import { UserType } from 'src/common/enums/user-type.enum';
 @Injectable()
 export class AuthService {
 
@@ -23,6 +26,8 @@ export class AuthService {
         private readonly userRepository: Repository<User>,
         @InjectRepository(UserSession)
         private readonly userSessionRepository: Repository<UserSession>,
+        @InjectRepository(Business)
+        private readonly businessRepository: Repository<Business>,
         private readonly jwtService: JwtService,
         private readonly configService: ConfigService<EnvironmentConfig>,
     ) { }
@@ -33,7 +38,7 @@ export class AuthService {
      * @param request - Request object
      */
     async signup(signupDto: SignupDto): Promise<BaseApiResponse<{ userId: string }>> {
-        const { email, password, firstName, lastName } = signupDto;
+        const { email, password, firstName, lastName, userType } = signupDto;
 
         // Check if user already exists
         const existingUser = await this.userRepository.findOne({ where: { email } });
@@ -52,10 +57,22 @@ export class AuthService {
             lastName,
             provider: 'email',
             accountVerified: false,
-            userType: signupDto.userType,
+            userType,
         });
 
         const savedUser = await this.userRepository.save(user);
+
+        // If contractor, create business record
+        if (userType === UserType.CONTRACTOR) {
+            const contractorDto = signupDto as unknown as ContractorSignupDto;
+            const business = this.businessRepository.create({
+                businessName: contractorDto.businessName,
+                phone: contractorDto.phone,
+                serviceCategory: contractorDto.serviceCategory,
+                userId: savedUser.id,
+            });
+            await this.businessRepository.save(business);
+        }
 
         return BaseApiResponse.success('User created successfully', { userId: savedUser.id });
     }

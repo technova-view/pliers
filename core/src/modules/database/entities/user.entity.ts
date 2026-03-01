@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, Index } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, Index, OneToOne } from 'typeorm';
 import { UserType } from '../../../common/enums/user-type.enum';
+import { Business } from './business.entity';
 
 @Entity('users')
 export class User {
@@ -53,4 +54,7 @@ export class User {
   })
   @Index()
   userType: UserType;
+
+  @OneToOne(() => Business, (business) => business.user)
+  business: Business;
 }
