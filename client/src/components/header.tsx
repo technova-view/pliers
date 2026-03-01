@@ -74,7 +74,7 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
             href={ROUTES.contractors()}
             className="text-primary hover:text-primary/80 hover:bg-primary/5 rounded-md px-4 py-2 text-[0.95rem] font-medium transition-colors"
           >
-            Become a Contractor
+            For Contractors
           </Link>
         </nav>
 
