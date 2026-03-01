@@ -31,7 +31,7 @@ export function AboutPliers({
   return (
     <section className="py-16 md:py-20 bg-gradient-to-b from-white to-secondary/5">
       <div className="container max-w-4xl mx-auto px-4">
-        <div className="space-y-12 md:space-y-16">
+        <div className="space-y-12 md:space-y-8">
 
           {/* Header */}
           <div className="text-center space-y-3">
@@ -41,9 +41,6 @@ export function AboutPliers({
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
               {title}
             </h2>
-            <p className="text-base text-primary">
-              {subtitle}
-            </p>
             <div className="w-20 h-1 bg-primary/20 mx-auto rounded-full" />
           </div>
 
