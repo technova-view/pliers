@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, Suspense } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,6 +32,7 @@ type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
 type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
 
 function ForgotPasswordContent() {
+  const router = useRouter();
   const [step, setStep] = useState<"email" | "otp">("email");
   const [email, setEmail] = useState("");
   const [otpValues, setOtpValues] = useState(["", "", "", "", "", ""]);
@@ -102,7 +104,7 @@ function ForgotPasswordContent() {
       }).unwrap();
 
       toast.success("Password reset successfully");
-      window.location.href = ROUTES.login();
+      router.push(ROUTES.login());
     } catch (error: unknown) {
       const errorformat = error as BaseApiError;
       const errorMessage =

@@ -59,7 +59,6 @@ function LoginContent() {
       const response = await login(data).unwrap();
       toast.success(response.message || "Welcome back!");
       router.push(ROUTES.dashboard());
-      router.refresh();
     } catch (error: unknown) {
       console.error("Login error:", error); // Debug log
       const errorformat = error as any;
