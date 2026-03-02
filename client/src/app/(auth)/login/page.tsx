@@ -61,9 +61,18 @@ function LoginContent() {
       router.push(ROUTES.dashboard());
       router.refresh();
     } catch (error: unknown) {
-      const errorformat = error as BaseApiError;
-      const errorMessage =
-        errorformat.data?.message || errorformat.data?.error || "Invalid email or password";
+      console.error("Login error:", error); // Debug log
+      const errorformat = error as any;
+      let errorMessage = "Invalid email or password";
+
+      if (errorformat?.data) {
+        errorMessage = errorformat.data.message || errorformat.data.error || errorMessage;
+      } else if (errorformat?.error) {
+        errorMessage = errorformat.error || errorMessage;
+      } else if (typeof errorformat === 'string') {
+        errorMessage = errorformat;
+      }
+
       toast.error(errorMessage);
     }
   };

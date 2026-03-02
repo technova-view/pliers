@@ -38,6 +38,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
 		const errorResponse = BaseApiResponse.error(message, error);
 
+		console.log('Exception filter response:', errorResponse); // Debug log
 		response.status(status).json(errorResponse);
 	}
 }

@@ -29,8 +29,8 @@ export const baseQueryWithReauth = async (
 
   let result = await baseQuery(args, api, extraOptions);
 
-  // If we get a 401 response, try to refresh the token
-  if (result.error && result.error.status === 401) {
+  // If we get a 401 response and it's NOT a login request, try to refresh the token
+  if (result.error && result.error.status === 401 && args.url !== "/auth/login") {
     const refreshToken = getRefreshToken();
 
     if (refreshToken) {
@@ -67,5 +67,6 @@ export const baseQueryWithReauth = async (
     }
   }
 
+  console.log('Base query result:', result); // Debug log
   return result;
 };
