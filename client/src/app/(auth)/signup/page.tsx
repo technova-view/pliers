@@ -18,7 +18,7 @@ import GoogleLoginButton from "@/components/authentication/google-login-button";
 import { ROUTES } from "@/lib/routes";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Header } from "@/components/header";
-import { Building2, Phone, Briefcase, Mail, Lock, User, ChevronRight, Home } from "lucide-react";
+import { Building2, Phone, Briefcase, Mail, Lock, User, ChevronRight, Home, Eye, EyeOff } from "lucide-react";
 
 const contractorSignupSchema = z
   .object({
@@ -60,6 +60,8 @@ function SignupContent() {
   const [activeTab, setActiveTab] = useState<UserType>(
     (searchParams.get("userType") as UserType) || UserType.CONTRACTOR
   );
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const isContractor = activeTab === UserType.CONTRACTOR;
 
@@ -352,11 +354,22 @@ function SignupContent() {
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input
                       id="password"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder="At least 8 characters"
-                      className="pl-9 h-10 bg-white border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm"
+                      className="pl-9 pr-10 h-10 bg-white border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm"
                       {...register("password")}
                     />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      {showPassword ? (
+                        <EyeOff className="h-4 w-4" />
+                      ) : (
+                        <Eye className="h-4 w-4" />
+                      )}
+                    </button>
                   </div>
                   {getErrorMessage(errors, "password") && (
                     <p className="text-xs text-red-500">{getErrorMessage(errors, "password")}</p>
@@ -367,13 +380,26 @@ function SignupContent() {
                   <Label htmlFor="confirmPassword" className="text-xs font-medium text-gray-700">
                     Confirm Password
                   </Label>
-                  <Input
-                    id="confirmPassword"
-                    type="password"
-                    placeholder="Re-enter your password"
-                    className="h-10 bg-white border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm"
-                    {...register("confirmPassword")}
-                  />
+                  <div className="relative">
+                    <Input
+                      id="confirmPassword"
+                      type={showConfirmPassword ? "text" : "password"}
+                      placeholder="Re-enter your password"
+                      className="pr-10 h-10 bg-white border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm"
+                      {...register("confirmPassword")}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff className="h-4 w-4" />
+                      ) : (
+                        <Eye className="h-4 w-4" />
+                      )}
+                    </button>
+                  </div>
                   {getErrorMessage(errors, "confirmPassword") && (
                     <p className="text-xs text-red-500">{getErrorMessage(errors, "confirmPassword")}</p>
                   )}
