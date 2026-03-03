@@ -10,13 +10,12 @@ import {
 
 export const homeownerLandingPageData = {
   hero: {
-    badgeText: "PLIERS — HOME SERVICES",
     title: {
-      text: "Every home problem,",
-      span: "solved.",
+      text: "Something wrong at home?",
+      span: "Let’s fix it.",
     },
     description:
-      "Your AI-powered home care assistant. Diagnose issues instantly, get DIY solutions, or connect with trusted local contractors in South Africa.",
+      "Describe the problem in plain language. Pliers helps you understand what’s happening, what to do next, and connects you to trusted local contractors if you need them.",
     primaryCtaText: "Describe Your Problem",
     secondaryCtaText: "Find a Contractor",
     heroImageSrc: "/HomeownerHeroImage.webp",

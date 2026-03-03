@@ -14,7 +14,6 @@ export default function ContractorLandingPage() {
       <Header userType={UserType.CONTRACTOR} />
       <Hero {...contractorLandingPageData.hero} />
       <HowItWorks {...contractorLandingPageData.howItWorks} />
-      <AboutPliers {...contractorLandingPageData.aboutPliers} />
       <FAQ {...contractorLandingPageData.faq} />
       <Separator />
       <Footer />

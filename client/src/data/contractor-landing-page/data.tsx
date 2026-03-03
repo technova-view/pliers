@@ -2,13 +2,13 @@ import { Wrench, Users, Zap, Shield, Clock } from "lucide-react";
 
 export const contractorLandingPageData = {
   hero: {
-    badgeText: "PLIERS — FOR PROFESSIONALS",
+
     title: {
-      text: "Grow your business",
-      span: "with quality leads.",
+      text: "Get Qualified Home Services Leads",
+      span: "in Your Area",
     },
     description:
-      "Connect with homeowners who need your expertise. Get clear, well-defined job briefs and build your reputation with our trusted platform.",
+      "Grow your business with quality leads. Pliers connects you with homeowners who are actively looking for help.",
     primaryCtaText: "Join as a Contractor",
     secondaryCtaText: "View Jobs",
     heroImageSrc: "/ContractorHeroImage.webp",

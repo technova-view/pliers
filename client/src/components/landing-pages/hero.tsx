@@ -20,12 +20,11 @@ interface HeroProps {
 }
 
 export function Hero({
-  badgeText = "PLIERS — HOME SERVICES",
   title,
   description,
   primaryCtaText = "Describe Your Problem",
   secondaryCtaText = "Find a Contractor",
-  heroImageSrc = "/HomeownerHeroImage.webp",
+  heroImageSrc = "",
   heroImageAlt = "Modern home interior",
   onPrimaryCtaClick,
   onSecondaryCtaClick,
@@ -37,13 +36,12 @@ export function Hero({
           {/* Left Content */}
           <div className="order-2 space-y-8 text-center md:space-y-10 lg:order-1 lg:text-left">
             {/* Main Heading */}
-            <h1 className="text-secondary text-4xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl">
-              {title.text}
-              <span className="text-primary ml-4">{title.span}</span>
+            <h1 className="text-secondary text-2xl leading-tight font-semibold tracking-tight md:text-3xl lg:text-4xl">
+              {title.text}{" "}
+              <span className="text-primary">{title.span}</span>
             </h1>
-
             {/* Description */}
-            <p className="text-secondary/80 mx-auto max-w-2xl text-lg leading-relaxed md:text-xl lg:mx-0">
+            <p className="text-secondary/80 mx-auto max-w-md text-base leading-relaxed md:text-lg lg:mx-0">
               {description}
             </p>
 

@@ -17,8 +17,6 @@ interface BuiltForRealHomesProps {
 
 export function BuiltForRealHomes({
   title,
-  badgeText,
-  subtitle,
   categories,
   description,
   imageSrc = "/contractors.jpeg",

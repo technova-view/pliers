@@ -86,11 +86,15 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-1 md:flex lg:gap-2">
           {navItems.map((item) => {
-            const isActive = item === "Home" && pathname === ROUTES.home();
+            const isActive = (item === "Home" && pathname === ROUTES.home()) ||
+              (item === "About" && pathname === ROUTES.about());
+            let href = item === "Home" ? ROUTES.home() :
+              item === "About" ? ROUTES.about() :
+                `#${item.toLowerCase().replace(/\s+/g, "-")}`;
             return (
               <Link
                 key={item}
-                href={item === "Home" ? ROUTES.home() : `#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                href={href}
                 className={`${isActive
                   ? "text-primary"
                   : "text-muted-foreground hover:text-primary"
@@ -242,11 +246,15 @@ export function Header({ userType: propUserType, showAuthButtons = true }: Heade
 
             <nav className="flex flex-col gap-1 px-6 py-6">
               {navItems.map((item) => {
-                const isActive = item === "Home" && pathname === ROUTES.home();
+                const isActive = (item === "Home" && pathname === ROUTES.home()) ||
+                  (item === "About" && pathname === ROUTES.about());
+                let href = item === "Home" ? ROUTES.home() :
+                  item === "About" ? ROUTES.about() :
+                    `#${item.toLowerCase().replace(/\s+/g, "-")}`;
                 return (
                   <Link
                     key={item}
-                    href={item === "Home" ? ROUTES.home() : `#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                    href={href}
                     onClick={closeMenu}
                     className={`${isActive
                       ? "text-primary bg-primary/5"
