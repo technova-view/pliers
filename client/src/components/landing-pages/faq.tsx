@@ -26,9 +26,6 @@ export function FAQ({
       <div className="container mx-auto max-w-3xl px-4">
         {/* Header */}
         <div className="mb-12 space-y-3 text-center">
-          <div className="bg-primary/10 mx-auto mb-2 inline-flex h-16 w-16 items-center justify-center rounded-2xl">
-            <span className="text-2xl">❓</span>
-          </div>
           <h2 className="text-secondary text-3xl font-semibold tracking-tight md:text-4xl">
             {title}
           </h2>

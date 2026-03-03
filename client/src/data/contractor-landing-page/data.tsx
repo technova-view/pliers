@@ -11,7 +11,7 @@ export const contractorLandingPageData = {
       "Connect with homeowners who need your expertise. Get clear, well-defined job briefs and build your reputation with our trusted platform.",
     primaryCtaText: "Join as a Contractor",
     secondaryCtaText: "View Jobs",
-    heroImageSrc: "/professionals.jpg",
+    heroImageSrc: "/ContractorHeroImage.webp",
     heroImageAlt: "Professional contractors working",
   },
   howItWorks: {

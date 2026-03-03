@@ -19,7 +19,7 @@ export const homeownerLandingPageData = {
       "Your AI-powered home care assistant. Diagnose issues instantly, get DIY solutions, or connect with trusted local contractors in South Africa.",
     primaryCtaText: "Describe Your Problem",
     secondaryCtaText: "Find a Contractor",
-    heroImageSrc: "/heroImage.jpeg",
+    heroImageSrc: "/HomeownerHeroImage.webp",
     heroImageAlt: "Modern home interior",
   },
   howItWorks: {

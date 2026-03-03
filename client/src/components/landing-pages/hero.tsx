@@ -25,7 +25,7 @@ export function Hero({
   description,
   primaryCtaText = "Describe Your Problem",
   secondaryCtaText = "Find a Contractor",
-  heroImageSrc = "/heroImage.jpeg",
+  heroImageSrc = "/HomeownerHeroImage.webp",
   heroImageAlt = "Modern home interior",
   onPrimaryCtaClick,
   onSecondaryCtaClick,

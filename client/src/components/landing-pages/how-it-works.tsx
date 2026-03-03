@@ -61,12 +61,6 @@ export function HowItWorks({
       <div className="container max-w-6xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <Badge
-            variant="outline"
-            className="px-4 py-1.5 border-primary/20 text-primary bg-primary/5 font-medium mb-4"
-          >
-            {badgeText}
-          </Badge>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-secondary">
             {title}
           </h2>

@@ -30,12 +30,6 @@ export function BuiltForRealHomes({
         <div className="grid grid-cols-1 md:grid-cols-2 rounded-3xl overflow-hidden">
           {/* Left Content */}
           <div className="flex flex-col justify-center p-8 md:p-12">
-            {badgeText && (
-              <Badge className="mb-4 bg-white/10 px-4 py-1.5 text-white border-white/20">
-                {badgeText}
-              </Badge>
-            )}
-
             <h2 className="text-3xl md:text-4xl font-semibold text-white leading-tight mb-5">
               {title}
             </h2>
