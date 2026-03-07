@@ -3,14 +3,14 @@ import { ArrowRight } from "lucide-react";
 
 interface FinalCtaProps {
   title?: string;
-  description?: string;
+  subtitle?: string;
   buttonText?: string;
   onButtonClick?: () => void;
 }
 
 export const FinalCta = ({
   title = "Ready to Solve Your Home Problem?",
-  description = "Start chatting with our AI assistant now – it's free and takes less than a minute.",
+  subtitle = "Start chatting with our AI assistant now – it's free and takes less than a minute.",
   buttonText = "Start Free Diagnosis",
   onButtonClick,
 }: FinalCtaProps) => {
@@ -23,9 +23,9 @@ export const FinalCta = ({
             {title}
           </h2>
 
-          {/* Description */}
+          {/* Subtitle */}
           <p className="text-base text-secondary/60 max-w-lg mx-auto">
-            {description}
+            {subtitle}
           </p>
 
           {/* CTA Button */}

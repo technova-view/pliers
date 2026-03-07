@@ -32,7 +32,7 @@ interface HowItWorksProps {
 
 export function HowItWorks({
   title = "How It Works",
-  badgeText = "Simple Process",
+
   features = [
     {
       icon: <Bot className="w-10 h-10 text-primary" strokeWidth={1.5} />,

@@ -2,82 +2,98 @@ import { Wrench, Users, Zap, Shield, Clock } from "lucide-react";
 
 export const contractorLandingPageData = {
   hero: {
-
     title: {
       text: "Get Qualified Home Services Leads",
       span: "in Your Area",
     },
     description:
       "Grow your business with quality leads. Pliers connects you with homeowners who are actively looking for help.",
-    primaryCtaText: "Join as a Contractor",
-    secondaryCtaText: "View Jobs",
+    primaryCtaText: "Create Your Contractor Profile",
+    secondaryCtaText: "Learn More",
     heroImageSrc: "/ContractorHeroImage.webp",
     heroImageAlt: "Professional contractors working",
   },
   howItWorks: {
-    title: "How It Works for Contractors",
+    title: "How Pliers Works for Contractors",
     badgeText: "Simple Process",
     steps: [
       {
         number: 1,
         emoji: "1️⃣",
-        title: "Create your profile",
-        items: [
-          "Showcase your skills and experience",
-          "Set your service areas",
-          "Add your portfolio and reviews",
-          "Specify your availability",
-        ],
+        title: "Homeowners describe their problem",
+        description: "Our system helps them clarify the issue and generates a structured job brief.",
       },
       {
         number: 2,
         emoji: "2️⃣",
-        title: "Get matched with jobs",
-        description:
-          "Pliers connects you with homeowners who need your services with clear, well-defined job briefs.",
-        highlightText: "No more vague inquiries or wasted time on calls.",
+        title: "You receive relevant leads in your area and category",
+        description: "See the job type, location, and summary before deciding.",
       },
       {
         number: 3,
         emoji: "3️⃣",
-        title: "Grow your business",
-        items: [
-          "Receive structured job requests",
-          "Communicate directly with homeowners",
-          "Build your reputation with reviews",
-          "Manage your schedule efficiently",
-        ],
+        title: "Unlock the lead",
+        description: "Contact the homeowner directly and secure the job.",
       },
     ],
   },
-  aboutPliers: {
-    title: "Why Contractors Choose Pliers",
-    subtitle: "Get quality leads, not just inquiries.",
-    story: [
-      "Running a contracting business is hard enough without chasing vague leads. Too often, you spend time on calls that don't turn into jobs, or deal with homeowners who don't understand the scope of work.",
-      "Pliers changes that.",
-      "We provide you with clear, well-structured job briefs and connect you with homeowners who are ready to act.",
+  whyDifferent: {
+    title: "Not Another Directory",
+    description: "Unlike traditional listing sites, Pliers:",
+    features: [
+      "Screens and structures homeowner requests",
+      "Reduces vague “Can you quote?” messages",
+      "Focuses on active job intent",
+      "Lets you choose which leads to purchase",
     ],
-    whyWeBuilt: [
-      "Clear job descriptions",
-      "Verified homeowners",
-      "No hidden fees",
-      "Easy to use platform",
+    finalText: "You stay in control.",
+  },
+  leadQuality: {
+    title: "Better Information = Better Jobs",
+    description: "Every lead includes:",
+    features: [
+      "Problem description",
+      "Property type",
+      "Location",
+      "Urgency level",
+      "Supporting details (where available)",
     ],
-    differenceItems: [
-      "Provides detailed job specifications",
-      "Connects you with qualified leads",
-      "Streamlines communication",
-      "Helps build your online reputation",
-      "Provides tools to manage your business",
+    finalText: "Less back-and-forth. More productive conversations.",
+  },
+  pricing: {
+    title: "Simple, Transparent Pricing",
+    features: [
+      "No subscriptions",
+      "No contracts",
+      "No minimum spend",
+      "You only pay when you choose to access a lead",
     ],
-    forWhoItems: [
-      { icon: Users, title: "Contractors", text: "get quality leads" },
-      { icon: Zap, title: "Jobs", text: "are well-defined" },
-      { icon: Shield, title: "Clients", text: "are pre-qualified" },
+  },
+  trustBuilder: {
+    title: "Built for Local Professionals",
+    description: "Pliers is designed specifically for home service businesses.",
+    painPoints: [
+      "The cost of chasing bad leads",
+      "The frustration of unpaid quoting",
+      "The need for steady work",
     ],
-    visionItems: ["Quality leads", "Transparent process", "Fair pricing"],
-    finalCtaText: "Start Getting Leads",
+    finalText: "Our goal is simple: Help you spend more time working and less time hunting for jobs.",
+  },
+  categories: {
+    title: "Now Accepting Contractors In:",
+    categories: [
+      "Plumbing",
+      "Electrical",
+      "Geysers & Hot Water",
+      "Appliance Repair",
+      "Handyman Services",
+    ],
+    finalText: "More categories launching soon.",
+  },
+  finalCta: {
+    title: "Ready to Get More Jobs?",
+    subtitle: "Set up your profile in minutes and start receiving leads in your area.",
+    ctaText: "Join as a Contractor",
   },
   faq: {
     title: "Frequently Asked Questions",
@@ -89,7 +105,7 @@ export const contractorLandingPageData = {
       },
       {
         q: "Is Pliers free for contractors to join?",
-        a: "Yes, it's free to create a profile and browse job opportunities. We only charge a small fee when you successfully complete a job through our platform.",
+        a: "Yes, it's free to create a profile and browse job opportunities. We only charge a small fee when you choose to access a lead.",
       },
       {
         q: "How do I get paid?",
